@@ -696,11 +696,11 @@
     { id: "crew", at: ".badge.c-pink", keys: ["majnu", "chanakya", "bablu", "crew", "internal", "n8n", "make", "automation", "automations", "stack", "tools", "python", "vibe", "code", "coded", "builds"],
       text: "The crew: Majnu Bhai fixes listing photos, Chanakya finds patterns, Bablu finds sellers, and Dobby finds socks. The headmaster built most of us himself." },
     { id: "whatsapp", at: "#phone-tara", keys: ["tara", "seller", "sellers", "sell", "selling", "sold", "whatsapp", "listing", "listings", "gtm", "onboarding", "khata", "documents", "latency", "subagent", "subagents"],
-      text: "Tara sells homes on WhatsApp, end to end: onboarding, photos, marketing, buyers, feedback, paperwork. Homes go live in ~3 hours, not 3.5 days. Press play!" },
+      text: "Tara sells homes on WhatsApp, end to end: onboarding, photos, marketing, buyers, feedback, paperwork. Onboarding got 28× faster: ~3 hours instead of 3.5 days. Press play!" },
     { id: "whatsapp", at: "#phone-ananya", keys: ["ananya", "agent", "agents", "agentic", "ship", "shipped", "built", "prd", "chatbot", "llm", "ai", "genai", "bot", "assistant", "buyer", "buyers", "visit", "visits", "evals", "judge"],
-      text: "Ananya talks to buyers and books visits. The headmaster found the leaks (rigid slots, irrelevant homes, bad photos) and lead-to-visit went from 4.5% to ~10%." },
+      text: "Ananya talks to buyers and books visits. The headmaster found the leaks (rigid scheduling, irrelevant recommendations, weak visuals) and doubled conversion from enquiry to meeting: 4.5% to ~10%." },
     { id: "metrics", at: ".kpis", keys: ["metric", "metrics", "arr", "revenue", "growth", "numbers", "impact", "result", "results", "kpi", "kpis", "scale", "grew", "money"],
-      text: "One year at Jumbo: ARR from ₹1.15 Cr to ₹6 Cr, homes closed from 4 to 21 a month, listings up 8× in his first quarter." },
+      text: "One year at Jumbo: ARR up 5× (₹1.15 Cr to ₹6 Cr), deals closed per month up 5×, supply up 8× in one quarter." },
     { id: "principles", at: ".sticky.c-orange", keys: ["why", "principle", "principles", "approach", "think", "thinks", "philosophy", "how", "pm", "style", "values", "believe", "fail", "failed", "failure", "failures", "mistake", "mistakes", "wrong"],
       text: "The headmaster's rules: distribution beats features, find the leak before touching the model, evals are the spec. And he has broken plenty. Ask him!" },
     { id: "chakr", at: "#ocp", keys: ["battery", "batteries", "chakr", "aluminium", "aluminum", "r&d", "lab", "research", "deeptech", "deep", "hardware", "chemistry", "moonshot", "anode"],
@@ -1001,7 +1001,7 @@
       c.strokeStyle = k.ink; c.lineWidth = 2;
       c.beginPath(); c.moveTo(95, 44); c.lineTo(95, 22); c.lineTo(555, 22); c.lineTo(555, 44); c.stroke();
       c.fillStyle = k.paper; c.fillRect(300, 12, 80, 20); c.strokeRect(300, 12, 80, 20);
-      c.fillStyle = k.ink; c.font = "600 11px Geist, system-ui, sans-serif"; c.textAlign = "center"; c.fillText("load", 340, 26);
+      c.fillStyle = k.ink; c.font = "600 11px 'IBM Plex Sans', system-ui, sans-serif"; c.textAlign = "center"; c.fillText("load", 340, 26);
       // electrons on the wire
       c.fillStyle = k.a;
       const pathLen = 22 + 460 + 22;
@@ -1016,12 +1016,12 @@
       g.addColorStop(0, "#9aa1aa"); g.addColorStop(0.5, "#d9dde2"); g.addColorStop(1, "#a7aeb7");
       c.fillStyle = g; c.fillRect(40, 44, 110, 180);
       c.strokeStyle = k.ink; c.lineWidth = 1.5; c.strokeRect(40, 44, 110, 180);
-      c.fillStyle = "#2a2e33"; c.font = "700 13px Geist, system-ui, sans-serif"; c.fillText("Al", 95, 132); c.font = "500 10px Geist, system-ui, sans-serif"; c.fillText("anode", 95, 148);
+      c.fillStyle = "#2a2e33"; c.font = "700 13px 'IBM Plex Sans', system-ui, sans-serif"; c.fillText("Al", 95, 132); c.font = "500 10px 'IBM Plex Sans', system-ui, sans-serif"; c.fillText("anode", 95, 148);
       // cathode mesh
       c.strokeStyle = k.ink3; c.lineWidth = 1;
       for (let y = 48; y < 224; y += 8) { c.beginPath(); c.moveTo(530, y); c.lineTo(580, y + 6); c.stroke(); }
       c.strokeStyle = k.ink; c.lineWidth = 1.5; c.strokeRect(530, 44, 50, 180);
-      c.fillStyle = k.ink3; c.font = "500 10px Geist, system-ui, sans-serif";
+      c.fillStyle = k.ink3; c.font = "500 10px 'IBM Plex Sans', system-ui, sans-serif";
       c.save(); c.translate(600, 134); c.rotate(-Math.PI / 2); c.fillText("air cathode  ·  O₂ in", 0, 0); c.restore();
       // bubbles
       c.strokeStyle = k.r; c.lineWidth = 1.4; c.fillStyle = k.paper;

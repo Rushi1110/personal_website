@@ -4,7 +4,7 @@ Portfolio site for Rushabh Parikh, AI Product Manager. It's plain HTML, CSS, and
 
 **Concept:** the portfolio is a product board, an infinite FigJam-style canvas you explore instead of scroll.
 
-- **Receipts first:** four clickable proof stickies under the headline (3 hrs to go live, 2× lead→visit, 5× ARR, 672 leads/week) count up on arrival, then a SOLD stamp lands. Clicking a receipt flies the camera to the evidence while Dobby explains it.
+- **Receipts first:** four clickable proof stickies under the headline (28× faster onboarding, 2× enquiry→meeting conversion, 5× ARR, 670+ leads a week). Metrics lead with a cross-industry headline, with the real-estate detail in small print count up on arrival, then a SOLD stamp lands. Clicking a receipt flies the camera to the evidence while Dobby explains it.
 - **Personalised arrivals:** `?utm_source=linkedin|x|github|resume|email` or job boards change the sticker and Dobby's greeting. `?for=Acme` makes a board "made for Acme", with a custom greeting, page title and contact note. For previews where query strings are stripped, use `#via-linkedin` or `#for-acme`.
 - **Board:** pan by dragging or scrolling, zoom with Ctrl/⌘ + scroll or pinch, fling with inertia. A minimap, a frames panel and keyboard shortcuts get you around.
 - **Dobby, the host:** "Dobby is here on behalf of the headmaster!" His cursor joins the board, gives a guided tour that flies the camera between frames, and answers questions typed into the dock.
@@ -26,7 +26,7 @@ Portfolio site for Rushabh Parikh, AI Product Manager. It's plain HTML, CSS, and
 
 Shortcuts: `T` tour · `1`–`9` jump to the first nine frames · `0` fit the board · `V` / `H` / `S` tools · `/` ask Dobby · `Esc` close.
 
-Fonts: Bricolage Grotesque (display), Geist (UI), Geist Mono (data), Shantell Sans (handwriting).
+Fonts: Gloock (display), IBM Plex Sans (UI), IBM Plex Mono (data), Shantell Sans (handwriting). Colours: "Whiteboard" (grey board, bright stickies, orange accent, teal for Dobby).
 
 ## Structure
 

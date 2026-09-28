@@ -11,7 +11,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Shantell+Sans:wght,INFM@300..800,0..100&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Shantell+Sans:wght,INFM@300..800,0..100&display=swap">
   <link rel="stylesheet" href="styles.css">
   <script>
     document.documentElement.classList.add("js");
@@ -140,24 +140,24 @@
           <p class="receipts-k"><span>receipts</span> tap one for the proof</p>
           <ul class="receipts">
             <li><button class="receipt c-green" type="button" data-ask="tara">
-              <span class="rc-num"><span class="rc-n" data-from="84" data-to="3" data-dec="0">3</span> hrs</span>
-              <span class="rc-k">for a seller's home to go live. It used to take 3.5 days.</span>
-              <span class="rc-go">Tara · see how →</span>
+              <span class="rc-num"><span class="rc-n" data-from="1" data-to="28" data-dec="0">28</span>×</span>
+              <span class="rc-k">faster customer onboarding, with an AI agent doing the work.</span>
+              <span class="rc-go">3.5 days → ~3 hrs · Tara →</span>
             </button></li>
             <li><button class="receipt c-violet" type="button" data-ask="ananya">
               <span class="rc-num"><span class="rc-n" data-from="1" data-to="2" data-dec="0">2</span>×</span>
-              <span class="rc-k">lead → site visit. 4.5% to ~10%, every week.</span>
-              <span class="rc-go">Ananya · see how →</span>
+              <span class="rc-k">conversion from enquiry to booked meeting. Held every week.</span>
+              <span class="rc-go">4.5% → ~10% · Ananya →</span>
             </button></li>
             <li><button class="receipt c-yellow" type="button" data-ask="metrics">
               <span class="rc-num"><span class="rc-n" data-from="1" data-to="5" data-dec="0">5</span>×</span>
               <span class="rc-k">ARR in 12 months at a pre-seed startup.</span>
-              <span class="rc-go">₹1.15 Cr → ₹6 Cr · see how →</span>
+              <span class="rc-go">₹1.15 Cr → ₹6 Cr · dashboard →</span>
             </button></li>
             <li><button class="receipt c-pink" type="button" data-ask="dobby">
-              <span class="rc-num"><span class="rc-n" data-from="0" data-to="672" data-dec="0">672</span></span>
-              <span class="rc-k">leads scouted in 7 days by Dobby, one of my agents.</span>
-              <span class="rc-go">the crew · see how →</span>
+              <span class="rc-num"><span class="rc-n" data-from="0" data-to="670" data-dec="0">670</span>+</span>
+              <span class="rc-k">leads a week, sourced by an agent I built.</span>
+              <span class="rc-go">~3% convert · Dobby →</span>
             </button></li>
           </ul>
 
@@ -165,9 +165,16 @@
             I lead product on Tara and Ananya at Jumbo Homes: WhatsApp agents that sell real homes, end to end.
             Before agents: batteries at Chakr, crash-safety ML at OLA Electric.
           </p>
-          <div class="hello-actions">
-            <button class="btn btn-primary" type="button" data-action="tour">Take the 60-second tour</button>
-            <button class="btn" type="button" data-goto="contact">Get in touch</button>
+          <div class="hello-foot">
+            <div class="hello-actions">
+              <button class="btn btn-primary" type="button" data-action="tour">Take the 60-second tour</button>
+              <button class="btn" type="button" data-goto="contact">Get in touch</button>
+            </div>
+            <aside class="now c-yellow" aria-label="What I'm working on now">
+              <p class="now-k">Now · Sep 2026</p>
+              <p>Teaching Tara to price homes. The pricing agent is in the oven.</p>
+              <p>Also: letting Dobby host this board.</p>
+            </aside>
           </div>
         </div>
         <p class="hand hand-hello board-only" aria-hidden="true">drag anywhere to look around,<br>or press T for a tour</p>
@@ -322,7 +329,7 @@
               <div class="dn">
                 <p class="dn-k"><svg class="av-sm" aria-hidden="true"><use href="#av-tara"/></svg>Tara · sell side</p>
                 <ul>
-                  <li><b>3.5 days → ~3 hrs</b> from "hi" to a live listing</li>
+                  <li><b>28× faster onboarding:</b> 3.5 days → ~3 hrs from first message to live</li>
                   <li><b>−32% latency</b> after restructuring tools and skills</li>
                   <li><b>Vibe-coded</b> on a product that barely existed. PRD: mine.</li>
                 </ul>
@@ -330,8 +337,8 @@
               <div class="dn">
                 <p class="dn-k"><svg class="av-sm" aria-hidden="true"><use href="#av-ananya"/></svg>Ananya · buy side</p>
                 <ul>
-                  <li><b>4.5% → ~10%</b> lead → visit, every week</li>
-                  <li><b>Leaks fixed:</b> rigid slots, irrelevant homes, bad photos</li>
+                  <li><b>2× conversion:</b> enquiry → booked meeting, 4.5% → ~10%</li>
+                  <li><b>Leaks fixed:</b> rigid scheduling, irrelevant recommendations, weak visuals</li>
                   <li><b>Evals:</b> an LLM judge asks "did it do its job?"</li>
                 </ul>
               </div>
@@ -406,27 +413,27 @@
               <p class="kpi-d">≈ 5× from ₹1.15 Cr</p>
             </div>
             <div class="kpi" data-v0="4" data-v1="21" data-max="21" data-fmt="int">
-              <p class="kpi-k">Homes closed / month</p>
+              <p class="kpi-k">Deals closed / month</p>
               <p class="kpi-v"><span class="kpi-n">21</span></p>
               <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
-              <p class="kpi-d">from 4</p>
+              <p class="kpi-d">≈ 5× from 4 homes a month</p>
             </div>
             <div class="kpi" data-v0="100" data-v1="800" data-max="800" data-fmt="plus">
-              <p class="kpi-k">Active listings</p>
+              <p class="kpi-k">Supply (active inventory)</p>
               <p class="kpi-v"><span class="kpi-n">800+</span></p>
               <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
-              <p class="kpi-d">8× in my first quarter</p>
+              <p class="kpi-d">8× in one quarter · listings</p>
             </div>
             <div class="kpi" data-v0="3" data-v1="11" data-max="11" data-fmt="int">
               <p class="kpi-k">Markets served</p>
               <p class="kpi-v"><span class="kpi-n">11</span></p>
               <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
-              <p class="kpi-d">3 zones → 11 micro-markets</p>
+              <p class="kpi-d">3 → 11, cutting the weak ones</p>
             </div>
           </div>
           <ul class="minis minis-half">
-            <li class="mini c-yellow"><b>4×</b>deals per headcount vs. a conventional brokerage, from CRM tooling I built</li>
-            <li class="mini c-green"><b>CM2+</b>sales incentives that pay above market and stay profitable</li>
+            <li class="mini c-yellow"><b>4×</b>deals per head vs. a traditional competitor, from internal tooling I built</li>
+            <li class="mini c-green"><b>Margin-positive</b>sales comp that pays above market and stays contribution-margin positive</li>
           </ul>
         </div>
       </section>
@@ -502,6 +509,10 @@
               </span>
             </button>
           </div>
+          <div class="also">
+            <p class="also-k">Also built</p>
+            <p class="also-t"><b>This board.</b> With Claude Code, one prompt at a time. Dobby hosts. No templates were harmed.</p>
+          </div>
           <p class="stack"><span>Built with</span> Claude · GPT · Gemini · n8n · Make · plain Python. <span class="hand-inline">By me, mostly at odd hours.</span></p>
         </div>
       </section>
@@ -517,7 +528,7 @@
           </article>
           <article class="sticky c-pink" data-drag style="--x:320px;--y:0px;--r:2deg">
             <p class="sticky-t">Find the leak before you touch the model.</p>
-            <p class="sticky-b">4.5% lead-to-visit wasn't an AI problem. It was fixed visit slots.</p>
+            <p class="sticky-b">4.5% conversion wasn't an AI problem. It was rigid scheduling.</p>
             <p class="sticky-src">from Ananya</p>
           </article>
           <article class="sticky c-green" data-drag style="--x:630px;--y:30px;--r:-1.5deg">
