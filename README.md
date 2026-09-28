@@ -4,15 +4,18 @@ Portfolio site for Rushabh Parikh, AI Product Manager. It's plain HTML, CSS, and
 
 **Concept:** the portfolio is a product board, an infinite FigJam-style canvas you explore instead of scroll.
 
-- **Receipts first:** four clickable proof stickies under the headline (2.3× lead→visit, 5× ARR, 83% from scrap, ₹1.2 Cr savings) count up on arrival. Clicking one flies the camera to the evidence while Ananya explains it.
+- **Receipts first:** four clickable proof stickies under the headline (3 hrs to go live, 2× lead→visit, 5× ARR, 672 leads/week) count up on arrival, then a SOLD stamp lands. Clicking a receipt flies the camera to the evidence while Ananya explains it.
+- **Personalised arrivals:** `?utm_source=linkedin|x|github|resume|email` or job boards change the sticker and Ananya's greeting. `?for=Acme` makes a board "made for Acme", with a custom greeting, page title and contact note. For previews where query strings are stripped, use `#via-linkedin` or `#for-acme`.
 - **Board:** pan by dragging or scrolling, zoom with Ctrl/⌘ + scroll or pinch, fling with inertia. A minimap, a frames panel and keyboard shortcuts get you around.
 - **Ananya, the AI guide:** her cursor joins the board, gives a guided tour that flies the camera between frames, and answers questions typed into the dock ("what did he ship?", "battery work?", "how do I reach him?").
 - **Frames:**
   - Hello
+  - Tara system map: a little house travels through every agent a home passes on its way to SOLD (tap any node)
+  - The crew: flip cards for Majnu Bhai, Dobby, Chanakya and Bablu
   - Roadmap, with clickable bars
   - OLA crash-model scatter plot (hover the points)
   - Chakr lab notebook, with a live voltage slider and a bubble simulation
-  - Ananya PRD, with a playable agent phone that runs three scripted scenarios, one of which hands off to a human
+  - Ananya PRD (what was leaking, scope, evals), with a playable phone: an honest answer plus a booking, relevance matching, and a hand-off to a human
   - Year-one dashboard, with a before/after toggle
   - Draggable principle stickies
   - IIT Guwahati
@@ -20,7 +23,7 @@ Portfolio site for Rushabh Parikh, AI Product Manager. It's plain HTML, CSS, and
 - **Visitor stickies:** press S (or pick the sticky tool) and click anywhere to leave a note. Notes are saved in your browser and included in the email.
 - **Read as a page:** a normal scrolling layout. It's the default on phones and what you get without JavaScript.
 
-Shortcuts: `T` tour · `1`–`9` jump to a frame · `0` fit the board · `V` / `H` / `S` tools · `/` ask Ananya · `Esc` close.
+Shortcuts: `T` tour · `1`–`9` jump to the first nine frames · `0` fit the board · `V` / `H` / `S` tools · `/` ask Ananya · `Esc` close.
 
 Fonts: Bricolage Grotesque (display), Geist (UI), Geist Mono (data), Shantell Sans (handwriting).
 

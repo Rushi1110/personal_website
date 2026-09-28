@@ -61,38 +61,39 @@
       <section class="frame" id="hello" data-frame data-title="Hello" data-x="-400" data-y="-280" data-w="800">
         <h2 class="frame-label">Hello</h2>
         <div class="paper paper-hello">
-          <span class="sticker" aria-hidden="true">4 yrs · 3 industries</span>
+          <span class="sticker" id="sticker" aria-hidden="true">4 yrs · 3 industries · a crew of agents</span>
+          <span class="stamp" aria-hidden="true"><b>Sold</b>by AI agents</span>
           <p class="ui-tag"><span class="pulse" aria-hidden="true"></span>AI Product Manager · Jumbo Homes · Bengaluru</p>
           <h1 class="hello-name">Rushabh<br>Parikh<span class="dot">.</span></h1>
-          <p class="hello-line">I build AI products that move a number the business already tracks.</p>
+          <p class="hello-line">Builds the agent. Writes the evals. Fixes the lowercase&nbsp;t.</p>
 
-          <p class="receipts-k"><span>receipts</span> tap one to see the proof</p>
+          <p class="receipts-k"><span>receipts</span> tap one for the proof</p>
           <ul class="receipts">
+            <li><button class="receipt c-green" type="button" data-ask="tara">
+              <span class="rc-num"><span class="rc-n" data-from="84" data-to="3" data-dec="0">3</span> hrs</span>
+              <span class="rc-k">for a seller's home to go live. It used to take 3.5 days.</span>
+              <span class="rc-go">Tara · see how →</span>
+            </button></li>
             <li><button class="receipt c-violet" type="button" data-ask="ananya">
-              <span class="rc-num"><span class="rc-n" data-from="1" data-to="2.3" data-dec="1">2.3</span>×</span>
-              <span class="rc-k">lead → site visit with an AI agent I PM'd</span>
-              <span class="rc-go">4.5% → 10.3% · see how →</span>
+              <span class="rc-num"><span class="rc-n" data-from="1" data-to="2" data-dec="0">2</span>×</span>
+              <span class="rc-k">lead → site visit. 4.5% to ~10%, every week.</span>
+              <span class="rc-go">Ananya · see how →</span>
             </button></li>
             <li><button class="receipt c-yellow" type="button" data-ask="metrics">
               <span class="rc-num"><span class="rc-n" data-from="1" data-to="5" data-dec="0">5</span>×</span>
-              <span class="rc-k">ARR in 12 months at a pre-seed startup</span>
+              <span class="rc-k">ARR in 12 months at a pre-seed startup.</span>
               <span class="rc-go">₹1.15 Cr → ₹6 Cr · see how →</span>
             </button></li>
-            <li><button class="receipt c-blue" type="button" data-ask="battery">
-              <span class="rc-num"><span class="rc-n" data-from="0" data-to="83" data-dec="0">83</span>%</span>
-              <span class="rc-k">of pure-aluminium battery performance, from scrap</span>
-              <span class="rc-go">Chakr R&amp;D · see how →</span>
-            </button></li>
-            <li><button class="receipt c-pink" type="button" data-ask="crash">
-              <span class="rc-num">₹<span class="rc-n" data-from="0" data-to="1.2" data-dec="1">1.2</span> Cr</span>
-              <span class="rc-k">projected savings, plus a crash ML model at R² 0.83</span>
-              <span class="rc-go">OLA Electric · see how →</span>
+            <li><button class="receipt c-pink" type="button" data-ask="dobby">
+              <span class="rc-num"><span class="rc-n" data-from="0" data-to="672" data-dec="0">672</span></span>
+              <span class="rc-k">leads scouted in 7 days by Dobby, one of my agents.</span>
+              <span class="rc-go">the crew · see how →</span>
             </button></li>
           </ul>
 
           <p class="hello-body">
-            Now: product at Jumbo Homes and its AI agent, Ananya. Before: aluminium-air battery R&amp;D at Chakr Innovation
-            and crash-safety ML at OLA Electric. Mechanical engineer, IIT Guwahati.
+            I'm Rushabh. At Jumbo Homes I lead product on Tara and Ananya, WhatsApp agents that have sold homes end to end,
+            on both the buy and the sell side. Before that: aluminium-air batteries at Chakr and crash-safety ML at OLA Electric.
           </p>
           <div class="hello-actions">
             <button class="btn btn-primary" type="button" data-action="tour">Take the 60-second tour</button>
@@ -159,8 +160,8 @@
             <div class="rm-detail" data-rm-detail="jumbo">
               <p class="ui-tag">Jul 2025 – now · Chief of Staff → Product</p>
               <p class="rm-d-title">Jumbo Homes</p>
-              <p>Founding-team generalist turned product owner at a pre-seed, AI-native real estate startup. ARR grew about 5× in a year.</p>
-              <button class="link-btn" type="button" data-goto="ananya">Open frame →</button>
+              <p>Joined the founding team as a generalist, stayed as the product owner. Shipped Ananya, then Tara, then a crew of internal agents. ARR grew about 5× in a year.</p>
+              <button class="link-btn" type="button" data-goto="tara">Open frame →</button>
             </div>
           </div>
         </div>
@@ -224,49 +225,97 @@
         <p class="hand hand-chakr board-only" aria-hidden="true">drag the slider!</p>
       </section>
 
+      <!-- TARA -->
+      <section class="frame" id="tara" data-frame data-title="Tara" data-x="560" data-y="-800" data-w="1180">
+        <h2 class="frame-label">System map · Tara</h2>
+        <div class="paper">
+          <div class="f-head">
+            <div>
+              <p class="doc-meta"><span class="pill">Live</span> PRD, prompts, evals and a fair bit of the code: me</p>
+              <h3 class="f-title">Tara sells your home on WhatsApp</h3>
+            </div>
+            <p class="f-hint">tap any agent</p>
+          </div>
+          <p class="f-body">
+            A seller says hi on WhatsApp. A small team of agents handles the rest: the listing, the marketing, the buyers,
+            the feedback and the paperwork. Homes have now sold end to end this way. I vibe-coded it on top of a product that
+            barely did anything at the time.
+          </p>
+
+          <div class="flow" id="flow">
+            <svg class="flow-lines" id="flow-lines" aria-hidden="true"></svg>
+            <svg class="flow-lines flow-home" id="flow-home" aria-hidden="true"></svg>
+            <button class="node c-orange" type="button" data-node="bablu" style="--c-i:1;--r-i:1"><span class="n-tag">input</span><b>Bablu</b><span>finds sellers</span></button>
+            <button class="node c-yellow" type="button" data-node="seller" style="--c-i:2;--r-i:1"><span class="n-tag">human</span><b>Seller</b><span>says hi on WhatsApp</span></button>
+            <button class="node c-blue" type="button" data-node="onboard" style="--c-i:3;--r-i:1"><span class="n-tag">agent</span><b>Onboarding</b><span>gets the home's details</span></button>
+            <button class="node c-pink" type="button" data-node="majnu" style="--c-i:4;--r-i:1"><span class="n-tag">agent</span><b>Majnu Bhai</b><span>makes the photos work</span></button>
+            <button class="node node-wip" type="button" data-node="pricing" style="--c-i:5;--r-i:1"><span class="n-tag">WIP</span><b>Pricing</b><span>suggests a price</span></button>
+            <button class="node c-green is-on" type="button" data-node="gtm" style="--c-i:5;--r-i:2"><span class="n-tag">agent</span><b>GTM agent</b><span>markets every home</span></button>
+            <button class="node c-violet" type="button" data-node="ananya" style="--c-i:4;--r-i:2"><span class="n-tag">agent</span><b>Ananya</b><span>answers buyers, books visits</span></button>
+            <button class="node c-blue" type="button" data-node="rm" style="--c-i:3;--r-i:2"><span class="n-tag">agent</span><b>Relationship</b><span>relays buyer feedback</span></button>
+            <button class="node c-yellow" type="button" data-node="docs" style="--c-i:2;--r-i:2"><span class="n-tag">skill</span><b>Docs check</b><span>khata, transactability</span></button>
+            <button class="node node-sold" type="button" data-node="sold" style="--c-i:1;--r-i:2"><span class="n-tag">outcome</span><b>SOLD</b><span>end to end, by agents</span></button>
+          </div>
+          <div class="flow-detail" id="flow-detail" aria-live="polite">
+            <p class="fd-title" id="fd-title">GTM agent</p>
+            <p id="fd-body">Writes a go-to-market plan for every single home, then posts it where buyers actually hang out: classifieds, the right Reddit threads, Facebook Marketplace and WhatsApp communities.</p>
+          </div>
+
+          <ul class="minis minis-wide">
+            <li class="mini c-green"><b>3.5 d → 3 h</b>from a seller's first message to a live listing</li>
+            <li class="mini c-yellow"><b>−32%</b>latency, after restructuring tools and skills so the agent stopped over-calling</li>
+            <li class="mini c-pink"><b>Buy + sell</b>homes sold end to end through agents, on both sides</li>
+            <li class="mini c-blue"><b>No app</b>WhatsApp first. Distribution beat features. The app came much later.</li>
+          </ul>
+        </div>
+        <p class="hand hand-tara board-only" aria-hidden="true">watch a home flow through ↓</p>
+      </section>
+
       <!-- ANANYA PRD -->
-      <section class="frame" id="ananya" data-frame data-title="PRD · Ananya" data-x="560" data-y="-700" data-w="1120">
-        <h2 class="frame-label">PRD · Ananya v1</h2>
+      <section class="frame" id="ananya" data-frame data-title="PRD · Ananya" data-x="560" data-y="260" data-w="1180">
+        <h2 class="frame-label">PRD · Ananya</h2>
         <div class="paper prd">
           <div class="prd-doc">
             <p class="doc-meta"><span class="pill">Shipped</span> Owner: Rushabh Parikh · Jumbo Homes · 2025</p>
-            <h3 class="doc-title">Ananya: an AI agent that books the site visit</h3>
+            <h3 class="doc-title">Ananya: the agent that books the visit</h3>
 
             <h4>Problem</h4>
-            <p>Home buyers message many listings, then go quiet. Relationship managers can't reply to every lead fast enough, so most leads never become a site visit, and the site visit is where deals happen.</p>
+            <p>Buyers enquire, then vanish. Lead-to-visit sat at 4.5%, and the site visit is where deals happen.</p>
 
-            <h4>Success metric</h4>
-            <p>Lead → site-visit rate. Reply quality and speed matter only as far as they move it.</p>
+            <h4>What was leaking</h4>
+            <ol class="leaks">
+              <li><b>Fixed visit slots.</b> Buyers don't live in 30-minute windows. Free-flowing scheduling moved the number most.</li>
+              <li><b>Irrelevant homes.</b> We tuned which properties each buyer sees.</li>
+              <li><b>Bad photos.</b> Which is how Majnu Bhai was born.</li>
+            </ol>
 
-            <h4>What Ananya can do</h4>
-            <ul class="tool-list">
-              <li><code>search_listings</code> across 800+ active homes</li>
-              <li><code>commute</code> and <code>schools</code> checks for each shortlist</li>
-              <li><code>book_visit</code> with a relationship manager</li>
-              <li><code>handoff</code> to a human when a question needs judgement</li>
-            </ul>
+            <h4>Scope</h4>
+            <p>Answer anything about a property, honestly, and schedule the visit. That's the whole job, on purpose.</p>
+
+            <h4>Evals</h4>
+            <p>An LLM judge scores every conversation on one question: did Ananya do what it was supposed to?</p>
 
             <h4>Result</h4>
             <div class="result">
-              <p class="result-num"><span class="r-from">4.5%</span><span class="r-arrow" aria-hidden="true">→</span><span class="r-to">10.3%</span></p>
-              <p class="result-k">lead → visit, first month after launch</p>
+              <p class="result-num"><span class="r-from">4.5%</span><span class="r-arrow" aria-hidden="true">→</span><span class="r-to">~10%</span></p>
+              <p class="result-k">lead → visit, holding week after week</p>
             </div>
           </div>
 
           <div class="phone" id="phone">
             <div class="phone-top">
               <span class="phone-av" aria-hidden="true">A</span>
-              <span class="phone-name">Ananya<small>AI home-buying agent</small></span>
+              <span class="phone-name">Ananya<small>WhatsApp · home-buying agent</small></span>
               <span class="phone-status"><span class="pulse" aria-hidden="true"></span>online</span>
             </div>
             <ol class="phone-msgs" id="phone-msgs" aria-live="polite">
-              <li class="pm pm-agent"><p>Hi! Tell me what you're looking for and I'll find homes worth visiting.</p></li>
+              <li class="pm pm-agent"><p>Hi! Ask me anything about a home, or pick a time to see it. Any time. I don't do slots.</p></li>
             </ol>
             <div class="phone-chips" id="phone-chips">
-              <p class="phone-chips-k">Try a buyer message</p>
-              <button class="chip" type="button" data-scn="whitefield">3BHK near Whitefield, under ₹1.2 Cr</button>
-              <button class="chip" type="button" data-scn="hsr">Ready-to-move 2BHK in HSR</button>
-              <button class="chip" type="button" data-scn="timing">Should I buy now or wait?</button>
+              <p class="phone-chips-k">Try a buyer message · scripted replay</p>
+              <button class="chip" type="button" data-scn="honest">Still available? Anything I should know?</button>
+              <button class="chip" type="button" data-scn="relevance">Loved it, but I need one more bedroom</button>
+              <button class="chip" type="button" data-scn="negotiate">Can you get me 20% off?</button>
             </div>
           </div>
         </div>
@@ -274,7 +323,7 @@
       </section>
 
       <!-- METRICS -->
-      <section class="frame" id="metrics" data-frame data-title="Year-one dashboard" data-x="560" data-y="200" data-w="1120">
+      <section class="frame" id="metrics" data-frame data-title="Year-one dashboard" data-x="560" data-y="1320" data-w="1180">
         <h2 class="frame-label">Dashboard · Jumbo Homes, year one</h2>
         <div class="paper">
           <div class="f-head">
@@ -314,8 +363,83 @@
             <li class="mini c-yellow"><b>4×</b>deals per headcount vs. a conventional brokerage, from CRM tooling I built</li>
             <li class="mini c-green"><b>CM2+</b>sales incentives that pay above market and stay profitable</li>
             <li class="mini c-pink"><b>2× AOV</b>Jumbo Reserve, a buy-and-resell model I sized and piloted</li>
-            <li class="mini c-blue"><b>House Tour</b>a feature I launched</li>
+            <li class="mini c-blue"><b>House Tour</b>a feature I launched, before agents took over the tour guide job</li>
           </ul>
+        </div>
+      </section>
+
+      <!-- CREW -->
+      <section class="frame" id="crew" data-frame data-title="The crew" data-x="1900" data-y="-800" data-w="980">
+        <h2 class="frame-label">The crew · internal agents</h2>
+        <div class="paper">
+          <div class="f-head">
+            <h3 class="f-title">Meet the crew</h3>
+            <p class="f-hint">tap a card to flip it</p>
+          </div>
+          <p class="f-body">Agents I built so the team spends its time on judgement, not grunt work. Names chosen with great care and zero focus groups.</p>
+          <div class="crew">
+            <button class="badge c-pink" type="button" aria-pressed="false">
+              <span class="badge-in">
+                <span class="badge-f">
+                  <span class="b-av">MB</span>
+                  <b class="b-name">Majnu Bhai</b>
+                  <span class="b-role">Makes listing photos worth a second look.</span>
+                  <span class="b-tag">flip →</span>
+                </span>
+                <span class="badge-b">
+                  <b class="b-name">How it works</b>
+                  <span>Turns rough phone photos into images people click, without making a home look like something it isn't.</span>
+                  <span class="b-stat">Human-reviewed · live since Tara launched</span>
+                </span>
+              </span>
+            </button>
+            <button class="badge c-yellow" type="button" aria-pressed="false">
+              <span class="badge-in">
+                <span class="badge-f">
+                  <span class="b-av">Do</span>
+                  <b class="b-name">Dobby</b>
+                  <span class="b-role">Finds socks. (Mistakes in our ops.)</span>
+                  <span class="b-tag">flip →</span>
+                </span>
+                <span class="badge-b">
+                  <b class="b-name">By the numbers</b>
+                  <span><strong>104</strong> ops errors caught in 30 days, explained so the team learns from them.</span>
+                  <span>Moonlights as a lead scout: <strong>~672</strong> leads in 7 days from Reddit, Facebook and Telegram. ~3% convert.</span>
+                </span>
+              </span>
+            </button>
+            <button class="badge c-blue" type="button" aria-pressed="false">
+              <span class="badge-in">
+                <span class="badge-f">
+                  <span class="b-av">Ch</span>
+                  <b class="b-name">Chanakya</b>
+                  <span class="b-role">Finds the patterns nobody thought to look for.</span>
+                  <span class="b-tag">flip →</span>
+                </span>
+                <span class="badge-b">
+                  <b class="b-name">Classified</b>
+                  <span>Mines our data for patterns we'd otherwise miss. What it found stays internal.</span>
+                  <span class="b-stat">Chanakya would approve.</span>
+                </span>
+              </span>
+            </button>
+            <button class="badge c-green" type="button" aria-pressed="false">
+              <span class="badge-in">
+                <span class="badge-f">
+                  <span class="b-av">Bb</span>
+                  <b class="b-name">Bablu</b>
+                  <span class="b-role">Finds homeowners for Tara to talk to.</span>
+                  <span class="b-tag">flip →</span>
+                </span>
+                <span class="badge-b">
+                  <b class="b-name">Credit where due</b>
+                  <span>Built by the team. I put him to work at the top of Tara's funnel.</span>
+                  <span class="b-stat">Adopted, not born here</span>
+                </span>
+              </span>
+            </button>
+          </div>
+          <p class="stack"><span>Built with</span> Claude · GPT · Gemini · n8n · Make · plain Python. <span class="hand-inline">By me, mostly at odd hours.</span></p>
         </div>
       </section>
 
@@ -324,40 +448,40 @@
         <h2 class="frame-label">Principles · drag them around</h2>
         <div class="stickies" id="stickies">
           <article class="sticky c-yellow" data-drag style="--x:10px;--y:20px;--r:-3deg">
-            <p class="sticky-t">Pick the metric before the model.</p>
-            <p class="sticky-b">Ananya was judged on booked visits. Clever replies only counted if they moved that.</p>
-            <p class="sticky-src">from Jumbo</p>
+            <p class="sticky-t">Distribution beats features.</p>
+            <p class="sticky-b">We bet on a WhatsApp agent over a native app. Instinct call. The app came much later.</p>
+            <p class="sticky-src">from Tara</p>
           </article>
           <article class="sticky c-pink" data-drag style="--x:320px;--y:0px;--r:2deg">
-            <p class="sticky-t">Evals are the spec.</p>
-            <p class="sticky-b">In the lab, the test protocol decided what we believed. With LLMs, evals do that job.</p>
-            <p class="sticky-src">from Chakr</p>
+            <p class="sticky-t">Find the leak before you touch the model.</p>
+            <p class="sticky-b">4.5% lead-to-visit wasn't an AI problem. It was fixed visit slots.</p>
+            <p class="sticky-src">from Ananya</p>
           </article>
           <article class="sticky c-green" data-drag style="--x:630px;--y:30px;--r:-1.5deg">
-            <p class="sticky-t">Unit economics are a feature.</p>
-            <p class="sticky-b">An AI feature that loses money on every call isn't finished yet.</p>
-            <p class="sticky-src">from Jumbo</p>
+            <p class="sticky-t">Evals are the spec.</p>
+            <p class="sticky-b">Our LLM judge asks one thing: did the agent do its job? Sounding smart earns zero points.</p>
+            <p class="sticky-src">from Ananya</p>
           </article>
           <article class="sticky c-blue" data-drag style="--x:40px;--y:320px;--r:1.5deg">
-            <p class="sticky-t">Models should buy back human time.</p>
-            <p class="sticky-b">The crash model told engineers which designs deserved a full simulation.</p>
-            <p class="sticky-src">from OLA</p>
+            <p class="sticky-t">Honest agents close.</p>
+            <p class="sticky-b">Ananya mentions the missing power backup. Surprises at a site visit kill more deals than honesty does.</p>
+            <p class="sticky-src">from Ananya</p>
           </article>
           <article class="sticky c-violet" data-drag style="--x:350px;--y:330px;--r:-2.5deg">
-            <p class="sticky-t">Depth over breadth.</p>
-            <p class="sticky-b">We cut weak zones to grow 11 strong micro-markets instead of spreading thin.</p>
-            <p class="sticky-src">from Jumbo</p>
+            <p class="sticky-t">Prototype, then persuade.</p>
+            <p class="sticky-b">A working demo ends a debate faster than any doc. Tara started as one.</p>
+            <p class="sticky-src">from Tara</p>
           </article>
           <article class="sticky c-orange" data-drag style="--x:650px;--y:310px;--r:3deg">
-            <p class="sticky-t">Go see the thing.</p>
-            <p class="sticky-b">Test rigs, shop floors, site visits. My best product calls started there.</p>
+            <p class="sticky-t">I've broken plenty.</p>
+            <p class="sticky-b">Things I got wrong: a long, educational list. Ask me about my favourite one.</p>
             <p class="sticky-src">from everywhere</p>
           </article>
         </div>
       </section>
 
       <!-- BEYOND -->
-      <section class="frame" id="beyond" data-frame data-title="IIT Guwahati" data-x="560" data-y="820" data-w="1120">
+      <section class="frame" id="beyond" data-frame data-title="IIT Guwahati" data-x="560" data-y="1960" data-w="1180">
         <h2 class="frame-label">Before all this · IIT Guwahati, 2018–22</h2>
         <div class="paper">
           <div class="beyond">
@@ -386,7 +510,7 @@
         <div class="paper contact">
           <div class="contact-copy">
             <h3 class="f-title">Leave me a note</h3>
-            <p class="f-body">Happy to talk about AI agents, marketplaces, or taking deep tech from the lab to the market. Write on the sticky and send it my way.</p>
+            <p class="f-body">Building agents, fixing a leaky funnel, or want to argue about evals? I'm in. I reply faster than a khata gets processed.</p>
             <p class="email-row"><span class="email" id="email">rushabhparikh10@gmail.com</span><button class="link-btn" id="copy-email" type="button">Copy</button></p>
             <p class="links-row">
               <a class="btn" href="https://www.linkedin.com/in/parikhrushabh" target="_blank" rel="noopener">LinkedIn ↗</a>

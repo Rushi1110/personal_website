@@ -41,7 +41,7 @@
   const world = $("#world");
   const frames = $$("[data-frame]");
   const byId = (id) => document.getElementById(id);
-  const PANEL_ORDER = ["hello", "roadmap", "ola", "chakr", "ananya", "metrics", "principles", "beyond", "contact"];
+  const PANEL_ORDER = ["hello", "tara", "ananya", "crew", "metrics", "roadmap", "principles", "ola", "chakr", "beyond", "contact"];
 
   const state = {
     board: false,
@@ -195,7 +195,7 @@
   }
   document.addEventListener("click", (e) => {
     const g = e.target.closest("[data-goto]");
-    if (g) { e.preventDefault(); goto(g.dataset.goto); }
+    if (g) { e.preventDefault(); if (!state.touring) ananya.hush(); goto(g.dataset.goto); }
     const a = e.target.closest("[data-action]");
     if (a && a.dataset.action === "tour") tour.start();
   });
@@ -473,10 +473,12 @@
       return { x: r.x + r.w * t, y: r.y - 34, dx: 0, dy: -1 };
     };
     const links = [
-      { a: side("hello", "r", 0.3), b: side("ananya", "l", 0.62), label: "the agent I PM'd", lx: -10, ly: -22 },
+      { a: side("hello", "r", 0.22), b: side("tara", "l", 0.4), label: "what I'm building", lx: -40, ly: -22 },
+      { a: side("tara", "b", 0.62), b: side("ananya", "t", 0.62), label: "buyers go to", lx: 18, ly: 6 },
+      { a: side("tara", "r", 0.3), b: side("crew", "l", 0.3), label: "the crew", lx: -30, ly: -20 },
+      { a: side("ananya", "b", 0.3), b: side("metrics", "t", 0.3), label: "what it moved", lx: 18, ly: 6 },
       { a: side("ola", "b", 0.5), b: side("chakr", "t", 0.45), label: "ML meets hardware", lx: 18, ly: 6 },
       { a: side("chakr", "r", 0.3), b: side("principles", "l", 0.35), label: "lessons", lx: -30, ly: -16 },
-      { a: side("ananya", "b", 0.3), b: side("metrics", "t", 0.3), label: "what it moved", lx: 18, ly: 6 },
       { a: side("roadmap", "b", 0.5), b: side("hello", "t", 0.5), label: "", lx: 0, ly: 0 },
     ];
     links.forEach(({ a, b, label, lx, ly }) => {
@@ -554,7 +556,7 @@
 
   // Rushabh's cursor: a replay that drifts between things he'd point at
   const wander = {
-    spots: ["#hello .hello-name", ".rm-bar[data-rm='jumbo']", "#ananya .doc-title", "#metrics .kpi", "#ocp", "#principles .sticky.c-green", "#scatter", "#contact .note-card"],
+    spots: ["#hello .hello-name", "#tara .node[data-node='gtm']", "#ananya .doc-title", "#crew .badge", "#metrics .kpi", "#principles .sticky.c-green", "#tara .node[data-node='majnu']", "#contact .note-card"],
     i: 0,
     timer: 0,
     started: false,
@@ -641,14 +643,15 @@
      Tour
      ========================================================= */
   const TOUR = [
-    { id: "hello", at: ".hello-actions", fx: 0.1, text: "Hi, I'm Ananya, the AI agent Rushabh product-managed at Jumbo Homes. Let me walk you around his board." },
-    { id: "roadmap", at: ".rm-bar[data-rm='jumbo']", text: "Four years, three industries: electric vehicles, batteries, then AI for real estate. Click any bar for the details." },
-    { id: "ola", at: "#scatter", fx: 0.55, fy: 0.45, text: "At OLA Electric he built a model that predicts crash-injury scores. R² of 0.83, and 500 compute hours saved per design iteration." },
-    { id: "chakr", at: "#ocp", fx: 0.1, text: "Then a moonshot: aluminium-air batteries. Drag this slider to see what moving the anode from −1.35 V to −1.70 V did." },
-    { id: "ananya", at: "#phone-chips", fx: 0.2, fy: 0.4, text: "Then me. I shortlist homes, check commutes and schools, and book the site visit. Tap a buyer message to watch my tool calls." },
-    { id: "metrics", at: ".seg", text: "His first year at Jumbo: ARR up about 5×, supply up 8×, 11 micro-markets. Flip the toggle to compare." },
-    { id: "principles", at: ".sticky.c-violet", fx: 0.3, fy: 0.3, text: "What he learned along the way. Go ahead, drag the stickies around." },
-    { id: "contact", at: "#note", fx: 0.3, fy: 0.3, text: "That's the tour. Leave him a note on the sticky, or grab his email. You can also ask me anything below." },
+    { id: "hello", at: ".hello-actions", fx: 0.1, text: "Hi, I'm Ananya, one of the agents Rushabh product-manages at Jumbo Homes. Let me show you around. It's quicker than his résumé." },
+    { id: "tara", at: ".node[data-node='gtm']", fx: 0.3, text: "This is Tara, his current obsession. It sells a home on WhatsApp, end to end. Watch the little house travel, and tap any agent." },
+    { id: "ananya", at: "#phone-chips", fx: 0.2, fy: 0.4, text: "And me. I answer buyers honestly and book visits. Lead-to-visit went from 4.5% to about 10%. Go on, try me." },
+    { id: "crew", at: ".badge.c-yellow", fx: 0.5, fy: 0.3, text: "The internal crew. Flip a card. Yes, one of them is called Dobby, and yes, he finds socks." },
+    { id: "metrics", at: ".seg", text: "What a year of this did to the business: ARR up about 5×, supply up 8×. Flip the toggle." },
+    { id: "principles", at: ".sticky.c-pink", fx: 0.3, fy: 0.3, text: "What he learned, some of it the hard way. The stickies move." },
+    { id: "roadmap", at: ".rm-bar[data-rm='ola']", text: "How he got here: electric vehicles, then batteries, then agents. Click a bar." },
+    { id: "chakr", at: "#ocp", fx: 0.1, text: "The battery years. Drag the slider and watch the parasitic reactions calm down." },
+    { id: "contact", at: "#note", fx: 0.3, fy: 0.3, text: "That's the tour. Leave him a note. He replies faster than a government office processes a khata." },
   ];
   const tour = {
     async show(i) {
@@ -685,24 +688,28 @@
      Ask Ananya
      ========================================================= */
   const INTENTS = [
-    { id: "contact", at: "#note", keys: ["contact", "hire", "hiring", "email", "mail", "reach", "linkedin", "talk", "connect", "job", "role", "available", "call", "meet"],
-      text: "The easiest way is email: rushabhparikh10@gmail.com. Or write on this sticky and send it straight to him." },
-    { id: "ananya", at: "#phone-chips", keys: ["ananya", "agent", "agents", "agentic", "ship", "shipped", "built", "prd", "chatbot", "llm", "ai", "genai", "bot", "assistant"],
-      text: "Ananya is the agentic home-buying assistant Rushabh product-managed. It lifted lead-to-visit from 4.5% to 10.3% in its first month. You can try me right here." },
+    { id: "contact", at: "#note", keys: ["contact", "hire", "hiring", "email", "mail", "reach", "linkedin", "talk", "connect", "job", "role", "available", "call", "meet", "coffee"],
+      text: "Easiest is email: rushabhparikh10@gmail.com. Or write on this sticky and send it. He replies faster than a khata gets processed." },
+    { id: "crew", at: ".badge.c-yellow", keys: ["dobby", "majnu", "chanakya", "bablu", "crew", "internal", "n8n", "make", "automation", "automations", "stack", "tools", "python", "vibe", "code", "coded", "build", "builds"],
+      text: "His internal crew: Majnu Bhai fixes listing photos, Dobby finds ops mistakes and scouts ~672 leads a week, Chanakya finds patterns. He built them himself." },
+    { id: "tara", at: ".node[data-node='gtm']", keys: ["tara", "seller", "sellers", "sell", "selling", "sold", "whatsapp", "listing", "listings", "gtm", "onboarding", "khata", "documents", "latency", "multi", "subagent", "subagents"],
+      text: "Tara sells homes on WhatsApp, end to end: onboarding, photos, marketing, buyers, feedback and paperwork. A home goes live in ~3 hours instead of 3.5 days." },
+    { id: "ananya", at: "#phone-chips", keys: ["ananya", "agent", "agents", "agentic", "ship", "shipped", "built", "prd", "chatbot", "llm", "ai", "genai", "bot", "assistant", "buyer", "buyers", "visit", "visits", "evals", "judge"],
+      text: "That's me. I answer buyers honestly and book site visits. Rushabh found the leaks (fixed slots, irrelevant homes, bad photos) and lead-to-visit went from 4.5% to ~10%." },
     { id: "metrics", at: ".kpis", keys: ["metric", "metrics", "arr", "revenue", "growth", "numbers", "impact", "result", "results", "kpi", "kpis", "scale", "grew", "money"],
       text: "In one year at Jumbo: ARR went from ₹1.15 Cr to ₹6 Cr, homes closed from 4 to 21 a month, and listings grew 8× in his first quarter." },
+    { id: "principles", at: ".sticky.c-orange", keys: ["why", "principle", "principles", "approach", "think", "thinks", "philosophy", "how", "pm", "style", "values", "believe", "fail", "failed", "failure", "failures", "mistake", "mistakes", "wrong"],
+      text: "His rules: distribution beats features, find the leak before you touch the model, evals are the spec. And he's broken plenty. Ask him about his favourite." },
     { id: "chakr", at: "#ocp", keys: ["battery", "batteries", "chakr", "aluminium", "aluminum", "r&d", "lab", "research", "deeptech", "deep", "hardware", "chemistry", "moonshot", "anode"],
       text: "At Chakr he led a six-person R&D team on aluminium-air batteries, and got 83% of pure-aluminium performance out of scrap. Try the slider." },
     { id: "ola", at: "#scatter", keys: ["ola", "crash", "ev", "evs", "electric", "vehicle", "vehicles", "ml", "machine", "model", "simulation", "hpc", "safety"],
       text: "At OLA Electric he built an ML model that predicts pedestrian crash-injury scores (R² 0.83), saving 500 compute hours per iteration." },
-    { id: "principles", at: ".sticky.c-yellow", keys: ["why", "principle", "principles", "approach", "think", "thinks", "philosophy", "how", "pm", "style", "evals", "values", "believe"],
-      text: "His rules of thumb: pick the metric before the model, treat evals as the spec, and count unit economics as part of the product." },
-    { id: "roadmap", at: ".rm-bar[data-rm='ola']", keys: ["career", "journey", "experience", "background", "timeline", "resume", "cv", "history", "roadmap", "years", "worked", "companies"],
-      text: "Four years across electric vehicles, batteries and AI for real estate, after mechanical engineering at IIT Guwahati." },
+    { id: "roadmap", at: ".rm-bar[data-rm='jumbo']", keys: ["career", "journey", "experience", "background", "timeline", "resume", "cv", "history", "roadmap", "years", "worked", "companies"],
+      text: "Four years across electric vehicles, batteries and AI agents for real estate, after mechanical engineering at IIT Guwahati." },
     { id: "beyond", at: ".b-item", keys: ["iit", "guwahati", "college", "education", "degree", "study", "studied", "racing", "sports", "cpi", "university", "gpa"],
       text: "B.Tech in Mechanical Engineering from IIT Guwahati, CPI 8.42. He also ran campus sports for 8,000+ students and raced with IITG Racing." },
-    { id: "hello", at: ".hello-name", keys: ["who", "rushabh", "about", "hi", "hello", "hey", "intro", "yourself", "summary"],
-      text: "Rushabh is an AI product manager in Bengaluru. He owns product at Jumbo Homes and came up through battery R&D and EV engineering." },
+    { id: "hello", at: ".hello-name", keys: ["who", "rushabh", "about", "hi", "hello", "hey", "intro", "yourself", "summary", "lowercase"],
+      text: "Rushabh is an AI product manager in Bengaluru. He builds the agent, writes the evals, and fixes the lowercase t. His agents have sold real homes." },
   ];
   function matchIntent(q) {
     const s = q.toLowerCase();
@@ -720,9 +727,9 @@
     const it = matchIntent(q);
     if (!it) {
       if (isBoard() && !curA.visible) await ananya.pointAt($(".hello-actions"), 0.1, 0.5);
-      ananya.say("I only know about Rushabh's work. Try asking about me (Ananya), his battery R&D, his results, or how to reach him.", [
-        { label: "Ananya", run: () => answer("ananya") },
-        { label: "Battery R&D", run: () => answer("battery") },
+      ananya.say("I only know about Rushabh's work. I'm a real-estate agent, not a search engine. Try one of these:", [
+        { label: "Tara", run: () => answer("tara") },
+        { label: "The crew", run: () => answer("crew") },
         { label: "Results", run: () => answer("metrics") },
         { label: "Contact", run: () => answer("contact") },
       ]);
@@ -1053,43 +1060,41 @@
      Ananya phone: scripted agent runs
      ========================================================= */
   const SCN = {
-    whitefield: {
-      user: "Looking for a 3BHK near Whitefield under ₹1.2 Cr. My wife works at ITPL and good schools matter.",
+    honest: {
+      user: "Is the 2BHK in HSR still available? Anything I should know?",
       steps: [
-        { tool: 'search_listings(zone="Whitefield", bhk=3, budget≤1.2Cr)', out: "14 homes", ms: 800 },
-        { tool: 'commute(to="ITPL", peak=true)', out: "5 under 20 min", ms: 700 },
-        { tool: 'schools(radius_km=2, board="CBSE|ICSE")', out: "3 fit", ms: 700 },
-        { say: "Three homes fit. The best is 11 minutes from ITPL at peak hour, with two CBSE schools within 1.5 km, at ₹1.12 Cr. Shall I book a visit for Saturday at 11?" },
-        { cta: "Yes, book it", then: [
-          { tool: 'book_visit(slot="Sat 11:00", with="relationship_manager")', out: "Booked", ms: 900 },
-          { say: "Done! Your relationship manager will meet you at the gate on Saturday at 11. I've sent the location and the other two options." },
+        { tool: 'get_listing(id="HSR-2B-114")', out: "available", ms: 700 },
+        { tool: 'property_facts(id="HSR-2B-114")', out: "12 facts", ms: 700 },
+        { say: "Yes, it's available. Honest version: great light, 2nd floor, 6 minutes to the metro. No power backup, and the kitchen is small. When would you like to see it? Any time works. I don't do slots." },
+        { cta: "Tomorrow, 7 pm", then: [
+          { tool: 'book_visit(when="tomorrow 19:00")', out: "Booked", ms: 900 },
+          { say: "Booked for 7 pm tomorrow. I'll send the location an hour before, plus the owner's parking tip." },
         ] },
       ],
     },
-    hsr: {
-      user: "Need a ready-to-move 2BHK in HSR Layout, max ₹90L. We're a young couple.",
+    relevance: {
+      user: "Loved it, but I need one more bedroom. Same area.",
       steps: [
-        { tool: 'search_listings(zone="HSR Layout", bhk=2, budget≤90L)', out: "9 homes", ms: 800 },
-        { tool: 'filter(possession="ready")', out: "4 left", ms: 600 },
-        { tool: 'price_check(vs="locality median")', out: "2 below median", ms: 800 },
-        { say: "Four are ready to move in, and two are priced below the HSR median for their size. Want to see both back to back on Sunday morning?" },
-        { cta: "Sunday works", then: [
-          { tool: 'book_visit(slots=["Sun 10:00","Sun 11:00"])', out: "Booked", ms: 900 },
-          { say: "Booked both. I'll send directions and floor plans an hour before." },
+        { tool: "buyer_profile(lead)", out: "HSR · ≤₹1.1 Cr", ms: 700 },
+        { tool: 'match_listings(like="HSR-2B-114", bhk=3)', out: "3 matches", ms: 800 },
+        { say: "Three 3BHKs in your budget, all within 1.5 km. One has the balcony garden you liked last time. Want to see two back to back on Saturday?" },
+        { cta: "Saturday works", then: [
+          { tool: 'book_visit(when=["Sat 10:00","Sat 10:40"])', out: "Booked", ms: 900 },
+          { say: "Done. Two visits, 40 minutes apart, so you're not racing across HSR." },
         ] },
       ],
     },
-    timing: {
-      user: "Is now a good time to buy in Sarjapur, or should I wait a year?",
+    negotiate: {
+      user: "Can you get the owner to drop the price by 20%?",
       steps: [
-        { tool: "classify_intent(message)", out: "market advice", ms: 700, guard: true },
-        { tool: 'policy_check("investment advice")', out: "needs a human", ms: 700, guard: true },
-        { say: "I can show you recent listing prices around Sarjapur, but I shouldn't tell you when to buy. That call deserves a person, so I've asked your relationship manager to call you today." },
+        { tool: "classify_intent(message)", out: "negotiation", ms: 700, guard: true },
+        { tool: 'policy_check("price negotiation")', out: "humans only", ms: 700, guard: true },
+        { say: "That's a conversation for a person, not a bot. I've looped in your relationship manager, who'll call you today with what the owner is open to." },
         { tool: 'handoff(to="relationship_manager", priority="high")', out: "RM notified", ms: 800 },
       ],
     },
   };
-  const msgs = $("#phone-msgs");
+    const msgs = $("#phone-msgs");
   const chips = $$("#phone-chips .chip");
   let running = false;
   const scrollMsgs = () => { msgs.scrollTop = msgs.scrollHeight; };
@@ -1148,7 +1153,7 @@
     chips.forEach((c) => { c.disabled = true; });
     const scn = SCN[chip.dataset.scn];
     msgs.innerHTML = "";
-    addMsg("pm pm-agent", "<p>Hi! Tell me what you're looking for and I'll find homes worth visiting.</p>");
+    addMsg("pm pm-agent", "<p>Hi! Ask me anything about a home, or pick a time to see it. Any time. I don't do slots.</p>");
     await wait(200);
     addMsg("pm pm-user", `<p>${esc(scn.user)}</p>`);
     await wait(450);
@@ -1168,9 +1173,127 @@
     $$(".rc-n").forEach((n, i) => {
       const from = +n.dataset.from, to = +n.dataset.to, dec = +n.dataset.dec;
       n.textContent = from.toFixed(dec);
-      setTimeout(() => animate(1100, (e) => { n.textContent = lerp(from, to, e).toFixed(dec); }, easeOut), 120 * i);
+      setTimeout(() => animate(1300, (e) => { n.textContent = lerp(from, to, e).toFixed(dec); }, easeOut), 120 * i);
     });
+    setTimeout(() => $(".stamp").classList.add("is-slam"), 1500);
   }
+
+  /* =========================================================
+     Tara: flow map with a little house travelling through it
+     ========================================================= */
+  const FLOW = {
+    bablu: ["Bablu", "Scouts homeowners who might sell, so Tara has someone to say hi to. Built by the team; I put him to work here."],
+    seller: ["Seller", "No app, no forms. Sellers message Tara on WhatsApp, where they already spend their day."],
+    onboard: ["Onboarding agent", "Collects the home's details, photos and papers in a conversation instead of a 40-field form."],
+    majnu: ["Majnu Bhai", "Turns rough phone photos into images people click, without making the home look like something it isn't. Human-reviewed."],
+    pricing: ["Pricing agent · WIP", "Suggests a listing price from comparable homes. Still in the oven."],
+    gtm: ["GTM agent", "Writes a go-to-market plan for every single home, then posts it where buyers actually hang out: classifieds, the right Reddit threads, Facebook Marketplace and WhatsApp communities."],
+    ananya: ["Ananya", "Answers every inbound buyer honestly and books the visit, at whatever time suits them."],
+    rm: ["Relationship agent", "Sends each buyer's feedback back to the seller, so they know why a visit did or didn't become an offer."],
+    docs: ["Docs check", "Flags problems with the khata, transactability and other famously confusing paperwork before they kill a deal."],
+    sold: ["SOLD", "Multiple homes sold end to end through agents, on both the buy and the sell side."],
+  };
+  const flow = $("#flow");
+  const flowNodes = $$(".node", flow);
+  function selectNode(key) {
+    flowNodes.forEach((n) => n.classList.toggle("is-on", n.dataset.node === key));
+    $("#fd-title").textContent = FLOW[key][0];
+    $("#fd-body").textContent = FLOW[key][1];
+  }
+  flowNodes.forEach((n) => n.addEventListener("click", () => selectNode(n.dataset.node)));
+  function drawFlow() {
+    const svg = $("#flow-lines");
+    const NS = "http://www.w3.org/2000/svg";
+    const pts = flowNodes.map((n) => ({ x: n.offsetLeft + n.offsetWidth / 2, y: n.offsetTop + n.offsetHeight / 2 }));
+    if (!pts.length || !flow.offsetWidth) return;
+    let d = `M${pts[0].x} ${pts[0].y}`;
+    for (let i = 1; i < pts.length; i++) {
+      const a = pts[i - 1], b = pts[i];
+      if (Math.abs(a.y - b.y) < 4 || Math.abs(a.x - b.x) < 4) d += ` L${b.x} ${b.y}`;
+      else { const my = (a.y + b.y) / 2; d += ` C${a.x} ${my}, ${b.x} ${my}, ${b.x} ${b.y}`; }
+    }
+    svg.innerHTML = "";
+    const path = document.createElementNS(NS, "path");
+    path.setAttribute("d", d); path.setAttribute("class", "fl"); path.id = "flow-path";
+    svg.appendChild(path);
+    const top = $("#flow-home");
+    top.innerHTML = "";
+    if (reduce) return;
+    const len = path.getTotalLength();
+    const home = document.createElementNS(NS, "g");
+    home.setAttribute("class", "home");
+    home.innerHTML = '<circle r="17"/><path d="M-9 1 L0 -8 L9 1 L6.5 1 L6.5 8.5 L-6.5 8.5 L-6.5 1 Z"/><rect x="-2.4" y="3" width="4.8" height="5.5" rx="1"/>';
+    top.appendChild(home);
+    // ping each node as the house passes it
+    const stops = pts.map((p) => {
+      let best = 0, bd = Infinity;
+      for (let l = 0; l <= len; l += 6) { const q = path.getPointAtLength(l); const dd = Math.hypot(q.x - p.x, q.y - p.y); if (dd < bd) { bd = dd; best = l; } }
+      return best;
+    });
+    cancelAnimationFrame(drawFlow.raf);
+    const DUR = 11000;
+    let t0 = performance.now(), lastStop = -1;
+    const tick = (now) => {
+      if (!flowVisible) { drawFlow.raf = 0; return; }
+      const t = ((now - t0) % DUR) / DUR;
+      const l = t * len;
+      const q = path.getPointAtLength(l);
+      home.setAttribute("transform", `translate(${q.x.toFixed(1)} ${q.y.toFixed(1)})`);
+      let si = -1;
+      stops.forEach((sl, i) => { if (l >= sl) si = i; });
+      if (si !== lastStop) {
+        lastStop = si;
+        const n = flowNodes[si];
+        if (n) { n.classList.remove("is-ping"); void n.offsetWidth; n.classList.add("is-ping"); }
+      }
+      drawFlow.raf = requestAnimationFrame(tick);
+    };
+    drawFlow.raf = requestAnimationFrame(tick);
+  }
+  let flowVisible = true;
+  new IntersectionObserver(([e]) => {
+    flowVisible = e.isIntersecting;
+    if (flowVisible && !drawFlow.raf) drawFlow();
+  }).observe(flow);
+  if ("ResizeObserver" in window) new ResizeObserver(() => drawFlow()).observe(flow);
+  else drawFlow();
+
+  /* Crew badges flip */
+  $$(".badge").forEach((b) => b.addEventListener("click", () => b.setAttribute("aria-pressed", String(b.getAttribute("aria-pressed") !== "true"))));
+
+  /* =========================================================
+     Personalisation: ?utm_source=linkedin, ?for=Acme (or #via-linkedin / #for-acme)
+     ========================================================= */
+  const PERSONAS = {
+    linkedin: { sticker: "hi, LinkedIn", greet: "Welcome over from LinkedIn. You've read the posts; the receipts are right here." },
+    x: { sticker: "hi, X", greet: "Came over from X? Here's the thread, with receipts attached." },
+    github: { sticker: "hi, GitHub", greet: "From GitHub? Yes, he builds his own agents. The code is the easy part; the evals are the fun part." },
+    resume: { sticker: "the director's cut", greet: "You've read the résumé. This is the director's cut, with a live agent in it. That's me." },
+    email: { sticker: "you clicked. bold.", greet: "You clicked a link in an email. Bold. I'll make it worth it." },
+    hiring: { sticker: "hiring? hi.", greet: "Hiring? Skip the scroll: tap a receipt, or hit Say hi. He replies fast." },
+  };
+  const ALIAS = { twitter: "x", "t.co": "x", cv: "resume", mail: "email", newsletter: "email", wellfound: "hiring", angellist: "hiring", naukri: "hiring", indeed: "hiring", instahyre: "hiring", yc: "hiring", workatastartup: "hiring", jobs: "hiring", recruiter: "hiring" };
+  const persona = (() => {
+    const q = new URLSearchParams(location.search);
+    const h = location.hash.slice(1).toLowerCase();
+    let src = (q.get("utm_source") || q.get("ref") || q.get("source") || "").toLowerCase().trim();
+    let org = (q.get("for") || q.get("utm_campaign") || "").trim();
+    if (h.startsWith("via-")) src = h.slice(4);
+    if (h.startsWith("for-")) org = h.slice(4).replace(/[-_]+/g, " ");
+    org = org.replace(/[^\p{L}\p{N} &.'-]/gu, "").slice(0, 28).trim();
+    if (org) org = org.replace(/\b\p{L}/gu, (c) => c.toUpperCase());
+    if (org) return { org, sticker: `made for ${org}`, greet: `Hi ${org} team! Rushabh made you this board.` };
+    const key = ALIAS[src] || src;
+    return PERSONAS[key] || null;
+  })();
+  if (persona) {
+    $("#sticker").textContent = persona.sticker;
+    if (persona.org) {
+      $("#note").placeholder = `Hi Rushabh, ${persona.org} here. Let's talk about…`;
+      document.title = `Rushabh Parikh × ${persona.org}`;
+    }
+  }
+  const greeting = (tail) => (persona ? `${persona.greet} ${tail}` : `Hi! I'm Ananya, one of Rushabh's agents. ${tail}`);
 
   /* =========================================================
      Mode: board <-> page
@@ -1231,13 +1354,13 @@
       countReceipts();
       wander.start();
       await wait(450);
-      toast("Ananya joined the board");
+      toast(persona && persona.org ? `Ananya joined · welcome, ${persona.org}` : "Ananya joined the board");
       await wait(500);
       if (!state.touring && bubble.hidden) {
-        await ananya.pointAt($(".sticker"), 0.35, 0.9);
+        await ananya.pointAt($(".stamp"), 0.85, 1.1);
         if (!state.touring) {
           countReceipts();
-          ananya.say("Hi! I'm Ananya, the AI agent Rushabh product-managed. Short version: Jumbo's ARR grew 5× in his first year, and I more than doubled lead-to-visit. Want the 60-second tour?", [
+          ananya.say(greeting("Short version: his agents have sold real homes, end to end. Want the 60-second tour?"), [
             { label: "Start the tour", primary: true, run: () => tour.start() },
             { label: "I'll explore", run: () => ananya.hush() },
           ]);
@@ -1249,10 +1372,10 @@
       countReceipts();
       await wait(2200);
       const id = ananya.sayId + 1;
-      ananya.say("Hi! I'm Ananya, the agent Rushabh PM'd. Tap a receipt to see the proof, or ask me anything below.", [
+      ananya.say(greeting("Tap a receipt for the proof, or ask me anything below."), [
         { label: "Got it", primary: true, run: () => ananya.hush() },
       ]);
-      setTimeout(() => { if (ananya.sayId === id) ananya.hush(); }, 9000);
+      setTimeout(() => { if (ananya.sayId === id) ananya.hush(); }, 7000);
     });
   }
 })();
