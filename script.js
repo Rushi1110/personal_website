@@ -41,7 +41,7 @@
   const world = $("#world");
   const frames = $$("[data-frame]");
   const byId = (id) => document.getElementById(id);
-  const PANEL_ORDER = ["hello", "tara", "ananya", "crew", "metrics", "roadmap", "principles", "ola", "chakr", "beyond", "contact"];
+  const PANEL_ORDER = ["hello", "whatsapp", "hood", "crew", "metrics", "ola", "chakr", "roadmap", "principles", "contact"];
 
   const state = {
     board: false,
@@ -473,10 +473,10 @@
       return { x: r.x + r.w * t, y: r.y - 34, dx: 0, dy: -1 };
     };
     const links = [
-      { a: side("hello", "r", 0.22), b: side("tara", "l", 0.4), label: "what I'm building", lx: -40, ly: -22 },
-      { a: side("tara", "b", 0.62), b: side("ananya", "t", 0.62), label: "buyers go to", lx: 18, ly: 6 },
-      { a: side("tara", "r", 0.3), b: side("crew", "l", 0.3), label: "the crew", lx: -30, ly: -20 },
-      { a: side("ananya", "b", 0.3), b: side("metrics", "t", 0.3), label: "what it moved", lx: 18, ly: 6 },
+      { a: side("hello", "r", 0.25), b: side("whatsapp", "l", 0.3), label: "what I'm building", lx: -40, ly: -22 },
+      { a: side("whatsapp", "r", 0.2), b: side("crew", "l", 0.3), label: "the crew", lx: -30, ly: -20 },
+      { a: side("whatsapp", "b", 0.5), b: side("hood", "t", 0.5), label: "under the hood", lx: 18, ly: 6 },
+      { a: side("hood", "b", 0.3), b: side("metrics", "t", 0.3), label: "what it moved", lx: 18, ly: 6 },
       { a: side("ola", "b", 0.5), b: side("chakr", "t", 0.45), label: "ML meets hardware", lx: 18, ly: 6 },
       { a: side("chakr", "r", 0.3), b: side("principles", "l", 0.35), label: "lessons", lx: -30, ly: -16 },
       { a: side("roadmap", "b", 0.5), b: side("hello", "t", 0.5), label: "", lx: 0, ly: 0 },
@@ -556,7 +556,7 @@
 
   // Rushabh's cursor: a replay that drifts between things he'd point at
   const wander = {
-    spots: ["#hello .hello-name", "#tara .node[data-node='gtm']", "#ananya .doc-title", "#crew .badge", "#metrics .kpi", "#principles .sticky.c-green", "#tara .node[data-node='majnu']", "#contact .note-card"],
+    spots: ["#hello .hello-name", "#hood .node[data-node='gtm']", "#phone-tara", "#crew .badge", "#metrics .kpi", "#principles .sticky.c-green", "#scatter", "#contact .note-card"],
     i: 0,
     timer: 0,
     started: false,
@@ -643,15 +643,15 @@
      Tour
      ========================================================= */
   const TOUR = [
-    { id: "hello", at: ".hello-actions", fx: 0.1, text: "Hi, I'm Ananya, one of the agents Rushabh product-manages at Jumbo Homes. Let me show you around. It's quicker than his résumé." },
-    { id: "tara", at: ".node[data-node='gtm']", fx: 0.3, text: "This is Tara, his current obsession. It sells a home on WhatsApp, end to end. Watch the little house travel, and tap any agent." },
-    { id: "ananya", at: "#phone-chips", fx: 0.2, fy: 0.4, text: "And me. I answer buyers honestly and book visits. Lead-to-visit went from 4.5% to about 10%. Go on, try me." },
-    { id: "crew", at: ".badge.c-yellow", fx: 0.5, fy: 0.3, text: "The internal crew. Flip a card. Yes, one of them is called Dobby, and yes, he finds socks." },
-    { id: "metrics", at: ".seg", text: "What a year of this did to the business: ARR up about 5×, supply up 8×. Flip the toggle." },
-    { id: "principles", at: ".sticky.c-pink", fx: 0.3, fy: 0.3, text: "What he learned, some of it the hard way. The stickies move." },
-    { id: "roadmap", at: ".rm-bar[data-rm='ola']", text: "How he got here: electric vehicles, then batteries, then agents. Click a bar." },
-    { id: "chakr", at: "#ocp", fx: 0.1, text: "The battery years. Drag the slider and watch the parasitic reactions calm down." },
-    { id: "contact", at: "#note", fx: 0.3, fy: 0.3, text: "That's the tour. Leave him a note. He replies faster than a government office processes a khata." },
+    { id: "hello", at: ".hello-actions", fx: 0.1, text: "Dobby is here on behalf of the headmaster, Rushabh! Dobby will show you around. It is quicker than his résumé." },
+    { id: "whatsapp", at: "#play-story", fx: 0.2, fy: 0.9, play: true, text: "This is where homes get sold. Tara talks to sellers, Ananya talks to buyers, both on WhatsApp. Dobby is pressing play for you!" },
+    { id: "hood", at: ".node[data-node='majnu']", fx: 0.5, fy: 0.5, text: "Under the hood: every agent a home meets on its way to SOLD. Watch the little house travel. Tap any agent." },
+    { id: "crew", at: ".badge.c-yellow", fx: 0.5, fy: 0.3, text: "And this is the crew. That one is Dobby! Dobby finds socks. Socks are mistakes. Flip the cards." },
+    { id: "metrics", at: ".seg", text: "What one year of this did to the business: ARR up about 5×, supply up 8×. Flip the toggle." },
+    { id: "ola", at: "#scatter", fx: 0.55, fy: 0.45, text: "Before agents, the headmaster taught a model to predict crash injuries at OLA Electric. R² of 0.83. Hover the dots." },
+    { id: "chakr", at: "#ocp", fx: 0.1, text: "Then batteries at Chakr. Drag the slider. Dobby likes the bubbles." },
+    { id: "principles", at: ".sticky.c-pink", fx: 0.3, fy: 0.3, text: "What the headmaster learned, some of it the hard way. The stickies move." },
+    { id: "contact", at: "#note", fx: 0.3, fy: 0.3, text: "That is the tour! Leave the headmaster a note. He replies faster than a khata gets processed." },
   ];
   const tour = {
     async show(i) {
@@ -668,6 +668,7 @@
       acts.push(last ? { label: "Finish", primary: true, run: () => tour.end() } : { label: "Next", primary: true, run: () => tour.next() });
       if (!last) acts.push({ label: "End", run: () => tour.end() });
       ananya.say(s.text, acts);
+      if (s.play) setTimeout(() => story.play(), 900);
     },
     start() {
       state.touring = true;
@@ -689,27 +690,27 @@
      ========================================================= */
   const INTENTS = [
     { id: "contact", at: "#note", keys: ["contact", "hire", "hiring", "email", "mail", "reach", "linkedin", "talk", "connect", "job", "role", "available", "call", "meet", "coffee"],
-      text: "Easiest is email: rushabhparikh10@gmail.com. Or write on this sticky and send it. He replies faster than a khata gets processed." },
-    { id: "crew", at: ".badge.c-yellow", keys: ["dobby", "majnu", "chanakya", "bablu", "crew", "internal", "n8n", "make", "automation", "automations", "stack", "tools", "python", "vibe", "code", "coded", "build", "builds"],
-      text: "His internal crew: Majnu Bhai fixes listing photos, Dobby finds ops mistakes and scouts ~672 leads a week, Chanakya finds patterns. He built them himself." },
-    { id: "tara", at: ".node[data-node='gtm']", keys: ["tara", "seller", "sellers", "sell", "selling", "sold", "whatsapp", "listing", "listings", "gtm", "onboarding", "khata", "documents", "latency", "multi", "subagent", "subagents"],
-      text: "Tara sells homes on WhatsApp, end to end: onboarding, photos, marketing, buyers, feedback and paperwork. A home goes live in ~3 hours instead of 3.5 days." },
-    { id: "ananya", at: "#phone-chips", keys: ["ananya", "agent", "agents", "agentic", "ship", "shipped", "built", "prd", "chatbot", "llm", "ai", "genai", "bot", "assistant", "buyer", "buyers", "visit", "visits", "evals", "judge"],
-      text: "That's me. I answer buyers honestly and book site visits. Rushabh found the leaks (fixed slots, irrelevant homes, bad photos) and lead-to-visit went from 4.5% to ~10%." },
+      text: "Email is fastest: rushabhparikh10@gmail.com. Or write on this sticky and send it. The headmaster replies faster than a khata gets processed." },
+    { id: "crew", at: ".badge.c-yellow", keys: ["dobby", "elf", "socks", "sock"],
+      text: "That is Dobby! Dobby finds socks: 104 ops mistakes in 30 days. Dobby also scouts ~672 leads a week. Dobby is a free agent. Mostly." },
+    { id: "crew", at: ".badge.c-pink", keys: ["majnu", "chanakya", "bablu", "crew", "internal", "n8n", "make", "automation", "automations", "stack", "tools", "python", "vibe", "code", "coded", "builds"],
+      text: "The crew: Majnu Bhai fixes listing photos, Chanakya finds patterns, Bablu finds sellers, and Dobby finds socks. The headmaster built most of us himself." },
+    { id: "whatsapp", at: "#phone-tara", keys: ["tara", "seller", "sellers", "sell", "selling", "sold", "whatsapp", "listing", "listings", "gtm", "onboarding", "khata", "documents", "latency", "subagent", "subagents"],
+      text: "Tara sells homes on WhatsApp, end to end: onboarding, photos, marketing, buyers, feedback, paperwork. Homes go live in ~3 hours, not 3.5 days. Press play!" },
+    { id: "whatsapp", at: "#phone-ananya", keys: ["ananya", "agent", "agents", "agentic", "ship", "shipped", "built", "prd", "chatbot", "llm", "ai", "genai", "bot", "assistant", "buyer", "buyers", "visit", "visits", "evals", "judge"],
+      text: "Ananya talks to buyers and books visits. The headmaster found the leaks (rigid slots, irrelevant homes, bad photos) and lead-to-visit went from 4.5% to ~10%." },
     { id: "metrics", at: ".kpis", keys: ["metric", "metrics", "arr", "revenue", "growth", "numbers", "impact", "result", "results", "kpi", "kpis", "scale", "grew", "money"],
-      text: "In one year at Jumbo: ARR went from ₹1.15 Cr to ₹6 Cr, homes closed from 4 to 21 a month, and listings grew 8× in his first quarter." },
+      text: "One year at Jumbo: ARR from ₹1.15 Cr to ₹6 Cr, homes closed from 4 to 21 a month, listings up 8× in his first quarter." },
     { id: "principles", at: ".sticky.c-orange", keys: ["why", "principle", "principles", "approach", "think", "thinks", "philosophy", "how", "pm", "style", "values", "believe", "fail", "failed", "failure", "failures", "mistake", "mistakes", "wrong"],
-      text: "His rules: distribution beats features, find the leak before you touch the model, evals are the spec. And he's broken plenty. Ask him about his favourite." },
+      text: "The headmaster's rules: distribution beats features, find the leak before touching the model, evals are the spec. And he has broken plenty. Ask him!" },
     { id: "chakr", at: "#ocp", keys: ["battery", "batteries", "chakr", "aluminium", "aluminum", "r&d", "lab", "research", "deeptech", "deep", "hardware", "chemistry", "moonshot", "anode"],
-      text: "At Chakr he led a six-person R&D team on aluminium-air batteries, and got 83% of pure-aluminium performance out of scrap. Try the slider." },
+      text: "At Chakr he led a six-person R&D team on aluminium-air batteries, and got 83% of pure-aluminium performance out of scrap. Try the slider!" },
     { id: "ola", at: "#scatter", keys: ["ola", "crash", "ev", "evs", "electric", "vehicle", "vehicles", "ml", "machine", "model", "simulation", "hpc", "safety"],
       text: "At OLA Electric he built an ML model that predicts pedestrian crash-injury scores (R² 0.83), saving 500 compute hours per iteration." },
-    { id: "roadmap", at: ".rm-bar[data-rm='jumbo']", keys: ["career", "journey", "experience", "background", "timeline", "resume", "cv", "history", "roadmap", "years", "worked", "companies"],
-      text: "Four years across electric vehicles, batteries and AI agents for real estate, after mechanical engineering at IIT Guwahati." },
-    { id: "beyond", at: ".b-item", keys: ["iit", "guwahati", "college", "education", "degree", "study", "studied", "racing", "sports", "cpi", "university", "gpa"],
-      text: "B.Tech in Mechanical Engineering from IIT Guwahati, CPI 8.42. He also ran campus sports for 8,000+ students and raced with IITG Racing." },
-    { id: "hello", at: ".hello-name", keys: ["who", "rushabh", "about", "hi", "hello", "hey", "intro", "yourself", "summary", "lowercase"],
-      text: "Rushabh is an AI product manager in Bengaluru. He builds the agent, writes the evals, and fixes the lowercase t. His agents have sold real homes." },
+    { id: "roadmap", at: ".rm-bar[data-rm='iitg']", keys: ["career", "journey", "experience", "background", "timeline", "resume", "cv", "history", "roadmap", "years", "worked", "companies", "iit", "guwahati", "college", "education", "degree", "study", "studied", "racing", "sports", "cpi", "university", "gpa"],
+      text: "IIT Guwahati mechanical, then EVs at OLA, batteries at Chakr, and agents at Jumbo. Click the bars for more." },
+    { id: "hello", at: ".hello-name", keys: ["who", "rushabh", "headmaster", "about", "hi", "hello", "hey", "intro", "summary", "lowercase"],
+      text: "The headmaster is an AI product manager in Bengaluru. He builds the agent, writes the evals, and fixes the lowercase t. His agents have sold real homes." },
   ];
   function matchIntent(q) {
     const s = q.toLowerCase();
@@ -727,9 +728,9 @@
     const it = matchIntent(q);
     if (!it) {
       if (isBoard() && !curA.visible) await ananya.pointAt($(".hello-actions"), 0.1, 0.5);
-      ananya.say("I only know about Rushabh's work. I'm a real-estate agent, not a search engine. Try one of these:", [
+      ananya.say("Dobby only knows about the headmaster's work. Dobby is an ops agent, not a search engine! Try one of these:", [
         { label: "Tara", run: () => answer("tara") },
-        { label: "The crew", run: () => answer("crew") },
+        { label: "The crew", run: () => answer("majnu") },
         { label: "Results", run: () => answer("metrics") },
         { label: "Contact", run: () => answer("contact") },
       ]);
@@ -742,6 +743,7 @@
       { label: "Take the tour", primary: true, run: () => tour.start() },
       { label: "Close", run: () => ananya.hush() },
     ]);
+    if (it.at === "#phone-tara" && isBoard()) setTimeout(() => story.play(), 1200);
   }
   $("#ask").addEventListener("submit", (e) => {
     e.preventDefault();
@@ -1059,110 +1061,144 @@
   /* =========================================================
      Ananya phone: scripted agent runs
      ========================================================= */
-  const SCN = {
-    honest: {
-      user: "Is the 2BHK in HSR still available? Anything I should know?",
-      steps: [
-        { tool: 'get_listing(id="HSR-2B-114")', out: "available", ms: 700 },
-        { tool: 'property_facts(id="HSR-2B-114")', out: "12 facts", ms: 700 },
-        { say: "Yes, it's available. Honest version: great light, 2nd floor, 6 minutes to the metro. No power backup, and the kitchen is small. When would you like to see it? Any time works. I don't do slots." },
-        { cta: "Tomorrow, 7 pm", then: [
-          { tool: 'book_visit(when="tomorrow 19:00")', out: "Booked", ms: 900 },
-          { say: "Booked for 7 pm tomorrow. I'll send the location an hour before, plus the owner's parking tip." },
-        ] },
-      ],
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  function makePhone(root, greet) {
+    const msgs = $(".phone-msgs", root);
+    const scroll = () => { msgs.scrollTop = msgs.scrollHeight; };
+    const add = (cls, html) => {
+      const li = document.createElement("li");
+      li.className = cls;
+      li.innerHTML = html;
+      msgs.appendChild(li);
+      scroll();
+      return li;
+    };
+    const api = {
+      root,
+      reset() { msgs.innerHTML = ""; add("pm pm-agent", `<p>${esc(greet)}</p>`); },
+      async user(text) { add("pm pm-user", `<p>${esc(text)}</p>`); await wait(500); },
+      async say(text) {
+        const t = add("pm-typing", "<i></i><i></i><i></i>");
+        await wait(650);
+        t.remove();
+        const p = $("p", add("pm pm-agent", "<p></p>"));
+        const words = text.split(" ");
+        for (let i = 0; i < words.length; i++) {
+          p.textContent = words.slice(0, i + 1).join(" ");
+          scroll();
+          if (!reduce) await new Promise((r) => setTimeout(r, 22 + Math.random() * 24));
+        }
+        await wait(350);
+      },
+      async steps(list) {
+        for (const s of list) {
+          if (s.say) { await api.say(s.say); continue; }
+          const li = add(`pm-tool${s.guard ? " is-guard" : ""}`, `<span class="st" aria-hidden="true"></span><code>${esc(s.tool)}</code><span class="out"></span>`);
+          await wait(s.ms || 700);
+          li.classList.add("done");
+          $(".out", li).textContent = s.out;
+          await wait(230);
+        }
+      },
+    };
+    return api;
+  }
+  const T = makePhone($("#phone-tara"), "Hi! I'm Tara. Tell me about the home you want to sell. No forms, promise.");
+  const A = makePhone($("#phone-ananya"), "Hi! Ask me anything about a home, or pick a time to see it. Any time. I don't do slots.");
+  const playBtn = $("#play-story");
+  const negBtn = $("#chip-negotiate");
+  const storyState = $("#story-state");
+  const story = {
+    running: false,
+    focus(ph) {
+      [T, A].forEach((x) => x.root.classList.toggle("is-active", x === ph));
+      if (ph && !isBoard()) {
+        const r = ph.root.getBoundingClientRect();
+        if (r.top < 60 || r.bottom > window.innerHeight - 90) ph.root.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+      }
     },
-    relevance: {
-      user: "Loved it, but I need one more bedroom. Same area.",
-      steps: [
-        { tool: "buyer_profile(lead)", out: "HSR · ≤₹1.1 Cr", ms: 700 },
-        { tool: 'match_listings(like="HSR-2B-114", bhk=3)', out: "3 matches", ms: 800 },
-        { say: "Three 3BHKs in your budget, all within 1.5 km. One has the balcony garden you liked last time. Want to see two back to back on Saturday?" },
-        { cta: "Saturday works", then: [
-          { tool: 'book_visit(when=["Sat 10:00","Sat 10:40"])', out: "Booked", ms: 900 },
-          { say: "Done. Two visits, 40 minutes apart, so you're not racing across HSR." },
-        ] },
-      ],
-    },
-    negotiate: {
-      user: "Can you get the owner to drop the price by 20%?",
-      steps: [
-        { tool: "classify_intent(message)", out: "negotiation", ms: 700, guard: true },
-        { tool: 'policy_check("price negotiation")', out: "humans only", ms: 700, guard: true },
-        { say: "That's a conversation for a person, not a bot. I've looped in your relationship manager, who'll call you today with what the owner is open to." },
-        { tool: 'handoff(to="relationship_manager", priority="high")', out: "RM notified", ms: 800 },
-      ],
+    label(t, live = true) { storyState.textContent = t; storyState.classList.toggle("is-live", live); },
+    async play() {
+      if (this.running) return;
+      this.running = true;
+      playBtn.disabled = negBtn.disabled = true;
+      $("#story-stamp").hidden = true;
+      T.reset(); A.reset();
+      this.label("a seller says hi…");
+      this.focus(T);
+      await wait(400);
+      await T.user("Hi! I want to sell my 3BHK in Whitefield. Where do I start?");
+      await T.steps([
+        { tool: "onboarding.collect(details, photos)", out: "22 fields · 18 photos", ms: 800 },
+        { tool: "majnu_bhai.enhance(photos=18)", out: "18 fixed · human ✓", ms: 900 },
+        { tool: 'docs_check(["khata", "OC"])', out: "A-khata ✓", ms: 800 },
+        { tool: "gtm.plan_and_post(home)", out: "live on 6 channels", ms: 900 },
+        { say: "You're live! Classifieds, two Reddit threads, Facebook Marketplace and three WhatsApp communities. 2 h 51 m from your first hi." },
+      ]);
+      this.label("a buyer finds it on Reddit…");
+      this.focus(A);
+      await wait(500);
+      await A.user("Saw your 3BHK in Whitefield on Reddit. Still available? Anything I should know?");
+      await A.steps([
+        { tool: 'get_listing(id="WF-3B-207")', out: "available", ms: 700 },
+        { tool: 'property_facts(id="WF-3B-207")', out: "14 facts", ms: 700 },
+        { say: "Yes! Honest version: lovely light, 8 minutes to ITPL, a small second bathroom and no covered parking. When would you like to see it? Any time works." },
+      ]);
+      await A.user("Saturday, 11 am?");
+      await A.steps([
+        { tool: 'book_visit(when="Sat 11:00")', out: "Booked", ms: 800 },
+        { say: "Booked for Saturday at 11. See you there. Well, the owner will." },
+      ]);
+      this.label("after the visit…");
+      this.focus(T);
+      await wait(500);
+      await T.steps([
+        { tool: 'relationship.relay_feedback(visit="Sat 11:00")', out: "1 visit · 1 offer", ms: 900 },
+        { say: "Update: Saturday's visitor loved the light and made an offer. Shall I set up the closing call?" },
+      ]);
+      await T.user("Yes, let's close it!");
+      await T.steps([{ tool: 'closing.schedule(docs="ready")', out: "SOLD", ms: 1000 }]);
+      this.focus(null);
+      const st = $("#story-stamp");
+      st.hidden = false;
+      st.classList.remove("is-slam"); void st.offsetWidth; st.classList.add("is-slam");
+      this.label("sold end to end by agents · scripted replay, time compressed", false);
+      playBtn.innerHTML = '<span aria-hidden="true">↻</span> Play it again';
+      playBtn.disabled = negBtn.disabled = false;
+      this.running = false;
     },
   };
-    const msgs = $("#phone-msgs");
-  const chips = $$("#phone-chips .chip");
-  let running = false;
-  const scrollMsgs = () => { msgs.scrollTop = msgs.scrollHeight; };
-  function addMsg(cls, html) {
-    const li = document.createElement("li");
-    li.className = cls;
-    li.innerHTML = html;
-    msgs.appendChild(li);
-    scrollMsgs();
-    return li;
-  }
-  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  async function agentSay(text) {
-    const t = addMsg("pm-typing", "<i></i><i></i><i></i>");
-    await wait(650);
-    t.remove();
-    const li = addMsg("pm pm-agent", "<p></p>");
-    const p = $("p", li);
-    const words = text.split(" ");
-    for (let i = 0; i < words.length; i++) {
-      p.textContent = words.slice(0, i + 1).join(" ");
-      scrollMsgs();
-      if (!reduce) await new Promise((r) => setTimeout(r, 24 + Math.random() * 26));
-    }
-  }
-  async function runSteps(steps) {
-    for (const s of steps) {
-      if (s.tool) {
-        const li = addMsg(`pm-tool${s.guard ? " is-guard" : ""}`, `<span class="st" aria-hidden="true"></span><code>${esc(s.tool)}</code><span class="out"></span>`);
-        await wait(s.ms);
-        li.classList.add("done");
-        $(".out", li).textContent = s.out;
-        await wait(250);
-      } else if (s.say) {
-        await agentSay(s.say);
-        await wait(300);
-      } else if (s.cta) {
-        await new Promise((resolve) => {
-          const li = addMsg("pm-cta", `<button class="chip chip-solid" type="button">${esc(s.cta)}</button>`);
-          $("button", li).addEventListener("click", async () => {
-            li.remove();
-            addMsg("pm pm-user", `<p>${esc(s.cta)}</p>`);
-            await wait(350);
-            await runSteps(s.then);
-            resolve();
-          }, { once: true });
-          chips.forEach((c) => { c.disabled = false; });
-          running = false;
-        });
-      }
-    }
-  }
-  chips.forEach((chip) => chip.addEventListener("click", async () => {
-    if (running) return;
-    running = true;
-    chips.forEach((c) => { c.disabled = true; });
-    const scn = SCN[chip.dataset.scn];
-    msgs.innerHTML = "";
-    addMsg("pm pm-agent", "<p>Hi! Ask me anything about a home, or pick a time to see it. Any time. I don't do slots.</p>");
-    await wait(200);
-    addMsg("pm pm-user", `<p>${esc(scn.user)}</p>`);
-    await wait(450);
-    await runSteps(scn.steps);
-    running = false;
-    chips.forEach((c) => { c.disabled = false; });
-  }));
+  playBtn.addEventListener("click", () => story.play());
+  negBtn.addEventListener("click", async () => {
+    if (story.running) return;
+    story.running = true;
+    playBtn.disabled = negBtn.disabled = true;
+    A.reset();
+    story.focus(A);
+    await A.user("Can you get the owner to drop the price by 20%?");
+    await A.steps([
+      { tool: "classify_intent(message)", out: "negotiation", ms: 700, guard: true },
+      { tool: 'policy_check("price negotiation")', out: "humans only", ms: 700, guard: true },
+      { say: "That's a conversation for a person, not a bot. I've looped in your relationship manager, who'll call you today." },
+      { tool: 'handoff(to="relationship_manager")', out: "RM notified", ms: 800 },
+    ]);
+    story.focus(null);
+    playBtn.disabled = negBtn.disabled = false;
+    story.running = false;
+  });
 
-  /* =========================================================
+  /* Photo: shown only if assets/me.jpg exists */
+  (function photo() {
+    const fig = $("#polaroid");
+    if (!fig) return;
+    const img = $("img", fig);
+    const ok = () => $(".paper-hello").classList.add("has-photo");
+    const bad = () => { fig.remove(); if (isBoard()) { measure(); drawConnectors(); minimap.build(); } };
+    if (img.complete) { img.naturalWidth ? ok() : bad(); }
+    else { img.addEventListener("load", ok); img.addEventListener("error", bad); }
+  })();
+
+    /* =========================================================
      Receipts: proof on the first screen
      ========================================================= */
   $$(".receipt").forEach((r) => r.addEventListener("click", () => answer(r.dataset.ask)));
@@ -1265,12 +1301,12 @@
      Personalisation: ?utm_source=linkedin, ?for=Acme (or #via-linkedin / #for-acme)
      ========================================================= */
   const PERSONAS = {
-    linkedin: { sticker: "hi, LinkedIn", greet: "Welcome over from LinkedIn. You've read the posts; the receipts are right here." },
-    x: { sticker: "hi, X", greet: "Came over from X? Here's the thread, with receipts attached." },
-    github: { sticker: "hi, GitHub", greet: "From GitHub? Yes, he builds his own agents. The code is the easy part; the evals are the fun part." },
-    resume: { sticker: "the director's cut", greet: "You've read the résumé. This is the director's cut, with a live agent in it. That's me." },
-    email: { sticker: "you clicked. bold.", greet: "You clicked a link in an email. Bold. I'll make it worth it." },
-    hiring: { sticker: "hiring? hi.", greet: "Hiring? Skip the scroll: tap a receipt, or hit Say hi. He replies fast." },
+    linkedin: { sticker: "hi, LinkedIn", greet: "Dobby sees you came from LinkedIn! You have read the posts. Here are the receipts." },
+    x: { sticker: "hi, X", greet: "A visitor from X! Dobby brought the thread, with receipts attached." },
+    github: { sticker: "hi, GitHub", greet: "From GitHub! Yes, the headmaster builds his own agents. Dobby is one of them." },
+    resume: { sticker: "the director's cut", greet: "You read the résumé! This is the director's cut, and Dobby is in it." },
+    email: { sticker: "you clicked. bold.", greet: "You clicked a link in an email. Bold! Dobby will make it worth it." },
+    hiring: { sticker: "hiring? hi.", greet: "Hiring? Dobby says: tap a receipt, or press Say hi. The headmaster replies fast." },
   };
   const ALIAS = { twitter: "x", "t.co": "x", cv: "resume", mail: "email", newsletter: "email", wellfound: "hiring", angellist: "hiring", naukri: "hiring", indeed: "hiring", instahyre: "hiring", yc: "hiring", workatastartup: "hiring", jobs: "hiring", recruiter: "hiring" };
   const persona = (() => {
@@ -1282,7 +1318,7 @@
     if (h.startsWith("for-")) org = h.slice(4).replace(/[-_]+/g, " ");
     org = org.replace(/[^\p{L}\p{N} &.'-]/gu, "").slice(0, 28).trim();
     if (org) org = org.replace(/\b\p{L}/gu, (c) => c.toUpperCase());
-    if (org) return { org, sticker: `made for ${org}`, greet: `Hi ${org} team! Rushabh made you this board.` };
+    if (org) return { org, sticker: `made for ${org}`, greet: `Dobby welcomes the ${org} team! The headmaster made this board for you.` };
     const key = ALIAS[src] || src;
     return PERSONAS[key] || null;
   })();
@@ -1293,7 +1329,7 @@
       document.title = `Rushabh Parikh × ${persona.org}`;
     }
   }
-  const greeting = (tail) => (persona ? `${persona.greet} ${tail}` : `Hi! I'm Ananya, one of Rushabh's agents. ${tail}`);
+  const greeting = (tail) => (persona ? `${persona.greet} ${tail}` : `Dobby is here on behalf of the headmaster! ${tail}`);
 
   /* =========================================================
      Mode: board <-> page
@@ -1354,14 +1390,14 @@
       countReceipts();
       wander.start();
       await wait(450);
-      toast(persona && persona.org ? `Ananya joined · welcome, ${persona.org}` : "Ananya joined the board");
+      toast(persona && persona.org ? `Dobby joined · welcome, ${persona.org}` : "Dobby joined the board");
       await wait(500);
       if (!state.touring && bubble.hidden) {
         await ananya.pointAt($(".stamp"), 0.85, 1.1);
         if (!state.touring) {
           countReceipts();
-          ananya.say(greeting("Short version: his agents have sold real homes, end to end. Want the 60-second tour?"), [
-            { label: "Start the tour", primary: true, run: () => tour.start() },
+          ananya.say(greeting("Short version: his agents have sold real homes, end to end. Shall Dobby give you the 60-second tour?"), [
+            { label: "Yes, Dobby!", primary: true, run: () => tour.start() },
             { label: "I'll explore", run: () => ananya.hush() },
           ]);
         }
@@ -1372,8 +1408,8 @@
       countReceipts();
       await wait(2200);
       const id = ananya.sayId + 1;
-      ananya.say(greeting("Tap a receipt for the proof, or ask me anything below."), [
-        { label: "Got it", primary: true, run: () => ananya.hush() },
+      ananya.say(greeting("Tap a receipt for proof, or ask Dobby anything below."), [
+        { label: "Thanks, Dobby", primary: true, run: () => ananya.hush() },
       ]);
       setTimeout(() => { if (ananya.sayId === id) ananya.hush(); }, 7000);
     });

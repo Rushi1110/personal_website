@@ -4,26 +4,27 @@ Portfolio site for Rushabh Parikh, AI Product Manager. It's plain HTML, CSS, and
 
 **Concept:** the portfolio is a product board, an infinite FigJam-style canvas you explore instead of scroll.
 
-- **Receipts first:** four clickable proof stickies under the headline (3 hrs to go live, 2× lead→visit, 5× ARR, 672 leads/week) count up on arrival, then a SOLD stamp lands. Clicking a receipt flies the camera to the evidence while Ananya explains it.
-- **Personalised arrivals:** `?utm_source=linkedin|x|github|resume|email` or job boards change the sticker and Ananya's greeting. `?for=Acme` makes a board "made for Acme", with a custom greeting, page title and contact note. For previews where query strings are stripped, use `#via-linkedin` or `#for-acme`.
+- **Receipts first:** four clickable proof stickies under the headline (3 hrs to go live, 2× lead→visit, 5× ARR, 672 leads/week) count up on arrival, then a SOLD stamp lands. Clicking a receipt flies the camera to the evidence while Dobby explains it.
+- **Personalised arrivals:** `?utm_source=linkedin|x|github|resume|email` or job boards change the sticker and Dobby's greeting. `?for=Acme` makes a board "made for Acme", with a custom greeting, page title and contact note. For previews where query strings are stripped, use `#via-linkedin` or `#for-acme`.
 - **Board:** pan by dragging or scrolling, zoom with Ctrl/⌘ + scroll or pinch, fling with inertia. A minimap, a frames panel and keyboard shortcuts get you around.
-- **Ananya, the AI guide:** her cursor joins the board, gives a guided tour that flies the camera between frames, and answers questions typed into the dock ("what did he ship?", "battery work?", "how do I reach him?").
+- **Dobby, the host:** "Dobby is here on behalf of the headmaster!" His cursor joins the board, gives a guided tour that flies the camera between frames, and answers questions typed into the dock.
+- **Illustrated agents:** SVG portraits for Tara, Ananya, Majnu Bhai, Dobby, Chanakya and Bablu (the `#av-*` symbols at the top of `index.html`).
+- **Photo:** drop `assets/me.jpg` in and a taped polaroid appears on the Hello frame. Without it, nothing shows.
 - **Frames:**
   - Hello
-  - Tara system map: a little house travels through every agent a home passes on its way to SOLD (tap any node)
-  - The crew: flip cards for Majnu Bhai, Dobby, Chanakya and Bablu
+  - On WhatsApp: Tara (sell side) and Ananya (buy side) phones play one story together, from a seller's hi to a SOLD stamp, plus a price-negotiation hand-off demo
+  - Under the hood: a little house travels through every agent a home meets (tap any node)
+  - The crew: flip cards with portraits for Majnu Bhai, Dobby, Chanakya and Bablu
   - Roadmap, with clickable bars
   - OLA crash-model scatter plot (hover the points)
   - Chakr lab notebook, with a live voltage slider and a bubble simulation
-  - Ananya PRD (what was leaking, scope, evals), with a playable phone: an honest answer plus a booking, relevance matching, and a hand-off to a human
   - Year-one dashboard, with a before/after toggle
   - Draggable principle stickies
-  - IIT Guwahati
   - Contact, a sticky note you write and send as an email
 - **Visitor stickies:** press S (or pick the sticky tool) and click anywhere to leave a note. Notes are saved in your browser and included in the email.
 - **Read as a page:** a normal scrolling layout. It's the default on phones and what you get without JavaScript.
 
-Shortcuts: `T` tour · `1`–`9` jump to the first nine frames · `0` fit the board · `V` / `H` / `S` tools · `/` ask Ananya · `Esc` close.
+Shortcuts: `T` tour · `1`–`9` jump to the first nine frames · `0` fit the board · `V` / `H` / `S` tools · `/` ask Dobby · `Esc` close.
 
 Fonts: Bricolage Grotesque (display), Geist (UI), Geist Mono (data), Shantell Sans (handwriting).
 
@@ -47,7 +48,7 @@ python3 -m http.server 8000
 
 ## Editing
 
-All copy lives in `index.html`. Each frame's position on the board is set by its `data-x`, `data-y` and `data-w` attributes. The tour script, Ask Ananya's answers and the phone scenarios are the `TOUR`, `INTENTS` and `SCN` objects in `script.js`. Colours are tokens at the top of `styles.css`.
+All copy lives in `index.html`. Each frame's position on the board is set by its `data-x`, `data-y` and `data-w` attributes. The tour script, Dobby's answers and the WhatsApp story are `TOUR`, `INTENTS` and `story` in `script.js`. Colours are tokens at the top of `styles.css`.
 
 ## Deploying on a custom domain
 
