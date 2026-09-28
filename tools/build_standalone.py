@@ -18,8 +18,12 @@ icon = base64.b64encode((root / "assets" / "favicon.svg").read_bytes()).decode()
 html = html.replace('<link rel="stylesheet" href="styles.css">', f"<style>\n{css}\n</style>")
 html = html.replace('<script src="script.js" defer></script>', f"<script>\n{js}\n</script>")
 html = html.replace('href="assets/favicon.svg"', f'href="data:image/svg+xml;base64,{icon}"')
-# The photo is optional; drop the polaroid when no photo ships with the file.
-if not (root / "assets" / "me.jpg").exists():
+# Inline the photo if present; otherwise drop the polaroid.
+photo = root / "assets" / "me.png"
+if photo.exists():
+    data = base64.b64encode(photo.read_bytes()).decode()
+    html = html.replace('src="assets/me.png"', f'src="data:image/png;base64,{data}"')
+else:
     html = re.sub(r'\s*<figure class="polaroid".*?</figure>', "", html, flags=re.S)
 
 out = root / "dist" / "index.html"

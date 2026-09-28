@@ -1,6 +1,6 @@
 # personal_website
 
-Portfolio site for Rushabh Parikh, AI Product Manager. It's plain HTML, CSS, and JS: no framework and no build step. GitHub Pages hosts it on a custom domain.
+Portfolio site for Rushabh Parikh, AI Product Manager. Live at https://rushabhparikh.in. It's plain HTML, CSS, and JS: no framework and no build step. GitHub Pages hosts it on a custom domain.
 
 **Concept:** the portfolio is a product board, an infinite FigJam-style canvas you explore instead of scroll.
 
@@ -59,7 +59,7 @@ Page views arrive with their `utm_source`. The site also logs events: `tour/star
 
 ## Images
 
-- **Your photo:** add `assets/me.jpg` (portrait, about 900×1000) and a taped polaroid appears on the Hello card.
+- **Your photo:** `assets/me.png` (a cut-out portrait) shows as the taped polaroid on the Hello card. Replace the file to change it.
 - **Link preview:** `assets/og.png` (1200×630) is the card LinkedIn, WhatsApp and X show when the link is shared.
 - **Anything else:** put files in `assets/` and reference them as `assets/name.jpg`.
 - Upload on GitHub via the repo page → Add file → Upload files, into the `assets` folder.
