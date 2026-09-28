@@ -2715,7 +2715,7 @@ code, kbd { font-family: var(--mono); }
     const q = new URLSearchParams(location.search);
     const h = location.hash.slice(1).toLowerCase();
     let src = (q.get("utm_source") || q.get("ref") || q.get("source") || "").toLowerCase().trim();
-    let org = (q.get("for") || q.get("utm_campaign") || "").trim();
+    let org = (q.get("for") || "").trim();
     if (h.startsWith("via-")) src = h.slice(4);
     if (h.startsWith("for-")) org = h.slice(4).replace(/[-_]+/g, " ");
     org = org.replace(/[^\p{L}\p{N} &.'-]/gu, "").slice(0, 28).trim();
