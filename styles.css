@@ -258,7 +258,7 @@ code, kbd { font-family: var(--mono); }
   margin-block: 20px 18px;
 }
 .hello-name .dot { color: var(--r); }
-.hello-line { font-family: var(--display); font-weight: 600; font-size: clamp(1.15rem, 3cqi, 1.5rem); line-height: 1.25; letter-spacing: -.01em; max-width: 30ch; }
+.hello-line { font-family: var(--display); font-weight: 600; font-size: clamp(1.15rem, 3cqi, 1.5rem); line-height: 1.25; letter-spacing: 0; max-width: 30ch; }
 .hello-body { color: var(--ink-2); margin-top: 12px; max-width: 58ch; }
 .hello-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .hello-foot { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px 24px; margin-top: 26px; }
@@ -286,6 +286,7 @@ code, kbd { font-family: var(--mono); }
 .receipts li:nth-child(4) .receipt { --rot: 1.8deg; }
 .receipt:hover, .receipt:focus-visible { transform: translateY(-5px) rotate(0deg); box-shadow: 0 2px 2px rgb(0 0 0 / 6%), 0 20px 30px -10px rgb(0 0 0 / 30%); }
 .rc-num { font-family: var(--display); font-weight: 800; font-size: clamp(1.8rem, 4.4cqi, 2.4rem); line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rc-num .u { font-family: var(--ui); font-weight: 600; font-size: .78em; margin-left: .04em; }
 .rc-k { font-size: 14px; line-height: 1.35; }
 .rc-go { font-family: var(--mono); font-size: 11.5px; opacity: .7; margin-top: 4px; }
 .receipt:hover .rc-go { opacity: 1; text-decoration: underline; text-underline-offset: 2px; }
