@@ -101,7 +101,6 @@
     </div>
     <div class="tb-right">
       <div class="presence" aria-label="On this board">
-        <span class="av av-r" title="Rushabh, the headmaster (a replay of his cursor)">R</span>
         <span class="av av-d" title="Dobby, your guide"><svg><use href="#av-dobby"/></svg></span>
         <span class="av av-you" title="You">You</span>
       </div>
@@ -185,7 +184,7 @@
         <h2 class="frame-label">Roadmap · 2018 → now</h2>
         <div class="paper">
           <div class="f-head">
-            <h3 class="f-title">Four years, three industries</h3>
+            <h3 class="f-title">Four years, three industries, zero boring ones</h3>
             <p class="f-hint">Click a bar</p>
           </div>
           <div class="rm" id="rm">
@@ -252,30 +251,29 @@
         <h2 class="frame-label">OLA Electric · 2022–24</h2>
         <div class="paper">
           <p class="ui-tag">Assistant Manager, Vehicle Engineering</p>
-          <h3 class="f-title">Taught a model to predict crash injuries</h3>
+          <h3 class="f-title">Taught a model to crash cars, so the supercomputer didn't have to</h3>
           <p class="f-body">
-            Every pedestrian-safety simulation cost hundreds of compute hours. I built an ML model that predicts the injury
-            score from design inputs, so engineers could screen designs before paying for a full run.
+            Every pedestrian-safety simulation burned hundreds of compute hours. I built an ML model that predicts the injury
+            score from design inputs, so engineers only simulate the designs worth simulating.
           </p>
           <figure class="scatter">
             <svg id="scatter" viewBox="0 0 400 300" role="img" aria-label="Predicted against simulated injury scores clustered around the diagonal, R squared 0.83."></svg>
             <p class="scatter-tip" id="scatter-tip" hidden></p>
+            <div class="callouts">
+              <p class="callout c-yellow"><b>500 hrs</b>compute saved per design iteration</p>
+              <p class="callout c-green"><b>₹1.7 Cr</b>saved in operating costs</p>
+            </div>
             <figcaption>Hover a point. Illustrative data fitted to the model's R² of 0.83.</figcaption>
           </figure>
-          <ul class="minis minis-3">
-            <li class="mini c-yellow"><b>500 hrs</b>compute saved per design iteration</li>
-            <li class="mini c-pink"><b>₹65L / yr</b>saved by automating validation</li>
-            <li class="mini c-green"><b>₹1.2 Cr</b>projected savings from component and MCU optimisation</li>
-          </ul>
         </div>
       </section>
 
       <!-- CHAKR -->
-      <section class="frame" id="chakr" data-frame data-title="Chakr lab notebook" data-x="-1300" data-y="660" data-w="740">
+      <section class="frame" id="chakr" data-frame data-title="Chakr lab notebook" data-x="-1300" data-y="480" data-w="740">
         <h2 class="frame-label">Lab notebook · Chakr Innovation · 2024–25</h2>
         <div class="paper paper-grid">
           <p class="ui-tag">Technical Project Manager, Moonshot R&amp;D</p>
-          <h3 class="f-title">Ran a moonshot lab on aluminium and air</h3>
+          <h3 class="f-title">Tried to power EVs with aluminium and thin air</h3>
           <p class="f-body">
             Aluminium-air batteries could make EVs far cheaper, if the metal performs and stays affordable.
             I led the six-person R&amp;D team solving both.
@@ -294,9 +292,9 @@
 
           <ul class="minis minis-2">
             <li class="mini c-blue"><b>83%</b>of peak performance from scrap aluminium, the key to commercial viability</li>
-            <li class="mini c-yellow"><b>−40%</b>raw-material cost after re-engineering sourcing</li>
+            <li class="mini c-yellow"><b>−40%</b>raw-material cost. I built the supply chain on the ground in China</li>
             <li class="mini c-green"><b>5× faster</b>and 90% cheaper testing, using an ML model I built</li>
-            <li class="mini c-pink"><b>Amazon, Swiggy</b>expressed interest after a month-long vehicle pilot</li>
+            <li class="mini c-pink"><b>Amazon, Swiggy</b>interested after a month-long vehicle pilot. I ran the go-to-market myself</li>
           </ul>
         </div>
         <p class="hand hand-chakr board-only" aria-hidden="true">drag the slider!</p>
@@ -369,41 +367,12 @@
         <p class="hand hand-play board-only" aria-hidden="true">press play ↓</p>
       </section>
 
-<!-- HOOD -->
-      <section class="frame" id="hood" data-frame data-title="Under the hood" data-x="560" data-y="160" data-w="1480">
-        <h2 class="frame-label">Under the hood · Tara's system map</h2>
-        <div class="paper">
-          <div class="f-head">
-            <h3 class="f-title">Every agent a home meets</h3>
-            <p class="f-hint">tap any agent · watch the little house</p>
-          </div>
-          <div class="flow" id="flow">
-            <svg class="flow-lines" id="flow-lines" aria-hidden="true"></svg>
-            <svg class="flow-lines flow-home" id="flow-home" aria-hidden="true"></svg>
-            <button class="node c-orange" type="button" data-node="bablu" style="--c-i:1;--r-i:1"><svg class="n-av" aria-hidden="true"><use href="#av-bablu"/></svg><span class="n-tag">input</span><b>Bablu</b><span>finds sellers</span></button>
-            <button class="node c-yellow" type="button" data-node="seller" style="--c-i:2;--r-i:1"><span class="n-tag">human</span><b>Seller</b><span>says hi on WhatsApp</span></button>
-            <button class="node c-blue" type="button" data-node="onboard" style="--c-i:3;--r-i:1"><svg class="n-av" aria-hidden="true"><use href="#av-tara"/></svg><span class="n-tag">Tara skill</span><b>Onboarding</b><span>gets the home's details</span></button>
-            <button class="node c-pink" type="button" data-node="majnu" style="--c-i:4;--r-i:1"><svg class="n-av" aria-hidden="true"><use href="#av-majnu"/></svg><span class="n-tag">agent</span><b>Majnu Bhai</b><span>makes the photos work</span></button>
-            <button class="node node-wip" type="button" data-node="pricing" style="--c-i:5;--r-i:1"><span class="n-tag">WIP</span><b>Pricing</b><span>suggests a price</span></button>
-            <button class="node c-green is-on" type="button" data-node="gtm" style="--c-i:5;--r-i:2"><svg class="n-av" aria-hidden="true"><use href="#av-tara"/></svg><span class="n-tag">Tara skill</span><b>GTM agent</b><span>markets every home</span></button>
-            <button class="node c-violet" type="button" data-node="ananya" style="--c-i:4;--r-i:2"><svg class="n-av" aria-hidden="true"><use href="#av-ananya"/></svg><span class="n-tag">agent</span><b>Ananya</b><span>answers buyers, books visits</span></button>
-            <button class="node c-blue" type="button" data-node="rm" style="--c-i:3;--r-i:2"><svg class="n-av" aria-hidden="true"><use href="#av-tara"/></svg><span class="n-tag">Tara skill</span><b>Relationship</b><span>relays buyer feedback</span></button>
-            <button class="node c-yellow" type="button" data-node="docs" style="--c-i:2;--r-i:2"><svg class="n-av" aria-hidden="true"><use href="#av-tara"/></svg><span class="n-tag">Tara skill</span><b>Docs check</b><span>khata, transactability</span></button>
-            <button class="node node-sold" type="button" data-node="sold" style="--c-i:1;--r-i:2"><span class="n-tag">outcome</span><b>SOLD</b><span>end to end, by agents</span></button>
-          </div>
-          <div class="flow-detail" id="flow-detail" aria-live="polite">
-            <p class="fd-title" id="fd-title">GTM agent</p>
-            <p id="fd-body">Writes a go-to-market plan for every single home, then posts it where buyers actually hang out: classifieds, the right Reddit threads, Facebook Marketplace and WhatsApp communities.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- METRICS -->
-      <section class="frame" id="metrics" data-frame data-title="Year-one dashboard" data-x="560" data-y="900" data-w="1180">
+<!-- METRICS -->
+      <section class="frame" id="metrics" data-frame data-title="Year-one dashboard" data-x="560" data-y="160" data-w="1180">
         <h2 class="frame-label">Dashboard · Jumbo Homes, year one</h2>
         <div class="paper">
           <div class="f-head">
-            <h3 class="f-title">What a year of operating moved</h3>
+            <h3 class="f-title">One year. Receipts attached.</h3>
             <div class="seg" role="group" aria-label="Compare periods">
               <button class="seg-btn" type="button" data-period="0" aria-pressed="false">When I joined</button>
               <button class="seg-btn is-on" type="button" data-period="1" aria-pressed="true">A year in</button>
@@ -545,8 +514,8 @@
         <h2 class="frame-label">Say hi</h2>
         <div class="paper contact">
           <div class="contact-copy">
-            <h3 class="f-title">Leave me a note</h3>
-            <p class="f-body">Building agents, fixing a leaky funnel, or want to argue about evals? I'm in. I reply faster than a khata gets processed.</p>
+            <h3 class="f-title">Say hi. Dobby will make sure I see it.</h3>
+            <p class="f-body">Building agents, fixing a leaky funnel, or want to argue about evals? I'm in. I reply faster than most agents I've built. Dobby disputes this.</p>
             <p class="email-row"><span class="email" id="email">rushabhparikh10@gmail.com</span><button class="link-btn" id="copy-email" type="button">Copy</button></p>
             <p class="links-row">
               <a class="btn" href="https://www.linkedin.com/in/parikhrushabh" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -567,10 +536,6 @@
 
     <!-- live cursors (screen space) -->
     <div class="cursors" id="cursors" aria-hidden="false">
-      <div class="cursor cursor-r" id="cur-r" aria-hidden="true">
-        <svg viewBox="0 0 20 20"><path d="M2 2 L17 9 L10 11 L7 18 Z"/></svg>
-        <span class="cursor-name">Rushabh</span>
-      </div>
       <div class="cursor cursor-a" id="cur-a">
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 2 L17 9 L10 11 L7 18 Z"/></svg>
         <span class="cursor-name" aria-hidden="true">Dobby · AI</span>

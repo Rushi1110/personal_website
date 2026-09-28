@@ -41,7 +41,7 @@
   const world = $("#world");
   const frames = $$("[data-frame]");
   const byId = (id) => document.getElementById(id);
-  const PANEL_ORDER = ["hello", "whatsapp", "hood", "crew", "metrics", "ola", "chakr", "roadmap", "principles", "contact"];
+  const PANEL_ORDER = ["hello", "whatsapp", "crew", "metrics", "ola", "chakr", "roadmap", "principles", "contact"];
 
   const state = {
     board: false,
@@ -475,8 +475,7 @@
     const links = [
       { a: side("hello", "r", 0.25), b: side("whatsapp", "l", 0.3), label: "what I'm building", lx: -40, ly: -22 },
       { a: side("whatsapp", "r", 0.2), b: side("crew", "l", 0.3), label: "the crew", lx: -30, ly: -20 },
-      { a: side("whatsapp", "b", 0.5), b: side("hood", "t", 0.5), label: "under the hood", lx: 18, ly: 6 },
-      { a: side("hood", "b", 0.3), b: side("metrics", "t", 0.3), label: "what it moved", lx: 18, ly: 6 },
+      { a: side("whatsapp", "b", 0.3), b: side("metrics", "t", 0.3), label: "what it moved", lx: 18, ly: 6 },
       { a: side("ola", "b", 0.5), b: side("chakr", "t", 0.45), label: "ML meets hardware", lx: 18, ly: 6 },
       { a: side("chakr", "r", 0.3), b: side("principles", "l", 0.35), label: "lessons", lx: -30, ly: -16 },
       { a: side("roadmap", "b", 0.5), b: side("hello", "t", 0.5), label: "", lx: 0, ly: 0 },
@@ -542,10 +541,9 @@
     }
     show(v) { this.visible = v; this.el.classList.toggle("is-away", !v); }
   }
-  const curR = new Cursor($("#cur-r"));
   const curA = new Cursor($("#cur-a"));
-  const cursors = [curR, curA];
-  curR.show(false); curA.show(false);
+  const cursors = [curA];
+  curA.show(false);
 
   // world position of an element's point (relative 0..1 of its box)
   function worldOf(el, fx = 0.5, fy = 0.5) {
@@ -553,30 +551,6 @@
     const v = viewport.getBoundingClientRect();
     return toWorld(r.left - v.left + r.width * fx, r.top - v.top + r.height * fy);
   }
-
-  // Rushabh's cursor: a replay that drifts between things he'd point at
-  const wander = {
-    spots: ["#hello .now", "#hood .node[data-node='gtm']", "#phone-tara", "#crew .badge", "#metrics .kpi", "#principles .sticky.c-green", "#scatter", "#contact .note-card"],
-    i: 0,
-    timer: 0,
-    started: false,
-    start() {
-      if (reduce || this.started) return;
-      this.started = true;
-      curR.show(true);
-      const t = worldOf($(this.spots[0]), 0.7, 0.9);
-      curR.jump(t.x + 200, t.y + 160);
-      this.tick();
-    },
-    async tick() {
-      if (!isBoard()) { this.timer = setTimeout(() => this.tick(), 3000); return; }
-      const el = $(this.spots[this.i % this.spots.length]);
-      this.i++;
-      const p = worldOf(el, 0.3 + Math.random() * 0.5, 0.3 + Math.random() * 0.5);
-      await curR.moveTo(p.x, p.y, 1600 + Math.random() * 900);
-      this.timer = setTimeout(() => this.tick(), 3800 + Math.random() * 3200);
-    },
-  };
 
   /* =========================================================
      Ananya: bubble + speech
@@ -645,13 +619,12 @@
   const TOUR = [
     { id: "hello", at: ".hello-actions", fx: 0.1, text: "Dobby is here on behalf of the headmaster, Rushabh! Dobby will show you around. It is quicker than his résumé." },
     { id: "whatsapp", at: "#play-story", fx: 0.2, fy: 0.9, play: true, text: "This is where homes get sold. Tara talks to sellers, Ananya talks to buyers, both on WhatsApp. Dobby is pressing play for you!" },
-    { id: "hood", at: ".node[data-node='majnu']", fx: 0.5, fy: 0.5, text: "Under the hood: every agent a home meets on its way to SOLD. Watch the little house travel. Tap any agent." },
     { id: "crew", at: ".badge.c-yellow", fx: 0.5, fy: 0.3, text: "And this is the crew. That one is Dobby! Dobby finds socks. Socks are mistakes. Flip the cards." },
     { id: "metrics", at: ".seg", text: "What one year of this did to the business: ARR up about 5×, supply up 8×. Flip the toggle." },
-    { id: "ola", at: "#scatter", fx: 0.55, fy: 0.45, text: "Before agents, the headmaster taught a model to predict crash injuries at OLA Electric. R² of 0.83. Hover the dots." },
-    { id: "chakr", at: "#ocp", fx: 0.1, text: "Then batteries at Chakr. Drag the slider. Dobby likes the bubbles." },
+    { id: "ola", at: "#scatter", fx: 0.55, fy: 0.45, text: "Before agents, the headmaster taught a model to crash cars so the supercomputer did not have to. 500 compute hours saved per iteration!" },
+    { id: "chakr", at: "#ocp", fx: 0.1, text: "Then he tried to power EVs with aluminium and thin air. Drag the slider. Dobby likes the bubbles." },
     { id: "principles", at: ".sticky.c-pink", fx: 0.3, fy: 0.3, text: "What the headmaster learned, some of it the hard way. The stickies move." },
-    { id: "contact", at: "#note", fx: 0.3, fy: 0.3, text: "That is the tour! Leave the headmaster a note. He replies faster than a khata gets processed." },
+    { id: "contact", at: "#note", fx: 0.3, fy: 0.3, text: "That is the tour! Leave the headmaster a note. He replies faster than most of his agents. Dobby is working on it." },
   ];
   const tour = {
     async show(i) {
@@ -690,7 +663,7 @@
      ========================================================= */
   const INTENTS = [
     { id: "contact", at: "#note", keys: ["contact", "hire", "hiring", "email", "mail", "reach", "linkedin", "talk", "connect", "job", "role", "available", "call", "meet", "coffee"],
-      text: "Email is fastest: rushabhparikh10@gmail.com. Or write on this sticky and send it. The headmaster replies faster than a khata gets processed." },
+      text: "Email is fastest: rushabhparikh10@gmail.com. Or write on this sticky and send it. He replies faster than most agents he has built. Dobby disputes this." },
     { id: "crew", at: ".badge.c-yellow", keys: ["dobby", "elf", "socks", "sock"],
       text: "That is Dobby! Dobby finds socks: 104 ops mistakes in 30 days. Dobby also scouts ~672 leads a week. Dobby is a free agent. Mostly." },
     { id: "crew", at: ".badge.c-pink", keys: ["majnu", "chanakya", "bablu", "crew", "internal", "n8n", "make", "automation", "automations", "stack", "tools", "python", "vibe", "code", "coded", "builds"],
@@ -1214,86 +1187,6 @@
     setTimeout(() => $(".stamp").classList.add("is-slam"), 1500);
   }
 
-  /* =========================================================
-     Tara: flow map with a little house travelling through it
-     ========================================================= */
-  const FLOW = {
-    bablu: ["Bablu", "Scouts homeowners who might sell, so Tara has someone to say hi to. Built by the team; I put him to work here."],
-    seller: ["Seller", "No app, no forms. Sellers message Tara on WhatsApp, where they already spend their day."],
-    onboard: ["Onboarding agent", "Collects the home's details, photos and papers in a conversation instead of a 40-field form."],
-    majnu: ["Majnu Bhai", "Turns rough phone photos into images people click, without making the home look like something it isn't. Human-reviewed."],
-    pricing: ["Pricing agent · WIP", "Suggests a listing price from comparable homes. Still in the oven."],
-    gtm: ["GTM agent", "Writes a go-to-market plan for every single home, then posts it where buyers actually hang out: classifieds, the right Reddit threads, Facebook Marketplace and WhatsApp communities."],
-    ananya: ["Ananya", "Answers every inbound buyer honestly and books the visit, at whatever time suits them."],
-    rm: ["Relationship agent", "Sends each buyer's feedback back to the seller, so they know why a visit did or didn't become an offer."],
-    docs: ["Docs check", "Flags problems with the khata, transactability and other famously confusing paperwork before they kill a deal."],
-    sold: ["SOLD", "Multiple homes sold end to end through agents, on both the buy and the sell side."],
-  };
-  const flow = $("#flow");
-  const flowNodes = $$(".node", flow);
-  function selectNode(key) {
-    flowNodes.forEach((n) => n.classList.toggle("is-on", n.dataset.node === key));
-    $("#fd-title").textContent = FLOW[key][0];
-    $("#fd-body").textContent = FLOW[key][1];
-  }
-  flowNodes.forEach((n) => n.addEventListener("click", () => selectNode(n.dataset.node)));
-  function drawFlow() {
-    const svg = $("#flow-lines");
-    const NS = "http://www.w3.org/2000/svg";
-    const pts = flowNodes.map((n) => ({ x: n.offsetLeft + n.offsetWidth / 2, y: n.offsetTop + n.offsetHeight / 2 }));
-    if (!pts.length || !flow.offsetWidth) return;
-    let d = `M${pts[0].x} ${pts[0].y}`;
-    for (let i = 1; i < pts.length; i++) {
-      const a = pts[i - 1], b = pts[i];
-      if (Math.abs(a.y - b.y) < 4 || Math.abs(a.x - b.x) < 4) d += ` L${b.x} ${b.y}`;
-      else { const my = (a.y + b.y) / 2; d += ` C${a.x} ${my}, ${b.x} ${my}, ${b.x} ${b.y}`; }
-    }
-    svg.innerHTML = "";
-    const path = document.createElementNS(NS, "path");
-    path.setAttribute("d", d); path.setAttribute("class", "fl"); path.id = "flow-path";
-    svg.appendChild(path);
-    const top = $("#flow-home");
-    top.innerHTML = "";
-    if (reduce) return;
-    const len = path.getTotalLength();
-    const home = document.createElementNS(NS, "g");
-    home.setAttribute("class", "home");
-    home.innerHTML = '<circle r="17"/><path d="M-9 1 L0 -8 L9 1 L6.5 1 L6.5 8.5 L-6.5 8.5 L-6.5 1 Z"/><rect x="-2.4" y="3" width="4.8" height="5.5" rx="1"/>';
-    top.appendChild(home);
-    // ping each node as the house passes it
-    const stops = pts.map((p) => {
-      let best = 0, bd = Infinity;
-      for (let l = 0; l <= len; l += 6) { const q = path.getPointAtLength(l); const dd = Math.hypot(q.x - p.x, q.y - p.y); if (dd < bd) { bd = dd; best = l; } }
-      return best;
-    });
-    cancelAnimationFrame(drawFlow.raf);
-    const DUR = 11000;
-    let t0 = performance.now(), lastStop = -1;
-    const tick = (now) => {
-      if (!flowVisible) { drawFlow.raf = 0; return; }
-      const t = ((now - t0) % DUR) / DUR;
-      const l = t * len;
-      const q = path.getPointAtLength(l);
-      home.setAttribute("transform", `translate(${q.x.toFixed(1)} ${q.y.toFixed(1)})`);
-      let si = -1;
-      stops.forEach((sl, i) => { if (l >= sl) si = i; });
-      if (si !== lastStop) {
-        lastStop = si;
-        const n = flowNodes[si];
-        if (n) { n.classList.remove("is-ping"); void n.offsetWidth; n.classList.add("is-ping"); }
-      }
-      drawFlow.raf = requestAnimationFrame(tick);
-    };
-    drawFlow.raf = requestAnimationFrame(tick);
-  }
-  let flowVisible = true;
-  new IntersectionObserver(([e]) => {
-    flowVisible = e.isIntersecting;
-    if (flowVisible && !drawFlow.raf) drawFlow();
-  }).observe(flow);
-  if ("ResizeObserver" in window) new ResizeObserver(() => drawFlow()).observe(flow);
-  else drawFlow();
-
   /* Crew badges flip */
   $$(".badge").forEach((b) => b.addEventListener("click", () => b.setAttribute("aria-pressed", String(b.getAttribute("aria-pressed") !== "true"))));
 
@@ -1351,7 +1244,6 @@
           const h = rects.hello;
           state.cam = vw() < 760 ? { x: h.x - 20 + vw() / 0.62 / 2, y: h.y - 40 + vh() / 0.62 / 2, z: 0.62 } : camFor(frameRect("hello"));
           invalidate();
-          setTimeout(() => wander.start(), 900);
         }
       });
     } else {
@@ -1389,7 +1281,6 @@
       await wait(650);
       await goto(first, { dur: 1700 });
       countReceipts();
-      wander.start();
       await wait(450);
       toast(persona && persona.org ? `Dobby joined · welcome, ${persona.org}` : "Dobby joined the board");
       await wait(500);
