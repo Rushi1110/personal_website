@@ -2,8 +2,8 @@
    Tokens
    ========================================================= */
 :root {
-  --canvas: #ECEDEF;
-  --dot: #C3C7CD;
+  --canvas: #F4F5F7;
+  --dot: #D5D9DE;
   --paper: #FFFFFF;
   --paper-2: #F5F6F7;
   --ink: #17181B;
@@ -194,12 +194,12 @@ code, kbd { font-family: var(--mono); }
 
 .frame { position: relative; container-type: inline-size; }
 .frame-label {
-  font-family: var(--ui); font-size: 12px; font-weight: 500; color: var(--ink-3);
+  font-family: var(--ui); font-size: 12px; font-weight: 600; color: var(--ink-2);
   margin: 0 0 8px 2px; white-space: nowrap;
 }
 .paper {
   position: relative;
-  background: var(--paper); border-radius: 6px;
+  background: var(--paper); border-radius: 8px; border: 1px solid var(--line);
   box-shadow: var(--shadow);
   padding: clamp(20px, 4.5cqi, 44px);
 }
@@ -258,7 +258,7 @@ code, kbd { font-family: var(--mono); }
   margin-block: 20px 18px;
 }
 .hello-name .dot { color: var(--r); }
-.hello-line { font-family: var(--display); font-weight: 600; font-size: clamp(1.15rem, 3cqi, 1.5rem); line-height: 1.25; letter-spacing: 0; max-width: 30ch; }
+.hello-line { font-family: var(--ui); font-weight: 500; font-size: clamp(1.2rem, 3.2cqi, 1.6rem); line-height: 1.3; letter-spacing: -.012em; color: var(--ink); max-width: 30ch; }
 .hello-body { color: var(--ink-2); margin-top: 12px; max-width: 58ch; }
 .hello-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .hello-foot { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px 24px; margin-top: 26px; }
@@ -364,6 +364,16 @@ code, kbd { font-family: var(--mono); }
 .duo .phone { height: 600px; transition: box-shadow .3s var(--ease), transform .3s var(--ease); }
 .duo .phone.is-active { box-shadow: inset 0 0 0 6px var(--paper), 0 0 0 3px var(--sel), var(--shadow-lg); transform: translateY(-4px); }
 .phone-av { width: 34px; height: 34px; flex: none; }
+.phone-cta {
+  display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+  padding: 11px 14px; border-radius: 999px; background: #25D366; color: #0B2E1A;
+  font-size: 13.5px; font-weight: 700; text-decoration: none;
+  transition: transform .2s var(--ease), filter .2s;
+}
+.phone-cta:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.phone-cta svg { width: 16px; height: 16px; fill: currentColor; }
+#phone-tara > .phone-cta { width: auto; margin: 12px 14px 16px; }
+.phone-chips { gap: 8px; }
 .phone-foot { padding: 12px 14px 16px; border-top: 1px solid var(--line); background: var(--paper); font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-align: center; }
 .phone-chips .chip { width: 100%; }
 .duo-mid { position: relative; display: flex; flex-direction: column; gap: 18px; justify-content: center; padding: 8px 4px; }
@@ -382,6 +392,7 @@ code, kbd { font-family: var(--mono); }
 .n-av { position: absolute; right: 10px; top: 10px; width: 30px; height: 30px; }
 .minis-half { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 640px; }
 .minis-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.minis-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 /* ---------- Ananya leaks ---------- */
 .leaks { display: grid; gap: 8px; counter-reset: leak; color: var(--ink-2); }
@@ -473,12 +484,10 @@ code, kbd { font-family: var(--mono); }
   background: var(--c); color: var(--sticky-ink);
   padding: 14px 14px 16px; font-size: 13px; line-height: 1.35;
   box-shadow: 0 4px 10px rgb(0 0 0 / 8%);
-  transform: rotate(var(--rot, -1deg));
-  display: grid; gap: 4px; align-content: start;
+  display: grid; gap: 6px; align-content: center; justify-items: center; text-align: center;
+  border-radius: 10px;
 }
-.mini:nth-child(2n) { --rot: 1.2deg; }
-.mini:nth-child(3n) { --rot: -.5deg; }
-.mini b { font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: -.02em; line-height: 1.05; }
+.mini b { font-family: var(--ui); font-weight: 700; font-size: 1.3rem; letter-spacing: -.02em; line-height: 1.1; }
 
 /* ---------- Chakr notebook ---------- */
 .paper-grid {
@@ -607,7 +616,7 @@ code, kbd { font-family: var(--mono); }
 
 /* ---------- Principles stickies ---------- */
 .frame-open .frame-label { margin-bottom: 14px; }
-.stickies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.stickies { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
 .sticky {
   display: grid; gap: 10px; align-content: start;
   min-height: 220px; padding: 20px 20px 18px;
@@ -617,8 +626,8 @@ code, kbd { font-family: var(--mono); }
   transition: box-shadow .2s var(--ease), transform .2s var(--ease);
   touch-action: none;
 }
-.sticky-t { font-family: var(--hand); font-variation-settings: "INFM" 50; font-weight: 700; font-size: 21px; line-height: 1.15; }
-.sticky-b { font-family: var(--hand); font-variation-settings: "INFM" 30; font-size: 15.5px; line-height: 1.35; }
+.sticky-t { font-family: var(--hand); font-variation-settings: "INFM" 50; font-weight: 700; font-size: 26px; line-height: 1.15; }
+.sticky-b { font-family: var(--hand); font-variation-settings: "INFM" 30; font-size: 18px; line-height: 1.35; }
 .sticky-src { font-family: var(--mono); font-size: 10.5px; opacity: .6; margin-top: auto; }
 
 /* ---------- Beyond ---------- */
@@ -768,8 +777,8 @@ code, kbd { font-family: var(--mono); }
 .hand-play { right: 20px; top: -50px; transform: rotate(-3deg); color: var(--dobby); }
 
 /* board: principles stickies float freely */
-.app.board .stickies { position: relative; display: block; height: 600px; }
-.app.board .sticky { position: absolute; left: var(--x); top: var(--y); width: 260px; cursor: grab; }
+.app.board .stickies { position: relative; display: block; height: 380px; }
+.app.board .sticky { position: absolute; left: var(--x); top: var(--y); width: 420px; min-height: 160px; cursor: grab; }
 .app.board .sticky:hover { box-shadow: 0 2px 2px rgb(0 0 0 / 6%), 0 18px 32px -8px rgb(0 0 0 / 28%); }
 .app.board .sticky.is-dragging { cursor: grabbing; transform: rotate(0deg) scale(1.04); z-index: 5; box-shadow: 0 30px 50px -12px rgb(0 0 0 / 35%); transition: none; }
 

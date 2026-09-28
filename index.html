@@ -130,12 +130,12 @@
       <section class="frame" id="hello" data-frame data-title="Hello" data-x="-400" data-y="-280" data-w="800">
         <h2 class="frame-label">Hello</h2>
         <div class="paper paper-hello">
-          <span class="sticker" id="sticker" aria-hidden="true">4 yrs · 3 industries · a crew of agents</span>
+          <span class="sticker" id="sticker" aria-hidden="true" hidden></span>
           <figure class="polaroid" id="polaroid"><img src="assets/me.jpg" alt="Rushabh Parikh" width="180" height="200"><figcaption>the headmaster</figcaption></figure>
           <span class="stamp" aria-hidden="true"><b>Sold</b>by AI agents</span>
           <p class="ui-tag"><span class="pulse" aria-hidden="true"></span>AI Product Manager · Jumbo Homes · Bengaluru</p>
           <h1 class="hello-name">Rushabh<br>Parikh<span class="dot">.</span></h1>
-          <p class="hello-line">Builds the agent. Writes the evals. Fixes the lowercase&nbsp;t.</p>
+          <p class="hello-line">I build AI products and own the numbers they move.</p>
 
           <p class="receipts-k"><span>receipts</span> tap one for the proof</p>
           <ul class="receipts">
@@ -162,8 +162,8 @@
           </ul>
 
           <p class="hello-body">
-            I lead product on Tara and Ananya at Jumbo Homes: WhatsApp agents that sell real homes, end to end.
-            Before agents: batteries at Chakr, crash-safety ML at OLA Electric.
+            I lead AI products at Jumbo Homes, where our agents sell real homes end to end.
+            Before that: deep tech at Chakr and core engineering at OLA Electric.
           </p>
           <div class="hello-foot">
             <div class="hello-actions">
@@ -172,8 +172,7 @@
             </div>
             <aside class="now c-yellow" aria-label="What I'm working on now">
               <p class="now-k">Now · Sep 2026</p>
-              <p>Teaching Tara to price homes. The pricing agent is in the oven.</p>
-              <p>Also: letting Dobby host this board.</p>
+              <p>Building an AI agent that prices homes.</p>
             </aside>
           </div>
         </div>
@@ -202,10 +201,15 @@
               </div>
             </div>
             <div class="rm-lane">
-              <p class="rm-lane-k">Hardware &amp; R&amp;D</p>
+              <p class="rm-lane-k">Core engineering</p>
               <div class="rm-track">
                 <button class="rm-bar c-orange" type="button" data-rm="ola" style="--s:48.5%;--e:72.6%">OLA Electric</button>
-                <button class="rm-bar c-blue" type="button" data-rm="chakr" style="--s:72.9%;--e:84.7%">Chakr</button>
+              </div>
+            </div>
+            <div class="rm-lane">
+              <p class="rm-lane-k">Deep tech</p>
+              <div class="rm-track">
+                <button class="rm-bar c-blue" type="button" data-rm="chakr" style="--s:72.7%;--e:84.8%">Chakr</button>
               </div>
             </div>
             <div class="rm-lane">
@@ -219,26 +223,25 @@
             <div class="rm-detail" data-rm-detail="iitg" hidden>
               <p class="ui-tag">Jul 2018 – May 2022 · B.Tech, Mechanical · CPI 8.42</p>
               <p class="rm-d-title">IIT Guwahati</p>
-              <p>General Secretary, Sports for 8,000+ students. Subsystem head at IITG Racing.</p>
-              <button class="link-btn" type="button" data-goto="beyond">Open frame →</button>
+              <p>Ran campus sports for 8,000+ students. Raised ₹6.5L and led a subsystem at IITG Racing.</p>
             </div>
             <div class="rm-detail" data-rm-detail="ola" hidden>
               <p class="ui-tag">Jul 2022 – Jun 2024 · Assistant Manager, Vehicle Engineering</p>
               <p class="rm-d-title">OLA Electric</p>
-              <p>Crash-injury ML model (R² 0.83), ₹1.2 Cr projected savings, in-house HPC for a 42-person team.</p>
+              <p>Built a crash-injury ML model (R² 0.83) and drove ₹1.2 Cr in projected savings.</p>
               <button class="link-btn" type="button" data-goto="ola">Open frame →</button>
             </div>
             <div class="rm-detail" data-rm-detail="chakr" hidden>
               <p class="ui-tag">Jul 2024 – Jun 2025 · Technical Project Manager, Moonshot R&amp;D</p>
               <p class="rm-d-title">Chakr Innovation</p>
-              <p>Led a 6-person team on aluminium-air battery anodes. 83% of pure-aluminium performance from scrap.</p>
+              <p>Led a 6-person R&amp;D team on aluminium-air batteries. Hit 83% of peak performance using scrap metal.</p>
               <button class="link-btn" type="button" data-goto="chakr">Open frame →</button>
             </div>
             <div class="rm-detail" data-rm-detail="jumbo">
               <p class="ui-tag">Jul 2025 – now · Chief of Staff → Product</p>
               <p class="rm-d-title">Jumbo Homes</p>
-              <p>Joined the founding team as a generalist, stayed as the product owner. Shipped Ananya, then Tara, then a crew of internal agents. ARR grew about 5× in a year.</p>
-              <button class="link-btn" type="button" data-goto="tara">Open frame →</button>
+              <p>Joined the founding team as a generalist and became the product owner. Shipped two customer-facing AI agents and a crew of internal ones. ARR grew about 5× in a year.</p>
+              <button class="link-btn" type="button" data-goto="whatsapp">Open frame →</button>
             </div>
           </div>
         </div>
@@ -260,9 +263,9 @@
             <figcaption>Hover a point. Illustrative data fitted to the model's R² of 0.83.</figcaption>
           </figure>
           <ul class="minis minis-3">
-            <li class="mini c-yellow"><b>500 hrs</b>compute saved per iteration</li>
-            <li class="mini c-pink"><b>₹65L / yr</b>saved by automating validation, team of 3</li>
-            <li class="mini c-green"><b>₹1.2 Cr</b>projected savings from component &amp; MCU work</li>
+            <li class="mini c-yellow"><b>500 hrs</b>compute saved per design iteration</li>
+            <li class="mini c-pink"><b>₹65L / yr</b>saved by automating validation</li>
+            <li class="mini c-green"><b>₹1.2 Cr</b>projected savings from component and MCU optimisation</li>
           </ul>
         </div>
       </section>
@@ -274,8 +277,8 @@
           <p class="ui-tag">Technical Project Manager, Moonshot R&amp;D</p>
           <h3 class="f-title">Ran a moonshot lab on aluminium and air</h3>
           <p class="f-body">
-            Aluminium-air batteries could make EVs cheaper, if the anode performs and the aluminium is affordable.
-            I led the six-person team working on both, and worked closely with the CEO.
+            Aluminium-air batteries could make EVs far cheaper, if the metal performs and stays affordable.
+            I led the six-person R&amp;D team solving both.
           </p>
 
           <div class="cell">
@@ -289,11 +292,11 @@
           </div>
           <p class="cell-cap">Illustration, not lab data. A more negative potential meant fewer parasitic reactions and a more efficient cell.</p>
 
-          <ul class="notes-hand">
-            <li><span class="hl">83%</span> of pure-Al performance… from <u>scrap</u> aluminium. The unlock for commercial viability.</li>
-            <li><span class="hl">−40%</span> input cost after re-engineering sourcing in China</li>
-            <li>ML model bridging test conditions: <span class="hl">5×</span> faster, <span class="hl">90%</span> cheaper testing</li>
-            <li>Month-long two-wheeler pilot → EOIs from <span class="hl">Amazon</span> &amp; <span class="hl">Swiggy</span></li>
+          <ul class="minis minis-2">
+            <li class="mini c-blue"><b>83%</b>of peak performance from scrap aluminium, the key to commercial viability</li>
+            <li class="mini c-yellow"><b>−40%</b>raw-material cost after re-engineering sourcing</li>
+            <li class="mini c-green"><b>5× faster</b>and 90% cheaper testing, using an ML model I built</li>
+            <li class="mini c-pink"><b>Amazon, Swiggy</b>expressed interest after a month-long vehicle pilot</li>
           </ul>
         </div>
         <p class="hand hand-chakr board-only" aria-hidden="true">drag the slider!</p>
@@ -322,7 +325,7 @@
               <ol class="phone-msgs" aria-live="polite">
                 <li class="pm pm-agent"><p>Hi! I'm Tara. Tell me about the home you want to sell. No forms, promise.</p></li>
               </ol>
-              <p class="phone-foot">the seller's chat</p>
+              <a class="phone-cta" href="https://wa.me/919187921049?text=Hi%20Tara%2C%20I%27d%20like%20to%20sell%20my%20home" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>Chat with Tara on WhatsApp ↗</a>
             </div>
 
             <div class="duo-mid">
@@ -356,7 +359,8 @@
                 <li class="pm pm-agent"><p>Hi! Ask me anything about a home, or pick a time to see it. Any time. I don't do slots.</p></li>
               </ol>
               <div class="phone-chips">
-                <button class="chip" type="button" id="chip-negotiate">Try: "Can you get me 20% off?"</button>
+                <button class="chip" type="button" id="chip-negotiate">Watch: "Can you get me 20% off?"</button>
+                <a class="phone-cta" href="https://wa.me/917349744479?text=Hi%20Ananya%2C%20I%27m%20looking%20for%20a%20home" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>Chat with Ananya on WhatsApp ↗</a>
               </div>
             </div>
           </div>
@@ -509,43 +513,35 @@
               </span>
             </button>
           </div>
-          <div class="also">
-            <p class="also-k">Also built</p>
-            <p class="also-t"><b>This board.</b> With Claude Code, one prompt at a time. Dobby hosts. No templates were harmed.</p>
-          </div>
-          <p class="stack"><span>Built with</span> Claude · GPT · Gemini · n8n · Make · plain Python. <span class="hand-inline">By me, mostly at odd hours.</span></p>
+          <p class="stack"><span>Built by me with</span> Claude · GPT · Gemini · n8n · Make · Python</p>
         </div>
       </section>
 
       <!-- PRINCIPLES -->
       <section class="frame frame-open" id="principles" data-frame data-title="Principles" data-x="-460" data-y="700" data-w="920">
-        <h2 class="frame-label">Principles · drag them around</h2>
+        <h2 class="frame-label">Principles</h2>
         <div class="stickies" id="stickies">
-          <article class="sticky c-yellow" data-drag style="--x:10px;--y:20px;--r:-3deg">
+          <article class="sticky c-yellow" data-drag style="--x:20px;--y:10px;--r:0deg">
             <p class="sticky-t">Distribution beats features.</p>
-            <p class="sticky-b">We bet on a WhatsApp agent over a native app. Instinct call. The app came much later.</p>
-            <p class="sticky-src">from Tara</p>
+            <p class="sticky-b">We chose WhatsApp over an app. Users were already there.</p>
           </article>
-          <article class="sticky c-pink" data-drag style="--x:320px;--y:0px;--r:2deg">
-            <p class="sticky-t">Find the leak before you touch the model.</p>
-            <p class="sticky-b">4.5% conversion wasn't an AI problem. It was rigid scheduling.</p>
-            <p class="sticky-src">from Ananya</p>
+          <article class="sticky c-pink" data-drag style="--x:480px;--y:10px;--r:0deg">
+            <p class="sticky-t">Fix the funnel before the model.</p>
+            <p class="sticky-b">Our biggest conversion jump came from fixing scheduling, not the model.</p>
           </article>
-          <article class="sticky c-green" data-drag style="--x:630px;--y:30px;--r:-1.5deg">
+          <article class="sticky c-green" data-drag style="--x:20px;--y:200px;--r:0deg">
             <p class="sticky-t">Evals are the spec.</p>
-            <p class="sticky-b">Our LLM judge asks one thing: did the agent do its job? Sounding smart earns zero points.</p>
-            <p class="sticky-src">from Ananya</p>
+            <p class="sticky-b">If you can't score it, you can't ship it.</p>
           </article>
-          <article class="sticky c-orange" data-drag style="--x:360px;--y:320px;--r:3deg">
-            <p class="sticky-t">I've broken plenty.</p>
-            <p class="sticky-b">Things I got wrong: a long, educational list. I'll happily tell you about my favourite.</p>
-            <p class="sticky-src">from everywhere</p>
+          <article class="sticky c-orange" data-drag style="--x:480px;--y:200px;--r:0deg">
+            <p class="sticky-t">Mistakes are tuition.</p>
+            <p class="sticky-b">I've paid plenty. Ask me about my favourite one.</p>
           </article>
         </div>
       </section>
 
       <!-- CONTACT -->
-      <section class="frame" id="contact" data-frame data-title="Say hi" data-x="-420" data-y="1480" data-w="840">
+      <section class="frame" id="contact" data-frame data-title="Say hi" data-x="-420" data-y="1300" data-w="840">
         <h2 class="frame-label">Say hi</h2>
         <div class="paper contact">
           <div class="contact-copy">

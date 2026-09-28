@@ -556,7 +556,7 @@
 
   // Rushabh's cursor: a replay that drifts between things he'd point at
   const wander = {
-    spots: ["#hello .hello-name", "#hood .node[data-node='gtm']", "#phone-tara", "#crew .badge", "#metrics .kpi", "#principles .sticky.c-green", "#scatter", "#contact .note-card"],
+    spots: ["#hello .now", "#hood .node[data-node='gtm']", "#phone-tara", "#crew .badge", "#metrics .kpi", "#principles .sticky.c-green", "#scatter", "#contact .note-card"],
     i: 0,
     timer: 0,
     started: false,
@@ -1324,6 +1324,7 @@
   })();
   if (persona) {
     $("#sticker").textContent = persona.sticker;
+    $("#sticker").hidden = false;
     if (persona.org) {
       $("#note").placeholder = `Hi Rushabh, ${persona.org} here. Let's talk about…`;
       document.title = `Rushabh Parikh × ${persona.org}`;
