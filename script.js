@@ -34,6 +34,26 @@
   }
 
   /* =========================================================
+     Analytics (GoatCounter). Off until window.GOATCOUNTER_CODE is set
+     in index.html. No cookies; typed text is never sent.
+     ========================================================= */
+  const GC = String(window.GOATCOUNTER_CODE || "").trim();
+  const gcQueue = [];
+  if (GC) {
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://gc.zgo.at/count.js";
+    s.dataset.goatcounter = `https://${GC}.goatcounter.com/count`;
+    s.onload = () => { gcQueue.splice(0).forEach((f) => f()); };
+    document.head.appendChild(s);
+  }
+  function track(name) {
+    if (!GC) return;
+    const send = () => { try { window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} };
+    if (window.goatcounter && window.goatcounter.count) send(); else gcQueue.push(send);
+  }
+
+  /* =========================================================
      Elements + state
      ========================================================= */
   const app = $("#app");
@@ -638,12 +658,13 @@
       const last = i === TOUR.length - 1;
       const acts = [{ step: `${i + 1} / ${TOUR.length}` }];
       if (i > 0) acts.push({ label: "Back", run: () => tour.back() });
-      acts.push(last ? { label: "Finish", primary: true, run: () => tour.end() } : { label: "Next", primary: true, run: () => tour.next() });
+      acts.push(last ? { label: "Finish", primary: true, run: () => { track("tour/finish"); tour.end(); } } : { label: "Next", primary: true, run: () => tour.next() });
       if (!last) acts.push({ label: "End", run: () => tour.end() });
       ananya.say(s.text, acts);
       if (s.play) setTimeout(() => story.play(), 900);
     },
     start() {
+      track("tour/start");
       state.touring = true;
       $("#tour-btn").textContent = "End tour";
       this.show(0);
@@ -696,9 +717,10 @@
     });
     return best;
   }
-  async function answer(q) {
+  async function answer(q, via = "ask") {
     if (state.touring) tour.end();
     const it = matchIntent(q);
+    track(`${via}/${it ? it.id : "no-match"}`);
     if (!it) {
       if (isBoard() && !curA.visible) await ananya.pointAt($(".hello-actions"), 0.1, 0.5);
       ananya.say("Dobby only knows about the headmaster's work. Dobby is an ops agent, not a search engine! Try one of these:", [
@@ -816,6 +838,7 @@
   $("#note").addEventListener("input", updateMail);
   updateMail();
   $("#copy-email").addEventListener("click", () => {
+    track("contact/copy-email");
     const btn = $("#copy-email");
     const done = (m) => { btn.textContent = m; setTimeout(() => { btn.textContent = "Copy"; }, 1600); };
     const fallback = () => {
@@ -1141,8 +1164,9 @@
       this.running = false;
     },
   };
-  playBtn.addEventListener("click", () => story.play());
+  playBtn.addEventListener("click", () => { track("demo/play-home-sale"); story.play(); });
   negBtn.addEventListener("click", async () => {
+    track("demo/negotiate");
     if (story.running) return;
     story.running = true;
     playBtn.disabled = negBtn.disabled = true;
@@ -1174,7 +1198,7 @@
     /* =========================================================
      Receipts: proof on the first screen
      ========================================================= */
-  $$(".receipt").forEach((r) => r.addEventListener("click", () => answer(r.dataset.ask)));
+  $$(".receipt").forEach((r) => r.addEventListener("click", () => answer(r.dataset.ask, "receipt")));
   let counted = false;
   function countReceipts() {
     if (counted || reduce) return;
@@ -1216,6 +1240,7 @@
     return PERSONAS[key] || null;
   })();
   if (persona) {
+    track(persona.org ? `arrived/for/${persona.org}` : `arrived/via/${persona.sticker}`);
     $("#sticker").textContent = persona.sticker;
     $("#sticker").hidden = false;
     if (persona.org) {
@@ -1252,7 +1277,18 @@
       if (!initial) window.scrollTo({ top: 0 });
     }
   }
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+    const h = a.getAttribute("href");
+    if (h.includes("wa.me/919187921049")) track("out/whatsapp-tara");
+    else if (h.includes("wa.me/917349744479")) track("out/whatsapp-ananya");
+    else if (h.includes("linkedin.com")) track("out/linkedin");
+    else if (h.includes("github.com")) track("out/github");
+    else if (h.startsWith("mailto:")) track("contact/send-email");
+  });
   modeBtn.addEventListener("click", () => {
+    track(state.board ? "mode/page" : "mode/board");
     if (state.touring) tour.end();
     ananya.hush();
     setMode(!state.board);

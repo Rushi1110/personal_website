@@ -50,6 +50,20 @@ python3 -m http.server 8000
 
 All copy lives in `index.html`. Each frame's position on the board is set by its `data-x`, `data-y` and `data-w` attributes. The tour script, Dobby's answers and the WhatsApp story are `TOUR`, `INTENTS` and `story` in `script.js`. Colours are tokens at the top of `styles.css`.
 
+## Analytics (GoatCounter)
+
+1. Sign up free at goatcounter.com and pick a code, e.g. `rushabh` (your dashboard becomes rushabh.goatcounter.com).
+2. In `index.html`, set `window.GOATCOUNTER_CODE = "rushabh";` and push.
+
+Page views arrive with their `utm_source`. The site also logs events: `tour/start`, `tour/finish`, `receipt/<topic>`, `ask/<topic>` (matched topic only, never the typed text), `demo/play-home-sale`, `demo/negotiate`, `out/whatsapp-tara`, `out/whatsapp-ananya`, `out/linkedin`, `out/github`, `contact/send-email`, `contact/copy-email`, `mode/board|page`, and `arrived/for/<Company>` or `arrived/via/<source>` for personalised links. No cookies.
+
+## Images
+
+- **Your photo:** add `assets/me.jpg` (portrait, about 900×1000) and a taped polaroid appears on the Hello card.
+- **Link preview:** `assets/og.png` (1200×630) is the card LinkedIn, WhatsApp and X show when the link is shared.
+- **Anything else:** put files in `assets/` and reference them as `assets/name.jpg`.
+- Upload on GitHub via the repo page → Add file → Upload files, into the `assets` folder.
+
 ## Deploying on a custom domain
 
 ### 1. Buy a domain

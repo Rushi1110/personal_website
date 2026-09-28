@@ -4,11 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Rushabh Parikh</title>
-  <meta name="description" content="Rushabh Parikh is an AI product manager in Bengaluru. Explore his product board: Ananya the home-buying agent, battery R&D, crash-safety ML and more.">
+  <meta name="description" content="Rushabh Parikh builds AI products and owns the numbers they move. Explore his board: WhatsApp agents that sell real homes, deep tech, core engineering.">
   <meta property="og:title" content="Rushabh Parikh · AI Product Manager">
-  <meta property="og:description" content="An explorable product board: the Ananya PRD, a battery lab notebook, a career roadmap and a live agent guide.">
+  <meta property="og:description" content="I build AI products and own the numbers they move. 28× faster onboarding, 2× conversion, 5× ARR. Come explore the board.">
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjMEUxMTE1Ii8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCBOYXJyb3csQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI0ZGRkZGRiI+UlA8L3RleHQ+PHJlY3QgeD0iNDYiIHk9IjQ2IiB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjMjUzNkY1Ii8+PC9zdmc+Cg==" type="image/svg+xml">
+  <meta property="og:url" content="https://rushi1110.github.io/personal_website/">
+  <meta property="og:image" content="https://rushi1110.github.io/personal_website/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Analytics: paste your GoatCounter code between the quotes (e.g. "rushabh"). Empty = off. -->
+  <script>window.GOATCOUNTER_CODE = "";</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Shantell+Sans:wght,INFM@300..800,0..100&display=swap">
@@ -1543,6 +1550,26 @@ code, kbd { font-family: var(--mono); }
   }
 
   /* =========================================================
+     Analytics (GoatCounter). Off until window.GOATCOUNTER_CODE is set
+     in index.html. No cookies; typed text is never sent.
+     ========================================================= */
+  const GC = String(window.GOATCOUNTER_CODE || "").trim();
+  const gcQueue = [];
+  if (GC) {
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://gc.zgo.at/count.js";
+    s.dataset.goatcounter = `https://${GC}.goatcounter.com/count`;
+    s.onload = () => { gcQueue.splice(0).forEach((f) => f()); };
+    document.head.appendChild(s);
+  }
+  function track(name) {
+    if (!GC) return;
+    const send = () => { try { window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} };
+    if (window.goatcounter && window.goatcounter.count) send(); else gcQueue.push(send);
+  }
+
+  /* =========================================================
      Elements + state
      ========================================================= */
   const app = $("#app");
@@ -2147,12 +2174,13 @@ code, kbd { font-family: var(--mono); }
       const last = i === TOUR.length - 1;
       const acts = [{ step: `${i + 1} / ${TOUR.length}` }];
       if (i > 0) acts.push({ label: "Back", run: () => tour.back() });
-      acts.push(last ? { label: "Finish", primary: true, run: () => tour.end() } : { label: "Next", primary: true, run: () => tour.next() });
+      acts.push(last ? { label: "Finish", primary: true, run: () => { track("tour/finish"); tour.end(); } } : { label: "Next", primary: true, run: () => tour.next() });
       if (!last) acts.push({ label: "End", run: () => tour.end() });
       ananya.say(s.text, acts);
       if (s.play) setTimeout(() => story.play(), 900);
     },
     start() {
+      track("tour/start");
       state.touring = true;
       $("#tour-btn").textContent = "End tour";
       this.show(0);
@@ -2205,9 +2233,10 @@ code, kbd { font-family: var(--mono); }
     });
     return best;
   }
-  async function answer(q) {
+  async function answer(q, via = "ask") {
     if (state.touring) tour.end();
     const it = matchIntent(q);
+    track(`${via}/${it ? it.id : "no-match"}`);
     if (!it) {
       if (isBoard() && !curA.visible) await ananya.pointAt($(".hello-actions"), 0.1, 0.5);
       ananya.say("Dobby only knows about the headmaster's work. Dobby is an ops agent, not a search engine! Try one of these:", [
@@ -2325,6 +2354,7 @@ code, kbd { font-family: var(--mono); }
   $("#note").addEventListener("input", updateMail);
   updateMail();
   $("#copy-email").addEventListener("click", () => {
+    track("contact/copy-email");
     const btn = $("#copy-email");
     const done = (m) => { btn.textContent = m; setTimeout(() => { btn.textContent = "Copy"; }, 1600); };
     const fallback = () => {
@@ -2650,8 +2680,9 @@ code, kbd { font-family: var(--mono); }
       this.running = false;
     },
   };
-  playBtn.addEventListener("click", () => story.play());
+  playBtn.addEventListener("click", () => { track("demo/play-home-sale"); story.play(); });
   negBtn.addEventListener("click", async () => {
+    track("demo/negotiate");
     if (story.running) return;
     story.running = true;
     playBtn.disabled = negBtn.disabled = true;
@@ -2683,7 +2714,7 @@ code, kbd { font-family: var(--mono); }
     /* =========================================================
      Receipts: proof on the first screen
      ========================================================= */
-  $$(".receipt").forEach((r) => r.addEventListener("click", () => answer(r.dataset.ask)));
+  $$(".receipt").forEach((r) => r.addEventListener("click", () => answer(r.dataset.ask, "receipt")));
   let counted = false;
   function countReceipts() {
     if (counted || reduce) return;
@@ -2725,6 +2756,7 @@ code, kbd { font-family: var(--mono); }
     return PERSONAS[key] || null;
   })();
   if (persona) {
+    track(persona.org ? `arrived/for/${persona.org}` : `arrived/via/${persona.sticker}`);
     $("#sticker").textContent = persona.sticker;
     $("#sticker").hidden = false;
     if (persona.org) {
@@ -2761,7 +2793,18 @@ code, kbd { font-family: var(--mono); }
       if (!initial) window.scrollTo({ top: 0 });
     }
   }
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+    const h = a.getAttribute("href");
+    if (h.includes("wa.me/919187921049")) track("out/whatsapp-tara");
+    else if (h.includes("wa.me/917349744479")) track("out/whatsapp-ananya");
+    else if (h.includes("linkedin.com")) track("out/linkedin");
+    else if (h.includes("github.com")) track("out/github");
+    else if (h.startsWith("mailto:")) track("contact/send-email");
+  });
   modeBtn.addEventListener("click", () => {
+    track(state.board ? "mode/page" : "mode/board");
     if (state.touring) tour.end();
     ananya.hush();
     setMode(!state.board);
