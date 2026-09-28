@@ -167,10 +167,26 @@
     focusFrame.t = setTimeout(() => byId(id)?.classList.remove("is-focus"), 2200);
   }
 
-  async function goto(id, { dur = 1100 } = {}) {
+  async function goto(id, { dur = 1100, anchor = null } = {}) {
     if (!byId(id)) return;
     if (isBoard()) {
       focusFrame(id);
+      if (vw() < 760) {
+        // phones: stay at a readable zoom and centre on what matters, not the whole frame
+        const r = rects[id];
+        const z = 0.62;
+        let c = { x: r.x - 20, y: r.y + Math.min(r.h / 2, vh() / z / 2 - 40) };
+        const half = vw() / z / 2;
+        const leftCx = r.x - 20 + half;
+        if (anchor) {
+          const a = worldOf(anchor, 0.5, 0.5), a0 = worldOf(anchor, 0, 0.5).x;
+          // keep the frame's left edge in view when the target starts in the left half
+          c = { x: a0 < leftCx ? leftCx : clamp(a.x, leftCx, r.x + r.w + 20 - half), y: a.y };
+        }
+        c.x = clamp(c.x, leftCx, Math.max(leftCx, r.x + r.w + 20 - half));
+        await flyTo({ x: c.x, y: c.y + 60 / z, z }, dur);
+        return;
+      }
       await flyTo(camFor(frameRect(id)), dur);
     } else {
       byId(id).scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
@@ -500,8 +516,13 @@
       const s = toScreen(this.x, this.y);
       this.el.style.setProperty("--sx", `${s.x}px`);
       this.el.style.setProperty("--sy", `${s.y}px`);
-      this.el.classList.toggle("flip", s.x > vw() - 360);
       this.el.classList.toggle("lift", s.y > vh() - 260);
+      const b = this.el.querySelector(".bubble");
+      if (b) {
+        // keep Ananya's bubble fully on screen
+        const bw = Math.min(330, vw() - 32);
+        b.style.left = `${clamp(s.x + 16, 16, vw() - bw - 16) - s.x}px`;
+      }
     }
     jump(x, y) { this.x = x; this.y = y; this.place(); }
     moveTo(x, y, dur = 900) {
@@ -634,7 +655,7 @@
       state.step = i;
       const s = TOUR[i];
       ananya.hush();
-      await goto(s.id, { dur: 1150 });
+      await goto(s.id, { dur: 1150, anchor: $(s.at, byId(s.id)) });
       if (!state.touring || state.step !== i) return;
       await ananya.pointAt($(s.at, byId(s.id)), s.fx ?? 0.2, s.fy ?? 0.5);
       if (!state.touring || state.step !== i) return;
@@ -708,7 +729,7 @@
       return;
     }
     ananya.hush();
-    await goto(it.id, { dur: 1000 });
+    await goto(it.id, { dur: 1000, anchor: $(it.at, byId(it.id)) });
     await ananya.pointAt($(it.at, byId(it.id)), 0.25, 0.4);
     ananya.say(it.text, [
       { label: "Take the tour", primary: true, run: () => tour.start() },
@@ -1137,6 +1158,21 @@
   }));
 
   /* =========================================================
+     Receipts: proof on the first screen
+     ========================================================= */
+  $$(".receipt").forEach((r) => r.addEventListener("click", () => answer(r.dataset.ask)));
+  let counted = false;
+  function countReceipts() {
+    if (counted || reduce) return;
+    counted = true;
+    $$(".rc-n").forEach((n, i) => {
+      const from = +n.dataset.from, to = +n.dataset.to, dec = +n.dataset.dec;
+      n.textContent = from.toFixed(dec);
+      setTimeout(() => animate(1100, (e) => { n.textContent = lerp(from, to, e).toFixed(dec); }, easeOut), 120 * i);
+    });
+  }
+
+  /* =========================================================
      Mode: board <-> page
      ========================================================= */
   const modeBtn = $("#mode-btn");
@@ -1151,7 +1187,12 @@
         measure();
         drawConnectors();
         minimap.build();
-        if (!initial) { state.cam = camFor(frameRect("hello")); invalidate(); setTimeout(() => wander.start(), 900); }
+        if (!initial) {
+          const h = rects.hello;
+          state.cam = vw() < 760 ? { x: h.x - 20 + vw() / 0.62 / 2, y: h.y - 40 + vh() / 0.62 / 2, z: 0.62 } : camFor(frameRect("hello"));
+          invalidate();
+          setTimeout(() => wander.start(), 900);
+        }
       });
     } else {
       world.style.transform = "";
@@ -1187,14 +1228,16 @@
       invalidate();
       await wait(650);
       await goto(first, { dur: 1700 });
+      countReceipts();
       wander.start();
       await wait(450);
       toast("Ananya joined the board");
       await wait(500);
       if (!state.touring && bubble.hidden) {
-        await ananya.pointAt($(".hello-actions"), 0.12, 0.5);
+        await ananya.pointAt($(".sticker"), 0.35, 0.9);
         if (!state.touring) {
-          ananya.say("Hi! I'm Ananya, the AI agent Rushabh built at Jumbo Homes. Want a 60-second tour of his board?", [
+          countReceipts();
+          ananya.say("Hi! I'm Ananya, the AI agent Rushabh product-managed. Short version: Jumbo's ARR grew 5× in his first year, and I more than doubled lead-to-visit. Want the 60-second tour?", [
             { label: "Start the tour", primary: true, run: () => tour.start() },
             { label: "I'll explore", run: () => ananya.hush() },
           ]);
@@ -1203,11 +1246,13 @@
     });
   } else {
     fontsReady.then(async () => {
-      await wait(1200);
-      ananya.say("Hi! I'm Ananya, the AI agent Rushabh built. Ask me anything about him below, or explore his board.", [
-        { label: "Explore the board", primary: true, run: () => { ananya.hush(); setMode(true); } },
-        { label: "Close", run: () => ananya.hush() },
+      countReceipts();
+      await wait(2200);
+      const id = ananya.sayId + 1;
+      ananya.say("Hi! I'm Ananya, the agent Rushabh PM'd. Tap a receipt to see the proof, or ask me anything below.", [
+        { label: "Got it", primary: true, run: () => ananya.hush() },
       ]);
+      setTimeout(() => { if (ananya.sayId === id) ananya.hush(); }, 9000);
     });
   }
 })();

@@ -4,6 +4,7 @@ Portfolio site for Rushabh Parikh, AI Product Manager. It's plain HTML, CSS, and
 
 **Concept:** the portfolio is a product board, an infinite FigJam-style canvas you explore instead of scroll.
 
+- **Receipts first:** four clickable proof stickies under the headline (2.3× lead→visit, 5× ARR, 83% from scrap, ₹1.2 Cr savings) count up on arrival. Clicking one flies the camera to the evidence while Ananya explains it.
 - **Board:** pan by dragging or scrolling, zoom with Ctrl/⌘ + scroll or pinch, fling with inertia. A minimap, a frames panel and keyboard shortcuts get you around.
 - **Ananya, the AI guide:** her cursor joins the board, gives a guided tour that flies the camera between frames, and answers questions typed into the dock ("what did he ship?", "battery work?", "how do I reach him?").
 - **Frames:**
