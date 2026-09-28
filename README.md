@@ -1,13 +1,24 @@
 # personal_website
 
-My personal portfolio site. It's plain HTML, CSS, and JS: no framework and no build step. GitHub Pages hosts it on a custom domain.
+Portfolio site for Rushabh Parikh, AI Product Manager. It's plain HTML, CSS, and JS: no framework and no build step. GitHub Pages hosts it on a custom domain.
+
+**Concept:** "From electrons to agents", a path from EV crash models to aluminium-air batteries to agentic AI.
+
+**Motion, kept deliberate:**
+- The headline letters stretch into place on load and widen as the cursor passes (variable font `wdth` / `wght` axes).
+- The intro streams in word by word, like an LLM response.
+- The Ananya agent trace replays its tool calls and books a site visit when scrolled into view.
+- Each career chapter has an animated chart: a crash-model scatter plot (R² 0.83), an anode voltage gauge, and before/after bars.
+- Everything is visible at rest. Elements only hide just before they scroll into view, and `prefers-reduced-motion` turns animation off.
+
+Fonts: Archivo (display), Hanken Grotesk (body), Martian Mono (data).
 
 ## Structure
 
 ```
 index.html     page content (edit this to fill in your details)
 styles.css     styles, including light/dark theme tokens at the top
-script.js      theme toggle, mobile menu, scroll effects
+script.js      proximity type, streaming text, agent trace, charts, scroll choreography
 404.html       "page not found" page
 assets/        favicon, photo, résumé PDF, images
 .nojekyll      tells GitHub Pages to serve files as-is
@@ -20,15 +31,9 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-## Filling it in
+## Editing
 
-Search `index.html` for the placeholder text and replace it:
-
-- Hero: tagline, intro, and social links (LinkedIn, email)
-- About: bio, plus a photo saved as `assets/me.jpg` (swap in the `<img>` tag that's commented out)
-- Experience, Projects, Skills: your real entries
-- Résumé: add `assets/resume.pdf`
-- Accent color: change `--accent` in `styles.css`
+All copy lives in `index.html`. Colours are tokens at the top of `styles.css`: change `--accent` in all three theme blocks to re-brand.
 
 ## Deploying on a custom domain
 
