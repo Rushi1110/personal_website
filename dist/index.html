@@ -2148,7 +2148,7 @@ code, kbd { font-family: var(--mono); }
     { id: "hello", at: ".hello-actions", fx: 0.1, text: "Dobby is here on behalf of the headmaster, Rushabh! Dobby will show you around. It is quicker than his résumé." },
     { id: "whatsapp", at: "#play-story", fx: 0.2, fy: 0.9, play: true, text: "This is where homes get sold. Tara talks to sellers, Ananya talks to buyers, both on WhatsApp. Dobby is pressing play for you!" },
     { id: "crew", at: ".badge.c-yellow", fx: 0.5, fy: 0.3, text: "And this is the crew. That one is Dobby! Dobby finds socks. Socks are mistakes. Flip the cards." },
-    { id: "metrics", at: ".seg", text: "What one year of this did to the business: ARR up about 5×, supply up 8×. Flip the toggle." },
+    { id: "metrics", at: ".gr-foot", fx: 0.15, fy: 0, text: "What one year of this did to the business: ARR up about 5×, live inventory up 8×. Grey is where it started. Colour is where it got to." },
     { id: "ola", at: "#scatter", fx: 0.55, fy: 0.45, text: "Before agents, the headmaster taught a model to crash cars so the supercomputer did not have to. 500 compute hours saved per iteration!" },
     { id: "chakr", at: "#ocp", fx: 0.1, text: "Then he tried to power EVs with aluminium and thin air. Drag the slider. Dobby likes the bubbles." },
     { id: "principles", at: ".sticky.c-pink", fx: 0.3, fy: 0.3, text: "What the headmaster learned, some of it the hard way. The stickies move." },
@@ -2622,8 +2622,12 @@ code, kbd { font-family: var(--mono); }
     focus(ph) {
       [T, A].forEach((x) => x.root.classList.toggle("is-active", x === ph));
       if (ph && !isBoard()) {
+        // nudge the active phone into view only while the reader is still at the phones:
+        // never yank them back once they (or the tour) have moved on
+        if (state.touring && TOUR[state.step]?.id !== "whatsapp") return;
         const r = ph.root.getBoundingClientRect();
-        if (r.top < 60 || r.bottom > window.innerHeight - 90) ph.root.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+        const onScreen = r.bottom > 0 && r.top < window.innerHeight;
+        if (onScreen && (r.top < 60 || r.bottom > window.innerHeight - 90)) ph.root.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
       }
     },
     label(t, live = true) { storyState.textContent = t; storyState.classList.toggle("is-live", live); },
