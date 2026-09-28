@@ -2,23 +2,33 @@
 
 Portfolio site for Rushabh Parikh, AI Product Manager. It's plain HTML, CSS, and JS: no framework and no build step. GitHub Pages hosts it on a custom domain.
 
-**Concept:** "From electrons to agents", a path from EV crash models to aluminium-air batteries to agentic AI.
+**Concept:** the portfolio is a product board, an infinite FigJam-style canvas you explore instead of scroll.
 
-**Motion, kept deliberate:**
-- The headline letters stretch into place on load and widen as the cursor passes (variable font `wdth` / `wght` axes).
-- The intro streams in word by word, like an LLM response.
-- The Ananya agent trace replays its tool calls and books a site visit when scrolled into view.
-- Each career chapter has an animated chart: a crash-model scatter plot (R² 0.83), an anode voltage gauge, and before/after bars.
-- Everything is visible at rest. Elements only hide just before they scroll into view, and `prefers-reduced-motion` turns animation off.
+- **Board:** pan by dragging or scrolling, zoom with Ctrl/⌘ + scroll or pinch, fling with inertia. A minimap, a frames panel and keyboard shortcuts get you around.
+- **Ananya, the AI guide:** her cursor joins the board, gives a guided tour that flies the camera between frames, and answers questions typed into the dock ("what did he ship?", "battery work?", "how do I reach him?").
+- **Frames:**
+  - Hello
+  - Roadmap, with clickable bars
+  - OLA crash-model scatter plot (hover the points)
+  - Chakr lab notebook, with a live voltage slider and a bubble simulation
+  - Ananya PRD, with a playable agent phone that runs three scripted scenarios, one of which hands off to a human
+  - Year-one dashboard, with a before/after toggle
+  - Draggable principle stickies
+  - IIT Guwahati
+  - Contact, a sticky note you write and send as an email
+- **Visitor stickies:** press S (or pick the sticky tool) and click anywhere to leave a note. Notes are saved in your browser and included in the email.
+- **Read as a page:** a normal scrolling layout. It's the default on phones and what you get without JavaScript.
 
-Fonts: Archivo (display), Hanken Grotesk (body), Martian Mono (data).
+Shortcuts: `T` tour · `1`–`9` jump to a frame · `0` fit the board · `V` / `H` / `S` tools · `/` ask Ananya · `Esc` close.
+
+Fonts: Bricolage Grotesque (display), Geist (UI), Geist Mono (data), Shantell Sans (handwriting).
 
 ## Structure
 
 ```
 index.html     page content (edit this to fill in your details)
 styles.css     styles, including light/dark theme tokens at the top
-script.js      proximity type, streaming text, agent trace, charts, scroll choreography
+script.js      canvas camera, gestures, tour, Ask Ananya, agent phone, charts, stickies
 404.html       "page not found" page
 assets/        favicon, photo, résumé PDF, images
 .nojekyll      tells GitHub Pages to serve files as-is
@@ -33,7 +43,7 @@ python3 -m http.server 8000
 
 ## Editing
 
-All copy lives in `index.html`. Colours are tokens at the top of `styles.css`: change `--accent` in all three theme blocks to re-brand.
+All copy lives in `index.html`. Each frame's position on the board is set by its `data-x`, `data-y` and `data-w` attributes. The tour script, Ask Ananya's answers and the phone scenarios are the `TOUR`, `INTENTS` and `SCN` objects in `script.js`. Colours are tokens at the top of `styles.css`.
 
 ## Deploying on a custom domain
 

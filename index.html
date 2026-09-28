@@ -4,15 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Rushabh Parikh</title>
-  <meta name="description" content="Rushabh Parikh is an AI product manager in Bengaluru. He went from EV crash simulation and battery R&D to building agentic AI for home buying.">
+  <meta name="description" content="Rushabh Parikh is an AI product manager in Bengaluru. Explore his product board: Ananya the home-buying agent, battery R&D, crash-safety ML and more.">
   <meta property="og:title" content="Rushabh Parikh · AI Product Manager">
-  <meta property="og:description" content="From electrons to agents. EV crash models, aluminium-air batteries, and now agentic AI at Jumbo Homes.">
+  <meta property="og:description" content="An explorable product board: the Ananya PRD, a battery lab notebook, a career roadmap and a live agent guide.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#E8EBEE">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Hanken+Grotesk:ital,wght@0,400..700;1,400..500&family=Martian+Mono:wdth,wght@75..112.5,300..600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Shantell+Sans:wght,INFM@300..800,0..100&display=swap">
   <link rel="stylesheet" href="styles.css">
   <script>
     document.documentElement.classList.add("js");
@@ -23,362 +22,413 @@
   </script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+<div class="app" id="app">
 
-  <header class="bar" id="bar">
-    <div class="wrap bar-inner">
-      <a class="mark" href="#top" aria-label="Rushabh Parikh, back to top">
-        <span class="mark-glyph" aria-hidden="true">RP</span>
-        <span class="mark-name">Rushabh Parikh</span>
-      </a>
-      <nav class="nav" aria-label="Sections">
-        <a href="#ananya">Ananya</a>
-        <a href="#path">Path</a>
-        <a href="#principles">Principles</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button class="theme-btn" id="theme-btn" type="button" aria-label="Switch colour theme">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></svg>
+  <!-- ================= TOP BAR ================= -->
+  <header class="topbar">
+    <div class="tb-left">
+      <button class="logo" type="button" data-goto="hello" aria-label="Go to the Hello frame">RP</button>
+      <p class="crumbs"><span class="crumb-dim">rushabh-parikh</span><span class="crumb-slash">/</span><span class="crumb-file">portfolio.board</span></p>
+    </div>
+    <div class="tb-right">
+      <div class="presence" aria-label="On this board">
+        <span class="av av-r" title="Rushabh (a replay of his cursor)">R</span>
+        <span class="av av-a" title="Ananya, your AI guide">A</span>
+        <span class="av av-you" title="You">You</span>
+      </div>
+      <button class="tb-btn tb-tour" id="tour-btn" type="button">Take the tour</button>
+      <button class="tb-btn tb-ghost" id="mode-btn" type="button" aria-pressed="false">Read as a page</button>
+      <button class="tb-icon" id="theme-btn" type="button" aria-label="Switch colour theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z"/></svg>
       </button>
     </div>
   </header>
 
-  <main id="main">
+  <!-- ================= FRAMES PANEL ================= -->
+  <nav class="panel" id="panel" aria-label="Frames on this board">
+    <p class="panel-head">Frames</p>
+    <ol class="panel-list" id="panel-list"></ol>
+    <p class="panel-foot">Drag to pan · <kbd>Ctrl</kbd> + scroll to zoom · <kbd>T</kbd> tour</p>
+  </nav>
 
-    <!-- ============ HERO ============ -->
-    <section class="hero" id="top">
-      <div class="wrap">
-        <p class="kicker mono">
-          <span class="live" aria-hidden="true"></span>
-          AI Product Manager <span class="sep">/</span> Jumbo Homes <span class="sep">/</span> Bengaluru
-        </p>
+  <!-- ================= CANVAS ================= -->
+  <main class="viewport" id="viewport">
+    <div class="world" id="world">
+      <svg class="connectors" id="connectors" aria-hidden="true"></svg>
 
-        <h1 class="headline" data-prox aria-label="From electrons to agents.">
-          <span class="line">From electrons</span>
-          <span class="line">to agents<span class="stop">.</span></span>
-        </h1>
-
-        <div class="hero-grid">
-          <p class="intro" data-stream>
-            I'm Rushabh. I own product at Jumbo Homes, where our AI agent Ananya helps people buy homes in Bengaluru.
-            Before that I ran aluminium-air battery R&amp;D and built ML models for EV crash safety.
-            I like AI products that move a number the business already tracks.
+      <!-- HELLO -->
+      <section class="frame" id="hello" data-frame data-title="Hello" data-x="-400" data-y="-280" data-w="800">
+        <h2 class="frame-label">Hello</h2>
+        <div class="paper paper-hello">
+          <span class="sticker" aria-hidden="true">4 yrs · 3 industries</span>
+          <p class="ui-tag"><span class="pulse" aria-hidden="true"></span>AI Product Manager · Jumbo Homes · Bengaluru</p>
+          <h1 class="hello-name">Rushabh<br>Parikh<span class="dot">.</span></h1>
+          <p class="hello-line">I build AI products that move a number the business already tracks.</p>
+          <p class="hello-body">
+            Right now that's Ananya, the home-buying agent at Jumbo Homes. Before that I led aluminium-air battery R&amp;D
+            at Chakr Innovation and built crash-safety ML at OLA Electric. Mechanical engineer, IIT Guwahati.
           </p>
-          <div class="hero-cta">
-            <a class="btn btn-solid" href="#ananya">See Ananya at work <span aria-hidden="true">↓</span></a>
-            <a class="btn btn-line" href="https://www.linkedin.com/in/parikhrushabh" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+          <div class="hello-actions">
+            <button class="btn btn-primary" type="button" data-action="tour">Take the 60-second tour</button>
+            <button class="btn" type="button" data-goto="contact">Get in touch</button>
           </div>
         </div>
+        <p class="hand hand-hello board-only" aria-hidden="true">drag anywhere to look around,<br>or press T for a tour</p>
+        <svg class="hand-arrow arrow-hello board-only" viewBox="0 0 120 80" aria-hidden="true"><path d="M8 10 C 40 6, 90 20, 104 66"/><path d="M92 58 L104 68 L110 52"/></svg>
+      </section>
 
-        <dl class="telemetry" data-anim>
-          <div class="t-cell">
-            <dt class="mono">ARR in 12 months</dt>
-            <dd><span data-count="5" data-from="1">5</span>×</dd>
+      <!-- ROADMAP -->
+      <section class="frame" id="roadmap" data-frame data-title="Roadmap" data-x="-560" data-y="-1120" data-w="1080">
+        <h2 class="frame-label">Roadmap · 2018 → now</h2>
+        <div class="paper">
+          <div class="f-head">
+            <h3 class="f-title">Four years, three industries</h3>
+            <p class="f-hint">Click a bar</p>
           </div>
-          <div class="t-cell">
-            <dt class="mono">Lead → site visit</dt>
-            <dd><span class="t-from">4.5 →</span> <span data-count="10.3" data-from="4.5" data-decimals="1">10.3</span>%</dd>
+          <div class="rm" id="rm">
+            <div class="rm-axis" aria-hidden="true">
+              <span style="--at:6.06%">2019</span><span style="--at:18.18%">2020</span><span style="--at:30.3%">2021</span>
+              <span style="--at:42.42%">2022</span><span style="--at:54.55%">2023</span><span style="--at:66.67%">2024</span>
+              <span style="--at:78.79%">2025</span><span style="--at:90.91%">2026</span>
+            </div>
+            <div class="rm-lane">
+              <p class="rm-lane-k">Study</p>
+              <div class="rm-track">
+                <button class="rm-bar c-green" type="button" data-rm="iitg" style="--s:0%;--e:46.9%">IIT Guwahati</button>
+              </div>
+            </div>
+            <div class="rm-lane">
+              <p class="rm-lane-k">Hardware &amp; R&amp;D</p>
+              <div class="rm-track">
+                <button class="rm-bar c-orange" type="button" data-rm="ola" style="--s:48.5%;--e:72.6%">OLA Electric</button>
+                <button class="rm-bar c-blue" type="button" data-rm="chakr" style="--s:72.9%;--e:84.7%">Chakr</button>
+              </div>
+            </div>
+            <div class="rm-lane">
+              <p class="rm-lane-k">Product &amp; AI</p>
+              <div class="rm-track">
+                <button class="rm-bar c-violet is-on" type="button" data-rm="jumbo" style="--s:85%;--e:100%">Jumbo</button>
+              </div>
+            </div>
           </div>
-          <div class="t-cell">
-            <dt class="mono">Active home supply</dt>
-            <dd><span data-count="8" data-from="1">8</span>×</dd>
+          <div class="rm-details">
+            <div class="rm-detail" data-rm-detail="iitg" hidden>
+              <p class="ui-tag">Jul 2018 – May 2022 · B.Tech, Mechanical · CPI 8.42</p>
+              <p class="rm-d-title">IIT Guwahati</p>
+              <p>General Secretary, Sports for 8,000+ students. Subsystem head at IITG Racing.</p>
+              <button class="link-btn" type="button" data-goto="beyond">Open frame →</button>
+            </div>
+            <div class="rm-detail" data-rm-detail="ola" hidden>
+              <p class="ui-tag">Jul 2022 – Jun 2024 · Assistant Manager, Vehicle Engineering</p>
+              <p class="rm-d-title">OLA Electric</p>
+              <p>Crash-injury ML model (R² 0.83), ₹1.2 Cr projected savings, in-house HPC for a 42-person team.</p>
+              <button class="link-btn" type="button" data-goto="ola">Open frame →</button>
+            </div>
+            <div class="rm-detail" data-rm-detail="chakr" hidden>
+              <p class="ui-tag">Jul 2024 – Jun 2025 · Technical Project Manager, Moonshot R&amp;D</p>
+              <p class="rm-d-title">Chakr Innovation</p>
+              <p>Led a 6-person team on aluminium-air battery anodes. 83% of pure-aluminium performance from scrap.</p>
+              <button class="link-btn" type="button" data-goto="chakr">Open frame →</button>
+            </div>
+            <div class="rm-detail" data-rm-detail="jumbo">
+              <p class="ui-tag">Jul 2025 – now · Chief of Staff → Product</p>
+              <p class="rm-d-title">Jumbo Homes</p>
+              <p>Founding-team generalist turned product owner at a pre-seed, AI-native real estate startup. ARR grew about 5× in a year.</p>
+              <button class="link-btn" type="button" data-goto="ananya">Open frame →</button>
+            </div>
           </div>
-          <div class="t-cell">
-            <dt class="mono">Battery testing time</dt>
-            <dd><span data-count="5" data-from="1">5</span>× faster</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <!-- ============ ANANYA ============ -->
-    <section class="section ananya" id="ananya">
-      <div class="wrap">
-        <header class="sec-head" data-anim>
-          <p class="label mono">Case study · Jumbo Homes · 2025</p>
-          <h2>Ananya books the visit.</h2>
-          <p class="lede">
-            Ananya is Jumbo's agentic home-buying assistant. It learns what a buyer needs, checks listings,
-            commutes and schools, and books a site visit. In real estate, the site visit is the step that decides
-            whether a deal happens, so that is what we built it to do.
+      <!-- OLA -->
+      <section class="frame" id="ola" data-frame data-title="OLA Electric" data-x="-1240" data-y="-440" data-w="680">
+        <h2 class="frame-label">OLA Electric · 2022–24</h2>
+        <div class="paper">
+          <p class="ui-tag">Assistant Manager, Vehicle Engineering</p>
+          <h3 class="f-title">Taught a model to predict crash injuries</h3>
+          <p class="f-body">
+            Every pedestrian-safety simulation cost hundreds of compute hours. I built an ML model that predicts the injury
+            score from design inputs, so engineers could screen designs before paying for a full run.
           </p>
-        </header>
+          <figure class="scatter">
+            <svg id="scatter" viewBox="0 0 400 300" role="img" aria-label="Predicted against simulated injury scores clustered around the diagonal, R squared 0.83."></svg>
+            <p class="scatter-tip" id="scatter-tip" hidden></p>
+            <figcaption>Hover a point. Illustrative data fitted to the model's R² of 0.83.</figcaption>
+          </figure>
+          <ul class="minis">
+            <li class="mini c-yellow"><b>500 hrs</b>compute saved per iteration</li>
+            <li class="mini c-pink"><b>₹65L / yr</b>saved by automating validation, team of 3</li>
+            <li class="mini c-green"><b>₹1.2 Cr</b>projected savings from component &amp; MCU work</li>
+            <li class="mini c-blue"><b>42 people</b>on an in-house HPC I stood up</li>
+          </ul>
+        </div>
+      </section>
 
-        <div class="ananya-grid">
-          <div class="trace" id="trace" data-anim aria-label="Example conversation between a home buyer and Ananya">
-            <div class="trace-top">
-              <span class="mono trace-title"><span class="live" aria-hidden="true"></span>ananya / session</span>
-              <span class="mono tag">Example</span>
-              <button class="mono replay" id="replay" type="button">Replay</button>
+      <!-- CHAKR -->
+      <section class="frame" id="chakr" data-frame data-title="Chakr lab notebook" data-x="-1300" data-y="660" data-w="740">
+        <h2 class="frame-label">Lab notebook · Chakr Innovation · 2024–25</h2>
+        <div class="paper paper-grid">
+          <p class="ui-tag">Technical Project Manager, Moonshot R&amp;D</p>
+          <h3 class="f-title">Ran a moonshot lab on aluminium and air</h3>
+          <p class="f-body">
+            Aluminium-air batteries could make EVs cheaper, if the anode performs and the aluminium is affordable.
+            I led the six-person team working on both, and worked closely with the CEO.
+          </p>
+
+          <div class="cell">
+            <canvas class="cell-canvas" id="cell-canvas" width="640" height="240" aria-label="Illustration of an aluminium anode in electrolyte. Bubbles show parasitic reactions, which fall as the potential becomes more negative."></canvas>
+            <div class="cell-ctrl">
+              <label for="ocp" class="cell-k">Anode open-circuit potential</label>
+              <output class="cell-v" id="ocp-v" for="ocp">−1.35 V</output>
+              <input type="range" id="ocp" min="135" max="170" value="135" step="1">
+              <div class="cell-scale" aria-hidden="true"><span>−1.35 V · where we started</span><span>−1.70 V · where we got</span></div>
             </div>
-            <ol class="trace-body" id="trace-body">
-              <li class="msg msg-user">
-                <span class="who mono">Buyer</span>
-                <p>Looking for a 3BHK near Whitefield, under ₹1.2 Cr. My wife works at ITPL and good schools matter.</p>
-              </li>
-              <li class="tool" data-ms="700">
-                <span class="tool-state" aria-hidden="true"></span>
-                <code>search_listings(zone="Whitefield", bhk=3, budget≤1.2Cr)</code>
-                <span class="tool-out mono">14 homes</span>
-              </li>
-              <li class="tool" data-ms="600">
-                <span class="tool-state" aria-hidden="true"></span>
-                <code>commute(to="ITPL", mode="car", peak=true)</code>
-                <span class="tool-out mono">5 under 20 min</span>
-              </li>
-              <li class="tool" data-ms="600">
-                <span class="tool-state" aria-hidden="true"></span>
-                <code>schools(radius_km=2, board=["CBSE","ICSE"])</code>
-                <span class="tool-out mono">3 fit</span>
-              </li>
-              <li class="msg msg-agent" data-stream-msg>
-                <span class="who mono">Ananya</span>
-                <p>Three homes fit. The best match is 11 minutes from ITPL at peak hour, with two CBSE schools within 1.5 km, at ₹1.12 Cr. Want to see it this Saturday?</p>
-              </li>
-              <li class="msg msg-user">
-                <span class="who mono">Buyer</span>
-                <p>Saturday at 11 works.</p>
-              </li>
-              <li class="tool" data-ms="800">
-                <span class="tool-state" aria-hidden="true"></span>
-                <code>book_visit(slot="Sat 11:00", assign="relationship_manager")</code>
-                <span class="tool-out mono tool-good">Booked</span>
-              </li>
-              <li class="msg msg-agent" data-stream-msg>
-                <span class="who mono">Ananya</span>
-                <p>Done. Your relationship manager will meet you at the gate on Saturday at 11. I've sent the location and the other two options on WhatsApp.</p>
-              </li>
-            </ol>
           </div>
+          <p class="cell-cap">Illustration, not lab data. A more negative potential meant fewer parasitic reactions and a more efficient cell.</p>
 
-          <aside class="outcome" data-anim>
-            <p class="label mono">Lead → site visit conversion</p>
-            <p class="outcome-num">
-              <span class="o-from">4.5%</span>
-              <span class="o-arrow" aria-hidden="true">→</span>
-              <span class="o-to"><span data-count="10.3" data-from="4.5" data-decimals="1">10.3</span>%</span>
-            </p>
-            <p class="outcome-note">More than doubled in the first month after launch.</p>
+          <ul class="notes-hand">
+            <li><span class="hl">83%</span> of pure-Al performance… from <u>scrap</u> aluminium. The unlock for commercial viability.</li>
+            <li><span class="hl">−40%</span> input cost after re-engineering sourcing in China</li>
+            <li>ML model bridging test conditions: <span class="hl">5×</span> faster, <span class="hl">90%</span> cheaper testing</li>
+            <li>Beat leading Chinese power-density benchmarks on pure-Al anodes</li>
+            <li>Month-long two-wheeler pilot → EOIs from <span class="hl">Amazon</span> &amp; <span class="hl">Swiggy</span></li>
+            <li>Team: 2 PhDs, 1 postdoc, 2 MTech, 1 BTech</li>
+          </ul>
+        </div>
+        <p class="hand hand-chakr board-only" aria-hidden="true">drag the slider!</p>
+      </section>
 
-            <div class="obar" role="img" aria-label="Bar chart: lead to visit conversion rose from 4.5 percent before Ananya to 10.3 percent after, on a 0 to 12 percent scale.">
-              <div class="obar-row">
-                <span class="mono obar-k">Before</span>
-                <span class="obar-track"><span class="obar-fill obar-before" style="--v:.375"></span></span>
-                <span class="mono obar-v">4.5%</span>
-              </div>
-              <div class="obar-row">
-                <span class="mono obar-k">After</span>
-                <span class="obar-track"><span class="obar-fill obar-after" style="--v:.8583"></span></span>
-                <span class="mono obar-v">10.3%</span>
-              </div>
-              <div class="obar-axis mono" aria-hidden="true"><span>0</span><span>4</span><span>8</span><span>12%</span></div>
-            </div>
+      <!-- ANANYA PRD -->
+      <section class="frame" id="ananya" data-frame data-title="PRD · Ananya" data-x="560" data-y="-700" data-w="1120">
+        <h2 class="frame-label">PRD · Ananya v1</h2>
+        <div class="paper prd">
+          <div class="prd-doc">
+            <p class="doc-meta"><span class="pill">Shipped</span> Owner: Rushabh Parikh · Jumbo Homes · 2025</p>
+            <h3 class="doc-title">Ananya: an AI agent that books the site visit</h3>
 
-            <h3 class="owned-title">What I owned</h3>
-            <ul class="owned">
-              <li>Set booked site visits as the success metric, since that step predicts a closed deal.</li>
-              <li>Scoped the agent's tools: listing search, commute and school checks, and visit scheduling.</li>
-              <li>Designed the hand-off so high-intent buyers reach a relationship manager quickly.</li>
-              <li>Reviewed conversations every week and turned failures into fixes and test cases.</li>
+            <h4>Problem</h4>
+            <p>Home buyers message many listings, then go quiet. Relationship managers can't reply to every lead fast enough, so most leads never become a site visit, and the site visit is where deals happen.</p>
+
+            <h4>Success metric</h4>
+            <p>Lead → site-visit rate. Reply quality and speed matter only as far as they move it.</p>
+
+            <h4>What Ananya can do</h4>
+            <ul class="tool-list">
+              <li><code>search_listings</code> across 800+ active homes</li>
+              <li><code>commute</code> and <code>schools</code> checks for each shortlist</li>
+              <li><code>book_visit</code> with a relationship manager</li>
+              <li><code>handoff</code> to a human when a question needs judgement</li>
             </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
 
-    <!-- ============ PATH ============ -->
-    <section class="section path" id="path">
-      <div class="wrap">
-        <header class="sec-head" data-anim>
-          <p class="label mono">Path · 2022 → now</p>
-          <h2>Three machines in four years.</h2>
-          <p class="lede">
-            An electric scooter, an aluminium-air battery and a real estate funnel. The job was the same each time:
-            find the number that matters and build the system that moves it.
-          </p>
-        </header>
-
-        <div class="chapters-wrap" id="chapters">
-        <span class="rail" aria-hidden="true"><span class="rail-fill" id="rail-fill"></span></span>
-        <ol class="chapters">
-
-          <!-- OLA -->
-          <li class="chapter">
-            <div class="ch-text" data-anim>
-              <p class="ch-meta mono"><span class="ch-year">2022 – 24</span>OLA Electric · Bengaluru</p>
-              <h3>Taught a model to predict crash injuries.</h3>
-              <p class="ch-role">Assistant Manager, Vehicle Engineering</p>
-              <p>
-                Every pedestrian-safety simulation burned hundreds of compute hours. I built an ML model that predicts
-                the injury score from design inputs, so engineers could screen designs before paying for a full run.
-              </p>
-              <ul class="facts">
-                <li><b>R² 0.83</b>on injury-score prediction</li>
-                <li><b>500 hrs</b>of compute saved per iteration</li>
-                <li><b>₹65L / yr</b>saved by automating validation with a team of 3</li>
-                <li><b>₹1.2 Cr</b>projected savings from component and MCU optimisation</li>
-              </ul>
+            <h4>Result</h4>
+            <div class="result">
+              <p class="result-num"><span class="r-from">4.5%</span><span class="r-arrow" aria-hidden="true">→</span><span class="r-to">10.3%</span></p>
+              <p class="result-k">lead → visit, first month after launch</p>
             </div>
-            <figure class="ch-viz viz-scatter" data-anim data-viz="scatter">
-              <svg id="scatter" viewBox="0 0 320 300" role="img" aria-label="Scatter plot of predicted against simulated injury scores clustered around the diagonal, R squared 0.83."></svg>
-              <figcaption class="mono">Predicted vs. simulated injury score. Illustrative points fitted to the model's R².</figcaption>
-            </figure>
-          </li>
-
-          <!-- CHAKR -->
-          <li class="chapter">
-            <div class="ch-text" data-anim>
-              <p class="ch-meta mono"><span class="ch-year">2024 – 25</span>Chakr Innovation · Gurugram</p>
-              <h3>Ran a moonshot lab on aluminium and air.</h3>
-              <p class="ch-role">Technical Project Manager, Moonshot R&amp;D</p>
-              <p>
-                Aluminium-air batteries could make electric vehicles cheaper, if the anode performs and the aluminium is
-                affordable. I led the six-person team working on both, reporting to the business head and working
-                closely with the CEO.
-              </p>
-              <ul class="facts">
-                <li><b>−1.35 → −1.70 V</b>anode open-circuit potential</li>
-                <li><b>83%</b>of pure-aluminium performance from scrap, the unlock for commercial viability</li>
-                <li><b>40%</b>lower input cost after re-engineering sourcing in China</li>
-                <li><b>5× / 90%</b>faster, cheaper testing with an ML model bridging test conditions</li>
-              </ul>
-              <p class="ch-foot">A month-long two-wheeler pilot drew expressions of interest from Amazon and Swiggy.</p>
-            </div>
-            <figure class="ch-viz viz-gauge" data-anim data-viz="gauge">
-              <svg id="gauge" viewBox="0 0 320 206" role="img" aria-label="Voltage gauge: anode open-circuit potential improved from minus 1.35 volts to minus 1.70 volts on a 0 to minus 2 volt scale."></svg>
-              <p class="gauge-read"><span class="mono gauge-k">Anode OCP</span><span class="gauge-v" id="gauge-v">−1.70</span><span class="gauge-u">V</span></p>
-              <figcaption class="mono">More negative potential means fewer parasitic reactions and a more efficient cell.</figcaption>
-            </figure>
-          </li>
-
-          <!-- JUMBO -->
-          <li class="chapter">
-            <div class="ch-text" data-anim>
-              <p class="ch-meta mono"><span class="ch-year">2025 – now</span>Jumbo Homes · Bengaluru</p>
-              <h3>Joined a pre-seed team. Ended up owning product.</h3>
-              <p class="ch-role">Chief of Staff → Product</p>
-              <p>
-                Jumbo is an AI-native real estate startup. I joined as a founding-team generalist across growth, supply and
-                strategy, then took over product, starting with Ananya.
-              </p>
-              <ul class="facts">
-                <li><b>3 → 11</b>micro-markets, cutting weak zones while scaling new ones</li>
-                <li><b>4×</b>deals per headcount vs. a conventional brokerage, from internal CRM and workflows</li>
-                <li><b>2× AOV</b>on Jumbo Reserve, a buy-and-resell model I sized and piloted</li>
-                <li><b>CM2+</b>sales incentives that still pay above market</li>
-              </ul>
-            </div>
-            <figure class="ch-viz viz-bars" data-anim data-viz="bars">
-              <div class="pbars">
-                <div class="pbar">
-                  <p class="pbar-k mono">ARR</p>
-                  <div class="pbar-row"><span class="pbar-track"><span class="pbar-fill is-before" style="--v:.1917"></span></span><span class="pbar-v mono">₹1.15 Cr</span></div>
-                  <div class="pbar-row"><span class="pbar-track"><span class="pbar-fill is-after" style="--v:1"></span></span><span class="pbar-v mono">₹6 Cr</span></div>
-                </div>
-                <div class="pbar">
-                  <p class="pbar-k mono">Homes closed / month</p>
-                  <div class="pbar-row"><span class="pbar-track"><span class="pbar-fill is-before" style="--v:.1905"></span></span><span class="pbar-v mono">4</span></div>
-                  <div class="pbar-row"><span class="pbar-track"><span class="pbar-fill is-after" style="--v:1"></span></span><span class="pbar-v mono">21</span></div>
-                </div>
-                <div class="pbar">
-                  <p class="pbar-k mono">Active listings</p>
-                  <div class="pbar-row"><span class="pbar-track"><span class="pbar-fill is-before" style="--v:.125"></span></span><span class="pbar-v mono">~100</span></div>
-                  <div class="pbar-row"><span class="pbar-track"><span class="pbar-fill is-after" style="--v:1"></span></span><span class="pbar-v mono">800+</span></div>
-                </div>
-              </div>
-              <figcaption class="mono">When I joined vs. a year in. Listings grew 8× in my first quarter. Each row uses its own scale.</figcaption>
-            </figure>
-          </li>
-        </ol>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PRINCIPLES ============ -->
-    <section class="section principles" id="principles">
-      <div class="wrap">
-        <header class="sec-head" data-anim>
-          <p class="label mono">Operating principles</p>
-          <h2>How I build AI products.</h2>
-        </header>
-        <ul class="plist">
-          <li class="p-item" data-anim>
-            <p class="p-src mono">Learned at Jumbo</p>
-            <h3>Choose the metric before the model.</h3>
-            <p>Ananya was judged on booked visits. Reply quality mattered only when it moved that number.</p>
-          </li>
-          <li class="p-item" data-anim>
-            <p class="p-src mono">Learned at Chakr</p>
-            <h3>Write down what good looks like.</h3>
-            <p>In the lab, the test protocol decided what we believed. With LLMs, evals do that job. If the team can't define good, it can't ship it.</p>
-          </li>
-          <li class="p-item" data-anim>
-            <p class="p-src mono">Learned at Jumbo</p>
-            <h3>Unit economics are part of the product.</h3>
-            <p>I designed sales incentives that pay above market and stay CM2 positive. An AI feature that loses money on every call isn't finished.</p>
-          </li>
-          <li class="p-item" data-anim>
-            <p class="p-src mono">Learned at OLA</p>
-            <h3>Use models to buy back time.</h3>
-            <p>The crash model told us which designs deserved a full simulation. Most useful AI works that way: it points people's time at the right problem.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ BEFORE ============ -->
-    <section class="section before">
-      <div class="wrap">
-        <header class="sec-head" data-anim>
-          <p class="label mono">Before all this</p>
-          <h2>IIT Guwahati, 2018 – 22.</h2>
-        </header>
-        <div class="before-grid">
-          <div class="b-item" data-anim>
-            <p class="b-num">8.42</p>
-            <p class="mono b-k">CPI / 10</p>
-            <p>B.Tech in Mechanical Engineering.</p>
           </div>
-          <div class="b-item" data-anim>
-            <p class="b-num">8,000+</p>
-            <p class="mono b-k">Students served</p>
-            <p>General Secretary, Sports. Led a 92-member team and reopened campus sports facilities.</p>
-          </div>
-          <div class="b-item" data-anim>
-            <p class="b-num">18.7%</p>
-            <p class="mono b-k">Stiffness-to-weight gain</p>
-            <p>Subsystem head at IITG Racing. Raised ₹6.5L and led a 5-person team.</p>
+
+          <div class="phone" id="phone">
+            <div class="phone-top">
+              <span class="phone-av" aria-hidden="true">A</span>
+              <span class="phone-name">Ananya<small>AI home-buying agent</small></span>
+              <span class="phone-status"><span class="pulse" aria-hidden="true"></span>online</span>
+            </div>
+            <ol class="phone-msgs" id="phone-msgs" aria-live="polite">
+              <li class="pm pm-agent"><p>Hi! Tell me what you're looking for and I'll find homes worth visiting.</p></li>
+            </ol>
+            <div class="phone-chips" id="phone-chips">
+              <p class="phone-chips-k">Try a buyer message</p>
+              <button class="chip" type="button" data-scn="whitefield">3BHK near Whitefield, under ₹1.2 Cr</button>
+              <button class="chip" type="button" data-scn="hsr">Ready-to-move 2BHK in HSR</button>
+              <button class="chip" type="button" data-scn="timing">Should I buy now or wait?</button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+        <p class="hand hand-phone board-only" aria-hidden="true">talk to me →</p>
+      </section>
 
-    <!-- ============ CONTACT ============ -->
-    <section class="contact" id="contact">
-      <div class="wrap">
-        <p class="label mono">Contact</p>
-        <h2 class="cta-head" data-prox aria-label="Let's build the next one.">
-          <span class="line">Let's build</span>
-          <span class="line">the next one<span class="stop">.</span></span>
-        </h2>
-        <p class="lede">Always happy to talk about AI agents, marketplaces, or taking deep tech from the lab to the market.</p>
-        <div class="contact-row">
-          <span class="email mono" id="email">rushabhparikh10@gmail.com</span>
-          <button class="btn btn-line" id="copy-email" type="button">Copy email</button>
-          <a class="btn btn-solid" href="https://www.linkedin.com/in/parikhrushabh" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+      <!-- METRICS -->
+      <section class="frame" id="metrics" data-frame data-title="Year-one dashboard" data-x="560" data-y="200" data-w="1120">
+        <h2 class="frame-label">Dashboard · Jumbo Homes, year one</h2>
+        <div class="paper">
+          <div class="f-head">
+            <h3 class="f-title">What a year of operating moved</h3>
+            <div class="seg" role="group" aria-label="Compare periods">
+              <button class="seg-btn" type="button" data-period="0" aria-pressed="false">When I joined</button>
+              <button class="seg-btn is-on" type="button" data-period="1" aria-pressed="true">A year in</button>
+            </div>
+          </div>
+          <div class="kpis">
+            <div class="kpi" data-v0="1.15" data-v1="6" data-max="6" data-fmt="cr">
+              <p class="kpi-k">ARR</p>
+              <p class="kpi-v"><span class="kpi-n">₹6 Cr</span></p>
+              <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
+              <p class="kpi-d">≈ 5× from ₹1.15 Cr</p>
+            </div>
+            <div class="kpi" data-v0="4" data-v1="21" data-max="21" data-fmt="int">
+              <p class="kpi-k">Homes closed / month</p>
+              <p class="kpi-v"><span class="kpi-n">21</span></p>
+              <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
+              <p class="kpi-d">from 4</p>
+            </div>
+            <div class="kpi" data-v0="100" data-v1="800" data-max="800" data-fmt="plus">
+              <p class="kpi-k">Active listings</p>
+              <p class="kpi-v"><span class="kpi-n">800+</span></p>
+              <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
+              <p class="kpi-d">8× in my first quarter</p>
+            </div>
+            <div class="kpi" data-v0="3" data-v1="11" data-max="11" data-fmt="int">
+              <p class="kpi-k">Markets served</p>
+              <p class="kpi-v"><span class="kpi-n">11</span></p>
+              <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
+              <p class="kpi-d">3 zones → 11 micro-markets</p>
+            </div>
+          </div>
+          <ul class="minis minis-wide">
+            <li class="mini c-yellow"><b>4×</b>deals per headcount vs. a conventional brokerage, from CRM tooling I built</li>
+            <li class="mini c-green"><b>CM2+</b>sales incentives that pay above market and stay profitable</li>
+            <li class="mini c-pink"><b>2× AOV</b>Jumbo Reserve, a buy-and-resell model I sized and piloted</li>
+            <li class="mini c-blue"><b>House Tour</b>a feature I launched</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PRINCIPLES -->
+      <section class="frame frame-open" id="principles" data-frame data-title="Principles" data-x="-460" data-y="460" data-w="920">
+        <h2 class="frame-label">Principles · drag them around</h2>
+        <div class="stickies" id="stickies">
+          <article class="sticky c-yellow" data-drag style="--x:10px;--y:20px;--r:-3deg">
+            <p class="sticky-t">Pick the metric before the model.</p>
+            <p class="sticky-b">Ananya was judged on booked visits. Clever replies only counted if they moved that.</p>
+            <p class="sticky-src">from Jumbo</p>
+          </article>
+          <article class="sticky c-pink" data-drag style="--x:320px;--y:0px;--r:2deg">
+            <p class="sticky-t">Evals are the spec.</p>
+            <p class="sticky-b">In the lab, the test protocol decided what we believed. With LLMs, evals do that job.</p>
+            <p class="sticky-src">from Chakr</p>
+          </article>
+          <article class="sticky c-green" data-drag style="--x:630px;--y:30px;--r:-1.5deg">
+            <p class="sticky-t">Unit economics are a feature.</p>
+            <p class="sticky-b">An AI feature that loses money on every call isn't finished yet.</p>
+            <p class="sticky-src">from Jumbo</p>
+          </article>
+          <article class="sticky c-blue" data-drag style="--x:40px;--y:320px;--r:1.5deg">
+            <p class="sticky-t">Models should buy back human time.</p>
+            <p class="sticky-b">The crash model told engineers which designs deserved a full simulation.</p>
+            <p class="sticky-src">from OLA</p>
+          </article>
+          <article class="sticky c-violet" data-drag style="--x:350px;--y:330px;--r:-2.5deg">
+            <p class="sticky-t">Depth over breadth.</p>
+            <p class="sticky-b">We cut weak zones to grow 11 strong micro-markets instead of spreading thin.</p>
+            <p class="sticky-src">from Jumbo</p>
+          </article>
+          <article class="sticky c-orange" data-drag style="--x:650px;--y:310px;--r:3deg">
+            <p class="sticky-t">Go see the thing.</p>
+            <p class="sticky-b">Test rigs, shop floors, site visits. My best product calls started there.</p>
+            <p class="sticky-src">from everywhere</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- BEYOND -->
+      <section class="frame" id="beyond" data-frame data-title="IIT Guwahati" data-x="560" data-y="820" data-w="1120">
+        <h2 class="frame-label">Before all this · IIT Guwahati, 2018–22</h2>
+        <div class="paper">
+          <div class="beyond">
+            <div class="b-item">
+              <p class="b-num">8.42</p>
+              <p class="b-k">CPI / 10</p>
+              <p>B.Tech in Mechanical Engineering.</p>
+            </div>
+            <div class="b-item">
+              <p class="b-num">8,000+</p>
+              <p class="b-k">Students served</p>
+              <p>General Secretary, Sports. Led a 92-member team and reopened campus sports facilities.</p>
+            </div>
+            <div class="b-item">
+              <p class="b-num">18.7%</p>
+              <p class="b-k">Stiffness-to-weight gain</p>
+              <p>Subsystem head, IITG Racing. Raised ₹6.5L and led a 5-person team.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="frame" id="contact" data-frame data-title="Say hi" data-x="-420" data-y="1240" data-w="840">
+        <h2 class="frame-label">Say hi</h2>
+        <div class="paper contact">
+          <div class="contact-copy">
+            <h3 class="f-title">Leave me a note</h3>
+            <p class="f-body">Happy to talk about AI agents, marketplaces, or taking deep tech from the lab to the market. Write on the sticky and send it my way.</p>
+            <p class="email-row"><span class="email" id="email">rushabhparikh10@gmail.com</span><button class="link-btn" id="copy-email" type="button">Copy</button></p>
+            <p class="links-row">
+              <a class="btn" href="https://www.linkedin.com/in/parikhrushabh" target="_blank" rel="noopener">LinkedIn ↗</a>
+              <a class="btn" href="https://github.com/rushi1110" target="_blank" rel="noopener">GitHub ↗</a>
+            </p>
+          </div>
+          <div class="note-card c-yellow">
+            <label class="sr-only" for="note">Your note to Rushabh</label>
+            <textarea id="note" rows="6" placeholder="Hi Rushabh, I'd love to chat about…"></textarea>
+            <div class="note-foot">
+              <span class="note-count" id="note-count">Notes you add to the board go too.</span>
+              <a class="btn btn-primary" id="send-note" href="mailto:rushabhparikh10@gmail.com">Send as email</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- live cursors (screen space) -->
+    <div class="cursors" id="cursors" aria-hidden="false">
+      <div class="cursor cursor-r" id="cur-r" aria-hidden="true">
+        <svg viewBox="0 0 20 20"><path d="M2 2 L17 9 L10 11 L7 18 Z"/></svg>
+        <span class="cursor-name">Rushabh</span>
+      </div>
+      <div class="cursor cursor-a" id="cur-a">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 2 L17 9 L10 11 L7 18 Z"/></svg>
+        <span class="cursor-name" aria-hidden="true">Ananya · AI</span>
+        <div class="bubble" id="bubble" role="dialog" aria-live="polite" aria-label="Ananya" hidden>
+          <p class="bubble-text" id="bubble-text"></p>
+          <div class="bubble-actions" id="bubble-actions"></div>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
   </main>
 
-  <footer class="foot">
-    <div class="wrap foot-inner mono">
-      <span>© <span id="year">2026</span> Rushabh Parikh</span>
-      <span>Bengaluru, India</span>
-      <a href="https://github.com/rushi1110" target="_blank" rel="noopener">GitHub ↗</a>
+  <!-- ================= DOCK ================= -->
+  <div class="dock" id="dock">
+    <div class="tools board-only" role="toolbar" aria-label="Canvas tools">
+      <button class="tool is-on" type="button" data-tool="move" title="Move (V)" aria-label="Move tool">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3 L15 9 L10 10.5 L8 16 Z"/></svg>
+      </button>
+      <button class="tool" type="button" data-tool="hand" title="Hand (H)" aria-label="Hand tool">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 10V5.5a1.2 1.2 0 0 1 2.4 0V9m0-4.5V3.8a1.2 1.2 0 0 1 2.4 0V9m0-4.2a1.2 1.2 0 0 1 2.4 0V9.5m0-3a1.2 1.2 0 0 1 2.4 0v4.8a5.5 5.5 0 0 1-5.5 5.5h-.6a5 5 0 0 1-4-2L3.6 11.8a1.2 1.2 0 0 1 1.9-1.4L6 11"/></svg>
+      </button>
+      <button class="tool" type="button" data-tool="sticky" title="Sticky note (S)" aria-label="Sticky note tool">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 3.5h13v8l-5 5h-8z M11.5 16.5v-5h5"/></svg>
+      </button>
     </div>
-  </footer>
+    <form class="ask" id="ask" autocomplete="off">
+      <span class="ask-av" aria-hidden="true">A</span>
+      <label class="sr-only" for="ask-input">Ask Ananya about Rushabh</label>
+      <input id="ask-input" type="text" placeholder="Ask Ananya about Rushabh…" maxlength="140">
+      <kbd class="ask-kbd">/</kbd>
+    </form>
+  </div>
 
-  <script src="script.js" defer></script>
+  <div class="zoombox board-only" aria-label="Zoom">
+    <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
+    <button type="button" id="zoom-fit" class="zoom-v" aria-label="Zoom to fit the whole board"><span id="zoom-v">100%</span></button>
+    <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+  </div>
+  <div class="minimap board-only" id="minimap" aria-label="Minimap. Click to move there." role="button" tabindex="0">
+    <div class="mm-view" id="mm-view"></div>
+  </div>
+</div>
+
+<script src="script.js" defer></script>
 </body>
 </html>
