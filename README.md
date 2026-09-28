@@ -4,22 +4,21 @@ Portfolio site for Rushabh Parikh, AI Product Manager. Live at https://rushabhpa
 
 **Concept:** the portfolio is a product board, an infinite FigJam-style canvas you explore instead of scroll.
 
-- **Receipts first:** four clickable proof stickies under the headline (28× faster onboarding, 2× enquiry→meeting conversion, 5× ARR, 670+ leads a week). Metrics lead with a cross-industry headline, with the real-estate detail in small print count up on arrival, then a SOLD stamp lands. Clicking a receipt flies the camera to the evidence while Dobby explains it.
+- **Receipts first:** four clickable proof stickies under the headline (28× faster onboarding, 2× enquiry→meeting conversion, 5× ARR, 670+ leads a week). Metrics lead with a cross-industry headline, with the real-estate detail in small print. They count up on arrival, then a "geeks out on AI agents" stamp slams onto the photo. Clicking a receipt flies the camera to the evidence while Dobby explains it.
 - **Personalised arrivals:** `?utm_source=linkedin|x|github|resume|email` or job boards change the sticker and Dobby's greeting. `?for=Acme` makes a board "made for Acme", with a custom greeting, page title and contact note. For previews where query strings are stripped, use `#via-linkedin` or `#for-acme`.
 - **Board:** pan by dragging or scrolling, zoom with Ctrl/⌘ + scroll or pinch, fling with inertia. A minimap, a frames panel and keyboard shortcuts get you around.
 - **Dobby, the host:** "Dobby is here on behalf of the headmaster!" His cursor joins the board, gives a guided tour that flies the camera between frames, and answers questions typed into the dock.
 - **Illustrated agents:** SVG portraits for Tara, Ananya, Majnu Bhai, Dobby, Chanakya and Bablu (the `#av-*` symbols at the top of `index.html`).
-- **Photo:** drop `assets/me.jpg` in and a taped polaroid appears on the Hello frame. Without it, nothing shows.
+- **Photo:** `assets/me.png` shows as a taped polaroid on the Hello frame. Without it, nothing shows.
 - **Frames:**
   - Hello
   - On WhatsApp: Tara (sell side) and Ananya (buy side) phones play one story together, from a seller's hi to a SOLD stamp, plus a price-negotiation hand-off demo
-  - Under the hood: a little house travels through every agent a home meets (tap any node)
   - The crew: flip cards with portraits for Majnu Bhai, Dobby, Chanakya and Bablu
   - Roadmap, with clickable bars
   - OLA crash-model scatter plot (hover the points)
-  - Chakr lab notebook, with a live voltage slider and a bubble simulation
+  - Chakr lab notebook, with a live voltage slider: drag it and the H₂ bubbles (wasted aluminium) visibly thin out
   - Year-one dashboard, with a before/after toggle
-  - Draggable principle stickies
+  - Principles, four stickies
   - Contact, a sticky note you write and send as an email
 - **Visitor stickies:** press S (or pick the sticky tool) and click anywhere to leave a note. Notes are saved in your browser and included in the email.
 - **Read as a page:** a normal scrolling layout. It's the default on phones and what you get without JavaScript.

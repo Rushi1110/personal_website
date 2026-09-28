@@ -30,6 +30,7 @@
   --c-violet: #D3C6FF;
   --c-orange: #FFC7A0;
   --sticky-ink: #1D1B16;
+  --hl: rgb(255 214 90 / 70%);
 
   --display: "Gloock", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -66,6 +67,7 @@
     --c-blue: #93C6F0;
     --c-violet: #C2B4F2;
     --c-orange: #F0B78F;
+    --hl: rgb(255 106 43 / 34%);
     color-scheme: dark;
   }
 }
@@ -92,6 +94,7 @@
   --c-blue: #93C6F0;
   --c-violet: #C2B4F2;
   --c-orange: #F0B78F;
+  --hl: rgb(255 106 43 / 34%);
   color-scheme: dark;
 }
 
@@ -122,6 +125,7 @@ code, kbd { font-family: var(--mono); }
 :focus-visible { outline: 2px solid var(--sel); outline-offset: 2px; }
 [hidden] { display: none !important; }
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.hl { background: linear-gradient(transparent 55%, var(--hl) 55%); color: var(--ink); font-weight: 600; padding: 0 2px; border-radius: 2px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .c-yellow { --c: var(--c-yellow); }
@@ -348,14 +352,21 @@ code, kbd { font-family: var(--mono); }
 
 /* ---------- Photo polaroid ---------- */
 .polaroid {
-  position: absolute; right: 44px; top: 54px; z-index: 1; margin: 0;
+  position: absolute; right: 96px; top: 54px; z-index: 1; margin: 0;
   width: 172px; padding: 10px 10px 30px; background: #fff; color: #1d1b16;
   transform: rotate(4deg); box-shadow: 0 2px 3px rgb(0 0 0 / 8%), 0 18px 30px -12px rgb(0 0 0 / 30%);
 }
 .polaroid img { display: block; width: 100%; height: auto; aspect-ratio: 9 / 10; object-fit: cover; object-position: 50% 8%; background: linear-gradient(160deg, #DCEBFA 0%, #C9DDF2 100%); }
 .polaroid figcaption { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; font-family: var(--hand); font-size: 14px; }
 .polaroid::before { content: ""; position: absolute; top: -10px; left: 50%; width: 70px; height: 20px; margin-left: -35px; background: rgb(255 230 150 / 75%); transform: rotate(-3deg); }
-.paper-hello.has-photo .stamp { top: 300px; right: 56px; }
+.polaroid .stamp-photo {
+  top: auto; right: auto; left: -46px; bottom: 26px; padding: 5px 12px 6px;
+  background: color-mix(in srgb, #fff 90%, transparent); transform: rotate(-10deg);
+}
+.polaroid .stamp-photo small { font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.polaroid .stamp-photo b { font-size: 1.4rem; letter-spacing: .04em; white-space: nowrap; }
+.polaroid .stamp-photo.is-slam { animation: slam-photo .5s cubic-bezier(.3, 1.6, .5, 1) both; }
+@keyframes slam-photo { 0% { opacity: 0; transform: rotate(-22deg) scale(2.2); } 60% { opacity: 1; } 100% { opacity: 1; transform: rotate(-10deg) scale(1); } }
 .paper-hello.has-photo .sticker { right: auto; left: 40%; }
 
 /* ---------- WhatsApp duo ---------- */
@@ -462,14 +473,14 @@ code, kbd { font-family: var(--mono); }
 
 /* ---------- OLA scatter ---------- */
 .scatter { position: relative; margin: 22px 0 0; }
-.callouts { position: absolute; right: 4px; bottom: 58px; display: grid; gap: 8px; pointer-events: none; }
+.callouts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
 .callout {
-  display: grid; gap: 2px; justify-items: end; text-align: right;
-  padding: 10px 12px; border-radius: 10px; background: var(--c); color: var(--sticky-ink);
+  display: grid; gap: 2px; justify-items: start; text-align: left;
+  padding: 12px 14px; border-radius: 10px; background: var(--c); color: var(--sticky-ink);
   box-shadow: 0 1px 1px rgb(0 0 0 / 6%), 0 8px 16px -6px rgb(0 0 0 / 22%); font-size: 12px;
 }
 .callout b { font-family: var(--ui); font-weight: 700; font-size: 1.35rem; letter-spacing: -.02em; line-height: 1.1; }
-.scatter svg { width: 100%; height: auto; display: block; overflow: visible; }
+.scatter svg { width: 100%; max-width: 640px; margin-inline: auto; height: auto; display: block; overflow: visible; }
 .scatter figcaption { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-top: 8px; }
 .scatter-tip {
   position: absolute; pointer-events: none; transform: translate(-50%, -130%);
@@ -868,8 +879,6 @@ code, kbd { font-family: var(--mono); }
   .contact { grid-template-columns: 1fr; }
 }
 @container (max-width: 700px) {
-  .callouts { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 14px; }
-  .callout { justify-items: start; text-align: left; }
   .duo { grid-template-columns: 1fr; }
   .duo-mid { grid-row: auto; }
   #phone-ananya { order: 3; }
@@ -878,7 +887,9 @@ code, kbd { font-family: var(--mono); }
   .polaroid figcaption { font-size: 11.5px; bottom: 4px; }
   .polaroid::before { width: 48px; height: 14px; margin-left: -24px; top: -7px; }
   .paper-hello.has-photo .ui-tag { max-width: calc(100% - 104px); }
-  .paper-hello.has-photo .stamp { display: none; }
+  .polaroid .stamp-photo { left: -14px; bottom: 30px; top: auto; right: auto; padding: 3px 8px 4px; font-size: 7px; border-width: 2px; }
+  .polaroid .stamp-photo small { font-size: 6.5px; }
+  .polaroid .stamp-photo b { font-size: .9rem; }
 }
 @container (max-width: 640px) {
   .stamp { right: 12px; top: 92px; padding: 5px 10px 6px; font-size: 8.5px; border-width: 2.5px; }

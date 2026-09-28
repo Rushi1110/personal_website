@@ -972,10 +972,13 @@
       const dt = Math.min(50, now - this.last) / 1000;
       this.last = now;
       const t = this.level();
-      this.spawn += dt * lerp(26, 2.5, t);
+      const waste = Math.pow(1 - t, 2.4);          // 1 at −1.35 V → ~0 at −1.70 V
+      this.spawn += dt * (48 * waste + 0.25);
+      const cap = Math.round(140 * waste + 2);
+      if (this.bubbles.length > cap) this.bubbles.splice(0, this.bubbles.length - cap);
       while (this.spawn > 1) {
         this.spawn -= 1;
-        this.bubbles.push({ x: 152 + Math.random() * 10, y: 60 + Math.random() * 150, r: 2 + Math.random() * 4.5, vy: 30 + Math.random() * 40, ph: Math.random() * 6 });
+        this.bubbles.push({ x: 152 + Math.random() * 10, y: 60 + Math.random() * 150, r: (2 + Math.random() * 4.5) * lerp(1, 0.5, t), vy: 30 + Math.random() * 40, ph: Math.random() * 6 });
       }
       this.bubbles.forEach((b) => { b.y -= b.vy * dt; b.x += (8 + Math.sin(b.ph + b.y / 14) * 14) * dt; });
       this.bubbles = this.bubbles.filter((b) => b.y > 44);
@@ -1024,7 +1027,16 @@
       this.bubbles.forEach((b) => { c.beginPath(); c.arc(b.x, b.y, b.r, 0, Math.PI * 2); c.fill(); c.stroke(); });
       // legend
       c.textAlign = "left"; c.fillStyle = k.r; c.font = "600 12px 'Shantell Sans', cursive";
-      c.fillText("bubbles = parasitic reactions", 300, 212);
+      c.fillText("bubbles = H₂ gas = aluminium wasted", 300, 212);
+      // live meter: how much aluminium is being wasted
+      const w = Math.pow(1 - this.level(), 2.4);
+      const label = w > 0.55 ? "HIGH" : w > 0.18 ? "MEDIUM" : "LOW";
+      c.fillStyle = k.ink; c.font = "600 11px 'IBM Plex Sans', system-ui, sans-serif";
+      c.fillText("Wasted aluminium (H₂)", 330, 64);
+      c.fillStyle = k.paper; c.fillRect(330, 72, 170, 10);
+      c.strokeStyle = k.line; c.lineWidth = 1; c.strokeRect(330, 72, 170, 10);
+      c.fillStyle = k.r; c.fillRect(330, 72, Math.max(3, 170 * w), 10);
+      c.fillStyle = k.r; c.font = "700 11px 'IBM Plex Mono', monospace"; c.fillText(label, 330, 98);
     },
   };
   const isVisibleTab = () => document.visibilityState === "visible";
