@@ -693,7 +693,7 @@
       text: "Tara sells homes on WhatsApp, end to end: onboarding, photos, marketing, buyers, feedback, paperwork. Onboarding got 28× faster: ~3 hours instead of 3.5 days. Press play!" },
     { id: "whatsapp", at: "#phone-ananya", keys: ["ananya", "agent", "agents", "agentic", "ship", "shipped", "built", "prd", "chatbot", "llm", "ai", "genai", "bot", "assistant", "buyer", "buyers", "visit", "visits", "evals", "judge"],
       text: "Ananya talks to buyers and books visits. The headmaster found the leaks (rigid scheduling, irrelevant recommendations, weak visuals) and doubled conversion from enquiry to meeting: 4.5% to ~10%." },
-    { id: "metrics", at: ".kpis", keys: ["metric", "metrics", "arr", "revenue", "growth", "numbers", "impact", "result", "results", "kpi", "kpis", "scale", "grew", "money"],
+    { id: "metrics", at: ".growth", keys: ["metric", "metrics", "arr", "revenue", "growth", "numbers", "impact", "result", "results", "kpi", "kpis", "scale", "grew", "money"],
       text: "One year at Jumbo: ARR up 5× (₹1.15 Cr to ₹6 Cr), deals closed per month up 5×, supply up 8× in one quarter." },
     { id: "principles", at: ".sticky.c-orange", keys: ["why", "principle", "principles", "approach", "think", "thinks", "philosophy", "how", "pm", "style", "values", "believe", "fail", "failed", "failure", "failures", "mistake", "mistakes", "wrong"],
       text: "The headmaster's rules: distribution beats features, find the leak before touching the model, evals are the spec. And he has broken plenty. Ask him!" },
@@ -1026,17 +1026,17 @@
       c.strokeStyle = k.r; c.lineWidth = 1.4; c.fillStyle = k.paper;
       this.bubbles.forEach((b) => { c.beginPath(); c.arc(b.x, b.y, b.r, 0, Math.PI * 2); c.fill(); c.stroke(); });
       // legend
-      c.textAlign = "left"; c.fillStyle = k.r; c.font = "600 12px 'Shantell Sans', cursive";
-      c.fillText("bubbles = H₂ gas = aluminium wasted", 300, 212);
+      c.textAlign = "center"; c.fillStyle = k.r; c.font = "600 12px 'Shantell Sans', cursive";
+      c.fillText("bubbles = H₂ gas = aluminium wasted", 355, 212);
       // live meter: how much aluminium is being wasted
       const w = Math.pow(1 - this.level(), 2.4);
       const label = w > 0.55 ? "HIGH" : w > 0.18 ? "MEDIUM" : "LOW";
       c.fillStyle = k.ink; c.font = "600 11px 'IBM Plex Sans', system-ui, sans-serif";
-      c.fillText("Wasted aluminium (H₂)", 330, 64);
-      c.fillStyle = k.paper; c.fillRect(330, 72, 170, 10);
-      c.strokeStyle = k.line; c.lineWidth = 1; c.strokeRect(330, 72, 170, 10);
-      c.fillStyle = k.r; c.fillRect(330, 72, Math.max(3, 170 * w), 10);
-      c.fillStyle = k.r; c.font = "700 11px 'IBM Plex Mono', monospace"; c.fillText(label, 330, 98);
+      c.fillText("Wasted aluminium (H₂)", 355, 64);
+      c.fillStyle = k.paper; c.fillRect(270, 72, 170, 10);
+      c.strokeStyle = k.line; c.lineWidth = 1; c.strokeRect(270, 72, 170, 10);
+      c.fillStyle = k.r; c.fillRect(270, 72, Math.max(3, 170 * w), 10);
+      c.fillStyle = k.r; c.font = "700 11px 'IBM Plex Mono', monospace"; c.fillText(label, 355, 98);
     },
   };
   const isVisibleTab = () => document.visibilityState === "visible";
@@ -1046,25 +1046,18 @@
   cell.init();
 
   /* =========================================================
-     Metrics toggle
+     Metrics: growth bars fill from "then" to "now" on first sight
      ========================================================= */
-  function fmt(kind, v, final, period) {
-    if (kind === "cr") return `₹${final ? String(+v.toFixed(2)) : v.toFixed(2)} Cr`;
-    if (kind === "plus") return final ? (period ? "800+" : "~100") : String(Math.round(v / 10) * 10);
-    return String(Math.round(v));
+  const growth = $("#growth");
+  if (growth) {
+    if (reduce || !("IntersectionObserver" in window)) growth.classList.add("is-in");
+    else {
+      const io = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) { growth.classList.add("is-in"); io.disconnect(); }
+      }, { threshold: 0.4 });
+      io.observe(growth);
+    }
   }
-  $$(".seg-btn").forEach((btn) => btn.addEventListener("click", () => {
-    const p = +btn.dataset.period;
-    $$(".seg-btn").forEach((b) => { const on = b === btn; b.classList.toggle("is-on", on); b.setAttribute("aria-pressed", on); });
-    $$(".kpi").forEach((k) => {
-      const from = +(k.dataset.cur ?? k.dataset.v1);
-      const to = +(p ? k.dataset.v1 : k.dataset.v0);
-      k.dataset.cur = to;
-      const n = $(".kpi-n", k);
-      $(".kpi-fill", k).style.setProperty("--v", to / +k.dataset.max);
-      animate(800, (e) => { n.textContent = fmt(k.dataset.fmt, lerp(from, to, e), e === 1, p); }, easeOut);
-    });
-  }));
 
   /* =========================================================
      Ananya phone: scripted agent runs

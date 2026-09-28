@@ -313,7 +313,7 @@ code, kbd { font-family: var(--mono); }
 .receipts li:nth-child(4) .receipt { --rot: 1.8deg; }
 .receipt:hover, .receipt:focus-visible { transform: translateY(-5px) rotate(0deg); box-shadow: 0 2px 2px rgb(0 0 0 / 6%), 0 20px 30px -10px rgb(0 0 0 / 30%); }
 .rc-num { font-family: var(--display); font-weight: 800; font-size: clamp(1.8rem, 4.4cqi, 2.4rem); line-height: 1; letter-spacing: -.04em; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.rc-num .u { font-family: var(--ui); font-weight: 600; font-size: .78em; margin-left: .04em; }
+.rc-num .u, .gr-to .u { font-family: var(--ui); font-weight: 600; font-size: .78em; margin-left: .04em; }
 .rc-k { font-size: 14px; line-height: 1.35; }
 .rc-go { font-family: var(--mono); font-size: 11.5px; opacity: .7; margin-top: 4px; }
 .receipt:hover .rc-go { opacity: 1; text-decoration: underline; text-underline-offset: 2px; }
@@ -375,7 +375,7 @@ code, kbd { font-family: var(--mono); }
 
 /* ---------- Photo polaroid ---------- */
 .polaroid {
-  position: absolute; right: 96px; top: 54px; z-index: 1; margin: 0;
+  position: absolute; left: min(560px, calc(100% - 240px)); top: 54px; z-index: 1; margin: 0;
   width: 172px; padding: 10px 10px 30px; background: #fff; color: #1d1b16;
   transform: rotate(4deg); box-shadow: 0 2px 3px rgb(0 0 0 / 8%), 0 18px 30px -12px rgb(0 0 0 / 30%);
 }
@@ -487,6 +487,7 @@ code, kbd { font-family: var(--mono); }
   transition: transform .25s var(--ease), box-shadow .25s var(--ease);
 }
 .rm-bar:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgb(0 0 0 / 12%); }
+.rm-bar[data-rm="ola"] { background: #000; color: #D6DF22; }
 .rm-bar.is-on { box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--sel); }
 .rm-details { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); }
 .rm-detail { display: grid; gap: 6px; max-width: 70ch; }
@@ -548,7 +549,7 @@ code, kbd { font-family: var(--mono); }
 .cell-v { font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
 .cell-ctrl input { grid-column: 1 / -1; width: 100%; accent-color: var(--r); }
 .cell-scale { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
-.cell-cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-top: 8px; }
+.cell-cap { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin: 10px auto 0; max-width: 70ch; text-align: center; }
 
 .notes-hand {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 28px; margin-top: 22px;
@@ -644,16 +645,31 @@ code, kbd { font-family: var(--mono); }
 @keyframes bob { 0%, 100% { transform: translateY(0); opacity: .4; } 50% { transform: translateY(-3px); opacity: 1; } }
 
 /* ---------- Metrics ---------- */
-.seg { display: inline-flex; padding: 3px; background: var(--paper-2); border: 1px solid var(--line); border-radius: 10px; }
-.seg-btn { border: 0; background: transparent; padding: 7px 12px; border-radius: 7px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
-.seg-btn.is-on { background: var(--paper); color: var(--ink); box-shadow: 0 1px 3px rgb(0 0 0 / 12%); }
-.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-.kpi { display: grid; gap: 10px; align-content: start; padding: 18px; border: 1px solid var(--line); border-radius: 10px; }
-.kpi-k { font-size: 12.5px; color: var(--ink-3); font-weight: 500; }
-.kpi-v { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 4.2cqi, 2.8rem); line-height: 1; letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
-.kpi-bar { position: relative; height: 8px; border-radius: 4px; background: var(--paper-2); overflow: hidden; }
-.kpi-fill { position: absolute; inset: 0 auto 0 0; width: 100%; border-radius: 4px; background: var(--a); transform: scaleX(var(--v)); transform-origin: left; transition: transform .9s var(--ease); }
-.kpi-d { font-size: 12.5px; color: var(--ink-2); }
+.f-head-c { flex-direction: column; justify-content: center; text-align: center; gap: 8px; }
+.f-sub { color: var(--ink-3); font-size: 14.5px; }
+.growth { display: grid; gap: 18px; max-width: 860px; margin: 8px auto 0; }
+.gr { display: grid; grid-template-columns: 170px minmax(0, 1fr) 96px 56px; align-items: center; gap: 16px; }
+.gr-k { font-weight: 600; font-size: 15px; line-height: 1.2; }
+.gr-k small { display: block; font-weight: 400; font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
+.gr-track { position: relative; height: 36px; border-radius: 8px; background: var(--paper-2); overflow: hidden; }
+.gr-fill {
+  position: absolute; inset: 0; border-radius: 8px; background: var(--a);
+  transform: scaleX(var(--p)); transform-origin: left; transition: transform 1.2s var(--ease) .15s;
+}
+.growth.is-in .gr-fill { transform: scaleX(1); }
+.gr:nth-child(2) .gr-fill { transition-delay: .3s; }
+.gr:nth-child(3) .gr-fill { transition-delay: .45s; }
+.gr:nth-child(4) .gr-fill { transition-delay: .6s; }
+/* the grey "then" stub sits on top of the fill so where it started stays visible */
+.gr-from {
+  position: absolute; z-index: 1; inset: 0 auto 0 0; width: calc(var(--p) * 100%); min-width: max-content;
+  display: flex; align-items: center; padding: 0 10px; border-radius: 8px 0 0 8px;
+  background: var(--line-2); color: var(--ink); font-family: var(--mono); font-size: 12px; white-space: nowrap;
+}
+.gr-to { font-family: var(--display); font-weight: 700; font-size: 2rem; line-height: 1; letter-spacing: -.03em; text-align: right; font-variant-numeric: tabular-nums; }
+.gr-x { justify-self: start; padding: 3px 8px; border-radius: 999px; background: color-mix(in srgb, var(--a) 14%, transparent); color: var(--a); font-weight: 700; font-size: 13px; }
+.gr-foot { display: grid; gap: 6px; justify-items: center; margin-top: 28px; text-align: center; color: var(--ink-2); font-size: 15px; }
+.gr-foot b { color: var(--ink); }
 
 /* ---------- Principles stickies ---------- */
 .frame-open .frame-label { margin-bottom: 14px; }
@@ -888,7 +904,8 @@ code, kbd { font-family: var(--mono); }
    ========================================================= */
 @container (max-width: 1180px) {
   .duo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .duo-mid { grid-column: 1 / -1; grid-row: 2; }
+  .duo-mid { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 0; }
+  .duo-mid .story-state { grid-column: 1 / -1; }
 }
 @container (max-width: 820px) {
   .minis-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -897,16 +914,17 @@ code, kbd { font-family: var(--mono); }
   .node { grid-column: auto; grid-row: auto; min-height: 0; }
   .prd { grid-template-columns: 1fr; }
   .phone { height: 560px; }
-  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gr { grid-template-columns: 130px minmax(0, 1fr) 76px 48px; gap: 12px; }
+  .gr-to { font-size: 1.5rem; }
   .minis-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact { grid-template-columns: 1fr; }
 }
 @container (max-width: 700px) {
   .duo { grid-template-columns: 1fr; }
-  .duo-mid { grid-row: auto; }
+  .duo-mid { grid-row: auto; grid-template-columns: 1fr; }
   #phone-ananya { order: 3; }
   .duo .phone { height: 520px; }
-  .polaroid { top: -14px; right: -4px; width: 104px; padding: 6px 6px 22px; }
+  .polaroid { top: -14px; left: auto; right: -4px; width: 104px; padding: 6px 6px 22px; }
   .polaroid figcaption { font-size: 11.5px; bottom: 4px; }
   .polaroid::before { width: 48px; height: 14px; margin-left: -24px; top: -7px; }
   .paper-hello.has-photo .ui-tag { max-width: calc(100% - 104px); }
@@ -932,7 +950,9 @@ code, kbd { font-family: var(--mono); }
   .minis, .minis-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .mini { padding: 12px; font-size: 12px; }
   .mini b { font-size: 1.15rem; }
-  .kpis { grid-template-columns: 1fr; }
+  .gr { grid-template-columns: minmax(0, 1fr) 80px 50px; gap: 6px 10px; }
+  .gr-k { grid-column: 1 / -1; }
+  .gr-track { height: 28px; }
   .sticky { min-height: 0; }
 }
 
@@ -1319,43 +1339,17 @@ code, kbd { font-family: var(--mono); }
       <section class="frame" id="metrics" data-frame data-title="Year-one dashboard" data-x="560" data-y="160" data-w="1180">
         <h2 class="frame-label">Dashboard · Jumbo Homes, year one</h2>
         <div class="paper">
-          <div class="f-head">
+          <div class="f-head f-head-c">
             <h3 class="f-title">One year. Receipts attached.</h3>
-            <div class="seg" role="group" aria-label="Compare periods">
-              <button class="seg-btn" type="button" data-period="0" aria-pressed="false">When I joined</button>
-              <button class="seg-btn is-on" type="button" data-period="1" aria-pressed="true">A year in</button>
-            </div>
+            <p class="f-sub">Grey is where it started. Colour is where it got to a year later.</p>
           </div>
-          <div class="kpis">
-            <div class="kpi" data-v0="1.15" data-v1="6" data-max="6" data-fmt="cr">
-              <p class="kpi-k">ARR</p>
-              <p class="kpi-v"><span class="kpi-n">₹6 Cr</span></p>
-              <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
-              <p class="kpi-d">≈ 5× from ₹1.15 Cr</p>
-            </div>
-            <div class="kpi" data-v0="4" data-v1="21" data-max="21" data-fmt="int">
-              <p class="kpi-k">Deals closed / month</p>
-              <p class="kpi-v"><span class="kpi-n">21</span></p>
-              <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
-              <p class="kpi-d">≈ 5× from 4 homes a month</p>
-            </div>
-            <div class="kpi" data-v0="100" data-v1="800" data-max="800" data-fmt="plus">
-              <p class="kpi-k">Supply (active inventory)</p>
-              <p class="kpi-v"><span class="kpi-n">800+</span></p>
-              <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
-              <p class="kpi-d">8× in one quarter · listings</p>
-            </div>
-            <div class="kpi" data-v0="3" data-v1="11" data-max="11" data-fmt="int">
-              <p class="kpi-k">Markets served</p>
-              <p class="kpi-v"><span class="kpi-n">11</span></p>
-              <span class="kpi-bar"><span class="kpi-fill" style="--v:1"></span></span>
-              <p class="kpi-d">3 → 11, cutting the weak ones</p>
-            </div>
-          </div>
-          <ul class="minis minis-half">
-            <li class="mini c-yellow"><b>4×</b>deals per head vs. a traditional competitor, from internal tooling I built</li>
-            <li class="mini c-green"><b>Margin-positive</b>sales comp that pays above market and stays contribution-margin positive</li>
+          <ul class="growth" id="growth">
+            <li class="gr" style="--p:.19"><p class="gr-k">ARR</p><span class="gr-track"><span class="gr-from">₹1.15 Cr</span><span class="gr-fill"></span></span><b class="gr-to">₹6 Cr</b><span class="gr-x">5×</span></li>
+            <li class="gr" style="--p:.19"><p class="gr-k">Deals closed<small>per month</small></p><span class="gr-track"><span class="gr-from">4</span><span class="gr-fill"></span></span><b class="gr-to">21</b><span class="gr-x">5×</span></li>
+            <li class="gr" style="--p:.125"><p class="gr-k">Live inventory<small>in one quarter</small></p><span class="gr-track"><span class="gr-from">~100</span><span class="gr-fill"></span></span><b class="gr-to">800<span class="u">+</span></b><span class="gr-x">8×</span></li>
+            <li class="gr" style="--p:.27"><p class="gr-k">Markets<small>kept only the strong ones</small></p><span class="gr-track"><span class="gr-from">3</span><span class="gr-fill"></span></span><b class="gr-to">11</b><span class="gr-x">3.7×</span></li>
           </ul>
+          <p class="gr-foot"><span><b class="hl">4× deals per head</b> vs. a traditional competitor, from internal tools I built.</span><span><b class="hl">CM3-positive</b> sales comp that still pays above market.</span></p>
         </div>
       </section>
 
@@ -2225,7 +2219,7 @@ code, kbd { font-family: var(--mono); }
       text: "Tara sells homes on WhatsApp, end to end: onboarding, photos, marketing, buyers, feedback, paperwork. Onboarding got 28× faster: ~3 hours instead of 3.5 days. Press play!" },
     { id: "whatsapp", at: "#phone-ananya", keys: ["ananya", "agent", "agents", "agentic", "ship", "shipped", "built", "prd", "chatbot", "llm", "ai", "genai", "bot", "assistant", "buyer", "buyers", "visit", "visits", "evals", "judge"],
       text: "Ananya talks to buyers and books visits. The headmaster found the leaks (rigid scheduling, irrelevant recommendations, weak visuals) and doubled conversion from enquiry to meeting: 4.5% to ~10%." },
-    { id: "metrics", at: ".kpis", keys: ["metric", "metrics", "arr", "revenue", "growth", "numbers", "impact", "result", "results", "kpi", "kpis", "scale", "grew", "money"],
+    { id: "metrics", at: ".growth", keys: ["metric", "metrics", "arr", "revenue", "growth", "numbers", "impact", "result", "results", "kpi", "kpis", "scale", "grew", "money"],
       text: "One year at Jumbo: ARR up 5× (₹1.15 Cr to ₹6 Cr), deals closed per month up 5×, supply up 8× in one quarter." },
     { id: "principles", at: ".sticky.c-orange", keys: ["why", "principle", "principles", "approach", "think", "thinks", "philosophy", "how", "pm", "style", "values", "believe", "fail", "failed", "failure", "failures", "mistake", "mistakes", "wrong"],
       text: "The headmaster's rules: distribution beats features, find the leak before touching the model, evals are the spec. And he has broken plenty. Ask him!" },
@@ -2558,17 +2552,17 @@ code, kbd { font-family: var(--mono); }
       c.strokeStyle = k.r; c.lineWidth = 1.4; c.fillStyle = k.paper;
       this.bubbles.forEach((b) => { c.beginPath(); c.arc(b.x, b.y, b.r, 0, Math.PI * 2); c.fill(); c.stroke(); });
       // legend
-      c.textAlign = "left"; c.fillStyle = k.r; c.font = "600 12px 'Shantell Sans', cursive";
-      c.fillText("bubbles = H₂ gas = aluminium wasted", 300, 212);
+      c.textAlign = "center"; c.fillStyle = k.r; c.font = "600 12px 'Shantell Sans', cursive";
+      c.fillText("bubbles = H₂ gas = aluminium wasted", 355, 212);
       // live meter: how much aluminium is being wasted
       const w = Math.pow(1 - this.level(), 2.4);
       const label = w > 0.55 ? "HIGH" : w > 0.18 ? "MEDIUM" : "LOW";
       c.fillStyle = k.ink; c.font = "600 11px 'IBM Plex Sans', system-ui, sans-serif";
-      c.fillText("Wasted aluminium (H₂)", 330, 64);
-      c.fillStyle = k.paper; c.fillRect(330, 72, 170, 10);
-      c.strokeStyle = k.line; c.lineWidth = 1; c.strokeRect(330, 72, 170, 10);
-      c.fillStyle = k.r; c.fillRect(330, 72, Math.max(3, 170 * w), 10);
-      c.fillStyle = k.r; c.font = "700 11px 'IBM Plex Mono', monospace"; c.fillText(label, 330, 98);
+      c.fillText("Wasted aluminium (H₂)", 355, 64);
+      c.fillStyle = k.paper; c.fillRect(270, 72, 170, 10);
+      c.strokeStyle = k.line; c.lineWidth = 1; c.strokeRect(270, 72, 170, 10);
+      c.fillStyle = k.r; c.fillRect(270, 72, Math.max(3, 170 * w), 10);
+      c.fillStyle = k.r; c.font = "700 11px 'IBM Plex Mono', monospace"; c.fillText(label, 355, 98);
     },
   };
   const isVisibleTab = () => document.visibilityState === "visible";
@@ -2578,25 +2572,18 @@ code, kbd { font-family: var(--mono); }
   cell.init();
 
   /* =========================================================
-     Metrics toggle
+     Metrics: growth bars fill from "then" to "now" on first sight
      ========================================================= */
-  function fmt(kind, v, final, period) {
-    if (kind === "cr") return `₹${final ? String(+v.toFixed(2)) : v.toFixed(2)} Cr`;
-    if (kind === "plus") return final ? (period ? "800+" : "~100") : String(Math.round(v / 10) * 10);
-    return String(Math.round(v));
+  const growth = $("#growth");
+  if (growth) {
+    if (reduce || !("IntersectionObserver" in window)) growth.classList.add("is-in");
+    else {
+      const io = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) { growth.classList.add("is-in"); io.disconnect(); }
+      }, { threshold: 0.4 });
+      io.observe(growth);
+    }
   }
-  $$(".seg-btn").forEach((btn) => btn.addEventListener("click", () => {
-    const p = +btn.dataset.period;
-    $$(".seg-btn").forEach((b) => { const on = b === btn; b.classList.toggle("is-on", on); b.setAttribute("aria-pressed", on); });
-    $$(".kpi").forEach((k) => {
-      const from = +(k.dataset.cur ?? k.dataset.v1);
-      const to = +(p ? k.dataset.v1 : k.dataset.v0);
-      k.dataset.cur = to;
-      const n = $(".kpi-n", k);
-      $(".kpi-fill", k).style.setProperty("--v", to / +k.dataset.max);
-      animate(800, (e) => { n.textContent = fmt(k.dataset.fmt, lerp(from, to, e), e === 1, p); }, easeOut);
-    });
-  }));
 
   /* =========================================================
      Ananya phone: scripted agent runs
