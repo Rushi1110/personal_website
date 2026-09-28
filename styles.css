@@ -43,35 +43,7 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --canvas: #141518;
-    --dot: #2C2F35;
-    --paper: #1D1F23;
-    --paper-2: #24272C;
-    --ink: #ECEDEF;
-    --ink-2: #A8ADB5;
-    --ink-3: #737881;
-    --line: #2C2F35;
-    --line-2: #3A3E45;
-    --chrome: #1B1D21;
-    --chrome-line: #2C2F35;
-    --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 28px rgb(0 0 0 / 35%);
-    --shadow-lg: 0 2px 4px rgb(0 0 0 / 30%), 0 24px 60px rgb(0 0 0 / 50%);
-    --a: #957DFF;
-    --a-soft: #2A2448;
-    --dobby: #2BC4AE;
-    --c-yellow: #F1D46E;
-    --c-pink: #F0A9BD;
-    --c-green: #9DD9AD;
-    --c-blue: #93C6F0;
-    --c-violet: #C2B4F2;
-    --c-orange: #F0B78F;
-    --hl: rgb(255 106 43 / 34%);
-    color-scheme: dark;
-  }
-}
-
+/* Light is the default for everyone; dark only when the visitor picks it. */
 :root[data-theme="dark"] {
   --canvas: #141518;
   --dot: #2C2F35;
@@ -88,6 +60,7 @@
   --shadow-lg: 0 2px 4px rgb(0 0 0 / 30%), 0 24px 60px rgb(0 0 0 / 50%);
   --a: #957DFF;
   --a-soft: #2A2448;
+  --dobby: #2BC4AE;
   --c-yellow: #F1D46E;
   --c-pink: #F0A9BD;
   --c-green: #9DD9AD;

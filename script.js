@@ -79,9 +79,8 @@
   /* =========================================================
      Theme
      ========================================================= */
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
   $("#theme-btn").addEventListener("click", () => {
-    const cur = root.dataset.theme || (prefersDark.matches ? "dark" : "light");
+    const cur = root.dataset.theme || "light";
     const next = cur === "dark" ? "light" : "dark";
     root.dataset.theme = next;
     try { localStorage.setItem("theme", next); } catch (e) {}
