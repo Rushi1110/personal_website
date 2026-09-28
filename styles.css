@@ -368,6 +368,11 @@ code, kbd { font-family: var(--mono); }
 .polaroid .stamp-photo.is-slam { animation: slam-photo .5s cubic-bezier(.3, 1.6, .5, 1) both; }
 @keyframes slam-photo { 0% { opacity: 0; transform: rotate(-22deg) scale(2.2); } 60% { opacity: 1; } 100% { opacity: 1; transform: rotate(-10deg) scale(1); } }
 .paper-hello.has-photo .sticker { right: auto; left: 40%; }
+/* wide hello: a bigger photo centred in the space right of the name */
+@container (min-width: 960px) {
+  .polaroid { width: 220px; left: calc(50% + 100px); top: 92px; padding: 12px 12px 36px; }
+  .polaroid figcaption { font-size: 16px; bottom: 8px; }
+}
 
 /* ---------- WhatsApp duo ---------- */
 .btn-play { gap: 10px; }
@@ -464,7 +469,11 @@ code, kbd { font-family: var(--mono); }
   transition: transform .25s var(--ease), box-shadow .25s var(--ease);
 }
 .rm-bar:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgb(0 0 0 / 12%); }
+/* each bar wears its organisation's own logo colours */
+.rm-bar[data-rm="iitg"] { background: #1E4495; color: #fff; border-left: 6px solid #D2B428; }
 .rm-bar[data-rm="ola"] { background: #000; color: #D6DF22; }
+.rm-bar[data-rm="chakr"] { background: #F8A323; color: #1d1b16; border-left: 6px solid #22B574; }
+.rm-bar[data-rm="jumbo"] { background: #740101; color: #fff; }
 .rm-bar.is-on { box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--sel); }
 .rm-details { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); }
 .rm-detail { display: grid; gap: 6px; max-width: 70ch; }
