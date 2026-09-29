@@ -1035,7 +1035,7 @@
       c.fillStyle = k.paper; c.fillRect(270, 72, 170, 10);
       c.strokeStyle = k.line; c.lineWidth = 1; c.strokeRect(270, 72, 170, 10);
       c.fillStyle = k.r; c.fillRect(270, 72, Math.max(3, 170 * w), 10);
-      c.fillStyle = k.r; c.font = "700 11px 'IBM Plex Mono', monospace"; c.fillText(label, 355, 98);
+      c.fillStyle = k.r; c.font = "700 11px 'IBM Plex Sans', system-ui, sans-serif"; c.fillText(label, 355, 98);
     },
   };
   const isVisibleTab = () => document.visibilityState === "visible";

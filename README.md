@@ -25,7 +25,7 @@ Portfolio site for Rushabh Parikh, AI Product Manager. Live at https://rushabhpa
 
 Shortcuts: `T` tour · `1`–`9` jump to the first nine frames · `0` fit the board · `V` / `H` / `S` tools · `/` ask Dobby · `Esc` close.
 
-Fonts: Gloock (display), IBM Plex Sans (UI), IBM Plex Mono (data), Shantell Sans (handwriting). Colours: "Whiteboard" (grey board, bright stickies, orange accent, teal for Dobby).
+Fonts (three, on purpose): Gloock (display), IBM Plex Sans (everything else), Shantell Sans (handwriting). Colours: "Whiteboard" (grey board, bright stickies, orange accent, teal for Dobby).
 
 ## Structure
 
