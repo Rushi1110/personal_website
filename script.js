@@ -1244,12 +1244,12 @@
      Personalisation: ?utm_source=linkedin, ?for=Acme (or #via-linkedin / #for-acme)
      ========================================================= */
   const PERSONAS = {
-    linkedin: { sticker: "hi, LinkedIn", greet: "Dobby sees you came from LinkedIn! You have read the posts. Here are the receipts." },
-    x: { sticker: "hi, X", greet: "A visitor from X! Dobby brought the thread, with receipts attached." },
-    github: { sticker: "hi, GitHub", greet: "From GitHub! Yes, the headmaster builds his own agents. Dobby is one of them." },
-    resume: { sticker: "the director's cut", greet: "You read the résumé! This is the director's cut, and Dobby is in it." },
-    email: { sticker: "you clicked. bold.", greet: "You clicked a link in an email. Bold! Dobby will make it worth it." },
-    hiring: { sticker: "hiring? hi.", greet: "Hiring? Dobby says: tap a receipt, or press Say hi. The headmaster replies fast." },
+    linkedin: { greet: "Dobby sees you came from LinkedIn! You have read the posts. Here are the receipts." },
+    x: { greet: "A visitor from X! Dobby brought the thread, with receipts attached." },
+    github: { greet: "From GitHub! Yes, the headmaster builds his own agents. Dobby is one of them." },
+    resume: { greet: "You read the résumé! This is the director's cut, and Dobby is in it." },
+    email: { greet: "You clicked a link in an email. Bold! Dobby will make it worth it." },
+    hiring: { greet: "Hiring? Dobby says: tap a receipt, or press Say hi. The headmaster replies fast." },
   };
   const ALIAS = { twitter: "x", "t.co": "x", cv: "resume", mail: "email", newsletter: "email", wellfound: "hiring", angellist: "hiring", naukri: "hiring", indeed: "hiring", instahyre: "hiring", yc: "hiring", workatastartup: "hiring", jobs: "hiring", recruiter: "hiring" };
   // ?for=Acme → a company (recruiting team). ?hi=Ansh → one person I sent it to.
@@ -1287,10 +1287,11 @@
       title: `Rushabh Parikh × ${org}`,
     };
     const key = ALIAS[src] || src;
-    return PERSONAS[key] || null;
+    return PERSONAS[key] ? { ...PERSONAS[key], event: `arrived/via/${key}` } : null;
   })();
-  if (persona) {
-    track(persona.event || `arrived/via/${persona.sticker}`);
+  if (persona) track(persona.event);
+  // only named links get the sticker: "made for Acme" / "hi, Ansh!". Sources get Dobby's greeting alone.
+  if (persona && persona.sticker) {
     const sticker = $("#sticker");
     sticker.textContent = persona.sticker;
     sticker.hidden = false;

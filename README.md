@@ -5,7 +5,7 @@ Portfolio site for Rushabh Parikh, AI Product Manager. Live at https://rushabhpa
 **Concept:** the portfolio is a product board, an infinite FigJam-style canvas you explore instead of scroll.
 
 - **Receipts first:** four clickable proof stickies under the headline (28× faster onboarding, 2× enquiry→meeting conversion, 5× ARR, 670+ leads a week). Metrics lead with a cross-industry headline, with the real-estate detail in small print. They count up on arrival, then a "geeks out on AI agents" stamp slams onto the photo. Clicking a receipt flies the camera to the evidence while Dobby explains it.
-- **Personalised arrivals:** tagged links change the sticker, Dobby's greeting and the page title, and tell you in analytics who opened the site. See [Tagged links](#tagged-links).
+- **Personalised arrivals:** tagged links change Dobby's greeting (and, for named links, add a sticker and a custom page title), and tell you in analytics who opened the site. See [Tagged links](#tagged-links).
 - **Board:** pan by dragging or scrolling, zoom with Ctrl/⌘ + scroll or pinch, fling with inertia. A minimap, a frames panel and keyboard shortcuts get you around.
 - **Dobby, the host:** "Dobby is here on behalf of the headmaster!" His cursor joins the board, gives a guided tour that flies the camera between frames, and answers questions typed into the dock.
 - **Illustrated agents:** SVG portraits for Tara, Ananya, Majnu Bhai, Dobby, Chanakya and Bablu (the `#av-*` symbols at the top of `index.html`).
@@ -58,20 +58,22 @@ Add a tag to the end of `rushabhparikh.in` and the site greets that visitor, the
 | A company or recruiting team | `rushabhparikh.in/?for=Acme` | made for Acme | "Dobby welcomes the Acme team! The headmaster made this board for you." | `arrived/for/Acme` |
 | One person you send it to | `rushabhparikh.in/?hi=Ansh+Bhatt` | hi, Ansh! | "Hi Ansh! The headmaster sent this to you himself. Dobby will show you around." | `arrived/hi/Ansh Bhatt` |
 | A person at a company | `rushabhparikh.in/?hi=Ansh&for=Acme` | hi, Ansh! | "Hi Ansh! The headmaster sent this to you himself, for you and the Acme team…" | `arrived/hi/Ansh @ Acme` |
-| Where the link was posted | `rushabhparikh.in/?utm_source=linkedin` | depends on source (below) | depends on source | `arrived/via/<sticker>` |
+| Where the link was posted | `rushabhparikh.in/?utm_source=linkedin` | none | a greeting for that source (below) | `arrived/via/linkedin` |
 
 **Sources `?utm_source=` understands** (`?ref=` and `?source=` work the same way):
 
-| Value | Also accepts | Sticker |
+| Value | Also accepts | Dobby says |
 |---|---|---|
-| `linkedin` | | hi, LinkedIn |
-| `x` | `twitter`, `t.co` | hi, X |
-| `github` | | hi, GitHub |
-| `resume` | `cv` | the director's cut |
-| `email` | `mail`, `newsletter` | you clicked. bold. |
-| `hiring` | `wellfound`, `angellist`, `naukri`, `indeed`, `instahyre`, `yc`, `workatastartup`, `jobs`, `recruiter` | hiring? hi. |
+| `linkedin` | | "Dobby sees you came from LinkedIn! You have read the posts. Here are the receipts." |
+| `x` | `twitter`, `t.co` | "A visitor from X! Dobby brought the thread, with receipts attached." |
+| `github` | | "From GitHub! Yes, the headmaster builds his own agents. Dobby is one of them." |
+| `resume` | `cv` | "You read the résumé! This is the director's cut, and Dobby is in it." |
+| `email` | `mail`, `newsletter` | "You clicked a link in an email. Bold! Dobby will make it worth it." |
+| `hiring` | `wellfound`, `angellist`, `naukri`, `indeed`, `instahyre`, `yc`, `workatastartup`, `jobs`, `recruiter` | "Hiring? Dobby says: tap a receipt, or press Say hi. The headmaster replies fast." |
 
-Any other value shows no sticker, but GoatCounter still lists it under referrers.
+Only named links (`?for=`, `?hi=`) get a sticker; a source changes Dobby's greeting alone. The analytics event uses the main value, so `?utm_source=naukri` logs `arrived/via/hiring`.
+
+Any other value gets the standard greeting, and GoatCounter still lists it under referrers.
 
 **Links that lose their `?…` part.** Some apps strip query strings. Use a `#` tag instead; dashes become spaces:
 
@@ -109,7 +111,7 @@ Live at **rushabhparikh.goatcounter.com**, and switched on by `window.GOATCOUNTE
 |---|---|
 | `arrived/for/<Company>` | Someone opened a `?for=` link |
 | `arrived/hi/<Name>` · `arrived/hi/<Name> @ <Company>` | That person opened their `?hi=` link |
-| `arrived/via/<sticker>` | Someone arrived from a known source, e.g. `arrived/via/hi, LinkedIn` |
+| `arrived/via/<source>` | Someone arrived from a known source: `linkedin`, `x`, `github`, `resume`, `email` or `hiring` |
 | `tour/start` · `tour/finish` | Started and finished Dobby's tour |
 | `receipt/<topic>` | Tapped a receipt on the Hello card (`tara`, `ananya`, `metrics`, `dobby`) |
 | `ask/<topic>` · `ask/no-match` | Asked Dobby a question; only the matched topic is logged, never the text |
