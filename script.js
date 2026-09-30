@@ -1241,16 +1241,22 @@
     let org = (q.get("for") || "").trim();
     if (h.startsWith("via-")) src = h.slice(4);
     if (h.startsWith("for-")) org = h.slice(4).replace(/[-_]+/g, " ");
-    org = org.replace(/[^\p{L}\p{N} &.'-]/gu, "").slice(0, 28).trim();
+    org = org.replace(/[^\p{L}\p{N} &.'-]/gu, "").slice(0, 40).trim();
     if (org) org = org.replace(/\b\p{L}/gu, (c) => c.toUpperCase());
-    if (org) return { org, sticker: `made for ${org}`, greet: `Dobby welcomes the ${org} team! The headmaster made this board for you.` };
+    if (org) return { org, sticker: `made for ${org}`, greet: `Hello, ${org}! The headmaster made this board just for you. Dobby is honoured.` };
     const key = ALIAS[src] || src;
     return PERSONAS[key] || null;
   })();
   if (persona) {
     track(persona.org ? `arrived/for/${persona.org}` : `arrived/via/${persona.sticker}`);
-    $("#sticker").textContent = persona.sticker;
-    $("#sticker").hidden = false;
+    const sticker = $("#sticker");
+    sticker.textContent = persona.sticker;
+    sticker.hidden = false;
+    // a long name wraps the sticker onto two lines: make room so it never covers the role line
+    const fitSticker = () => $(".paper-hello").style.setProperty("--sticker-h", `${sticker.offsetHeight}px`);
+    fitSticker();
+    if (document.fonts) document.fonts.ready.then(fitSticker);
+    window.addEventListener("resize", fitSticker);
     if (persona.org) {
       $("#note").placeholder = `Hi Rushabh, ${persona.org} here. Let's talk about…`;
       document.title = `Rushabh Parikh × ${persona.org}`;
