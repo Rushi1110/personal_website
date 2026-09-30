@@ -5,7 +5,11 @@ Portfolio site for Rushabh Parikh, AI Product Manager. Live at https://rushabhpa
 **Concept:** the portfolio is a product board, an infinite FigJam-style canvas you explore instead of scroll.
 
 - **Receipts first:** four clickable proof stickies under the headline (28× faster onboarding, 2× enquiry→meeting conversion, 5× ARR, 670+ leads a week). Metrics lead with a cross-industry headline, with the real-estate detail in small print. They count up on arrival, then a "geeks out on AI agents" stamp slams onto the photo. Clicking a receipt flies the camera to the evidence while Dobby explains it.
-- **Personalised arrivals:** `?utm_source=linkedin|x|github|resume|email` or job boards change the sticker and Dobby's greeting. `?for=Acme` makes a board "made for Acme", with a custom greeting, page title and contact note. For previews where query strings are stripped, use `#via-linkedin` or `#for-acme`.
+- **Personalised arrivals:**
+  - `?for=Acme` is for a company (a recruiting team): a "made for Acme" sticker, a greeting to the Acme team, a custom page title and contact note.
+  - `?hi=Ansh%20Bhatt` is for one person you send it to yourself: a "hi, Ansh!" sticker and a personal greeting. Add `&for=Acme` to mention their company too.
+  - `?utm_source=linkedin|x|github|resume|email` or job boards change the sticker and Dobby's greeting.
+  - Where query strings get stripped, use `#for-acme`, `#hi-ansh-bhatt` or `#via-linkedin`.
 - **Board:** pan by dragging or scrolling, zoom with Ctrl/⌘ + scroll or pinch, fling with inertia. A minimap, a frames panel and keyboard shortcuts get you around.
 - **Dobby, the host:** "Dobby is here on behalf of the headmaster!" His cursor joins the board, gives a guided tour that flies the camera between frames, and answers questions typed into the dock.
 - **Illustrated agents:** SVG portraits for Tara, Ananya, Majnu Bhai, Dobby, Chanakya and Bablu (the `#av-*` symbols at the top of `index.html`).
@@ -52,9 +56,9 @@ All copy lives in `index.html`. Each frame's position on the board is set by its
 ## Analytics (GoatCounter)
 
 1. Sign up free at goatcounter.com and pick a code, e.g. `rushabh` (your dashboard becomes rushabh.goatcounter.com).
-2. In `index.html`, set `window.GOATCOUNTER_CODE = "rushabh";` and push.
+2. In `index.html`, set `window.GOATCOUNTER_CODE = "rushabh";` and push. (Live: `rushabhparikh`, dashboard at rushabhparikh.goatcounter.com.)
 
-Page views arrive with their `utm_source`. The site also logs events: `tour/start`, `tour/finish`, `receipt/<topic>`, `ask/<topic>` (matched topic only, never the typed text), `demo/play-home-sale`, `demo/negotiate`, `out/whatsapp-tara`, `out/whatsapp-ananya`, `out/linkedin`, `out/github`, `contact/send-email`, `contact/copy-email`, `mode/board|page`, and `arrived/for/<Company>` or `arrived/via/<source>` for personalised links. No cookies.
+Page views arrive with their `utm_source`. The site also logs events: `tour/start`, `tour/finish`, `receipt/<topic>`, `ask/<topic>` (matched topic only, never the typed text), `demo/play-home-sale`, `demo/negotiate`, `out/whatsapp-tara`, `out/whatsapp-ananya`, `out/linkedin`, `out/github`, `contact/send-email`, `contact/copy-email`, `mode/board|page`, and `arrived/for/<Company>`, `arrived/hi/<Name>` (or `arrived/hi/<Name> @ <Company>`) and `arrived/via/<source>` for personalised links. No cookies.
 
 ## Images
 

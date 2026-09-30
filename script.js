@@ -1234,21 +1234,45 @@
     hiring: { sticker: "hiring? hi.", greet: "Hiring? Dobby says: tap a receipt, or press Say hi. The headmaster replies fast." },
   };
   const ALIAS = { twitter: "x", "t.co": "x", cv: "resume", mail: "email", newsletter: "email", wellfound: "hiring", angellist: "hiring", naukri: "hiring", indeed: "hiring", instahyre: "hiring", yc: "hiring", workatastartup: "hiring", jobs: "hiring", recruiter: "hiring" };
+  // ?for=Acme → a company (recruiting team). ?hi=Ansh → one person I sent it to.
+  // Both together → that person, at that company. #for-acme / #hi-ansh work where query strings get stripped.
+  const clean = (v) => {
+    v = v.replace(/[-_]+/g, " ").replace(/[^\p{L}\p{N} &.'-]/gu, "").slice(0, 40).trim();
+    return v.replace(/\b\p{L}/gu, (c) => c.toUpperCase());
+  };
   const persona = (() => {
     const q = new URLSearchParams(location.search);
     const h = location.hash.slice(1).toLowerCase();
     let src = (q.get("utm_source") || q.get("ref") || q.get("source") || "").toLowerCase().trim();
-    let org = (q.get("for") || "").trim();
+    let org = q.get("for") || "", who = q.get("hi") || "";
     if (h.startsWith("via-")) src = h.slice(4);
-    if (h.startsWith("for-")) org = h.slice(4).replace(/[-_]+/g, " ");
-    org = org.replace(/[^\p{L}\p{N} &.'-]/gu, "").slice(0, 40).trim();
-    if (org) org = org.replace(/\b\p{L}/gu, (c) => c.toUpperCase());
-    if (org) return { org, sticker: `made for ${org}`, greet: `Hello, ${org}! The headmaster made this board just for you. Dobby is honoured.` };
+    if (h.startsWith("for-")) org = h.slice(4);
+    if (h.startsWith("hi-")) who = h.slice(3);
+    org = clean(org); who = clean(who);
+    if (who) {
+      const first = who.split(" ")[0];
+      return {
+        who, org, first, welcome: first, event: `arrived/hi/${who}${org ? ` @ ${org}` : ""}`,
+        sticker: `hi, ${first}!`,
+        greet: org
+          ? `Hi ${first}! The headmaster sent this to you himself, for you and the ${org} team. Dobby will show you around.`
+          : `Hi ${first}! The headmaster sent this to you himself. Dobby will show you around.`,
+        note: `Hi Rushabh, it's ${first}. `,
+        title: `Rushabh Parikh · for ${first}`,
+      };
+    }
+    if (org) return {
+      org, welcome: `${org} team`, event: `arrived/for/${org}`,
+      sticker: `made for ${org}`,
+      greet: `Dobby welcomes the ${org} team! The headmaster made this board for you.`,
+      note: `Hi Rushabh, ${org} here. Let's talk about…`,
+      title: `Rushabh Parikh × ${org}`,
+    };
     const key = ALIAS[src] || src;
     return PERSONAS[key] || null;
   })();
   if (persona) {
-    track(persona.org ? `arrived/for/${persona.org}` : `arrived/via/${persona.sticker}`);
+    track(persona.event || `arrived/via/${persona.sticker}`);
     const sticker = $("#sticker");
     sticker.textContent = persona.sticker;
     sticker.hidden = false;
@@ -1257,10 +1281,8 @@
     fitSticker();
     if (document.fonts) document.fonts.ready.then(fitSticker);
     window.addEventListener("resize", fitSticker);
-    if (persona.org) {
-      $("#note").placeholder = `Hi Rushabh, ${persona.org} here. Let's talk about…`;
-      document.title = `Rushabh Parikh × ${persona.org}`;
-    }
+    if (persona.note) $("#note").placeholder = persona.note;
+    if (persona.title) document.title = persona.title;
   }
   const greeting = (tail) => (persona ? `${persona.greet} ${tail}` : `Dobby is here on behalf of the headmaster! ${tail}`);
 
@@ -1332,7 +1354,7 @@
       await goto(first, { dur: 1700 });
       countReceipts();
       await wait(450);
-      toast(persona && persona.org ? `Dobby joined · welcome, ${persona.org}` : "Dobby joined the board");
+      toast(persona && persona.welcome ? `Dobby joined · welcome, ${persona.welcome}` : "Dobby joined the board");
       await wait(500);
       if (!state.touring && bubble.hidden) {
         await ananya.pointAt($(".stamp"), 0.85, 1.1);
