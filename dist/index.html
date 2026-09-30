@@ -1556,7 +1556,23 @@ code, kbd { font-family: var(--ui); }
      Analytics (GoatCounter). Off until window.GOATCOUNTER_CODE is set
      in index.html. No cookies; typed text is never sent.
      ========================================================= */
-  const GC = String(window.GOATCOUNTER_CODE || "").trim();
+  // Open rushabhparikh.in/#notrack once on each of your own devices to stop counting yourself
+  // (GoatCounter's own "skipgc" flag, kept in this browser). #track turns counting back on.
+  const skipSwitch = () => {
+    let note = "";
+    try {
+      if (location.hash === "#notrack") { localStorage.setItem("skipgc", "t"); note = "Analytics off for this browser. Your visits won't be counted."; }
+      if (location.hash === "#track") { localStorage.removeItem("skipgc"); note = "Analytics back on for this browser."; }
+    } catch (e) {}
+    if (note) history.replaceState(null, "", location.pathname + location.search);
+    return note;
+  };
+  const skipNote = skipSwitch();
+  let skipMe = false;
+  try { skipMe = localStorage.getItem("skipgc") === "t"; } catch (e) {}
+  // the site may already be open when #notrack is typed: that changes the hash without a reload
+  window.addEventListener("hashchange", () => { const n = skipSwitch(); if (n) { if (n.includes("off")) skipMe = true; toast(n, 5000); } });
+  const GC = skipMe ? "" : String(window.GOATCOUNTER_CODE || "").trim();
   const gcQueue = [];
   if (GC) {
     const s = document.createElement("script");
@@ -1567,7 +1583,7 @@ code, kbd { font-family: var(--ui); }
     document.head.appendChild(s);
   }
   function track(name) {
-    if (!GC) return;
+    if (!GC || skipMe) return;
     const send = () => { try { window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} };
     if (window.goatcounter && window.goatcounter.count) send(); else gcQueue.push(send);
   }
@@ -1923,6 +1939,8 @@ code, kbd { font-family: var(--ui); }
     clearTimeout(toast.t);
     toast.t = setTimeout(() => { toastEl.hidden = true; }, ms);
   }
+  // confirm #notrack / #track after the welcome toast has had its turn
+  if (skipNote) setTimeout(() => toast(skipNote, 5000), 3200);
 
   /* =========================================================
      Frames panel
@@ -2238,7 +2256,7 @@ code, kbd { font-family: var(--ui); }
   async function answer(q, via = "ask") {
     if (state.touring) tour.end();
     const it = matchIntent(q);
-    track(`${via}/${it ? it.id : "no-match"}`);
+    track(`${via}/${via === "receipt" ? q : it ? it.id : "no-match"}`);
     if (!it) {
       if (isBoard() && !curA.visible) await ananya.pointAt($(".hello-actions"), 0.1, 0.5);
       ananya.say("Dobby only knows about the headmaster's work. Dobby is an ops agent, not a search engine! Try one of these:", [

@@ -5,11 +5,7 @@ Portfolio site for Rushabh Parikh, AI Product Manager. Live at https://rushabhpa
 **Concept:** the portfolio is a product board, an infinite FigJam-style canvas you explore instead of scroll.
 
 - **Receipts first:** four clickable proof stickies under the headline (28× faster onboarding, 2× enquiry→meeting conversion, 5× ARR, 670+ leads a week). Metrics lead with a cross-industry headline, with the real-estate detail in small print. They count up on arrival, then a "geeks out on AI agents" stamp slams onto the photo. Clicking a receipt flies the camera to the evidence while Dobby explains it.
-- **Personalised arrivals:**
-  - `?for=Acme` is for a company (a recruiting team): a "made for Acme" sticker, a greeting to the Acme team, a custom page title and contact note.
-  - `?hi=Ansh%20Bhatt` is for one person you send it to yourself: a "hi, Ansh!" sticker and a personal greeting. Add `&for=Acme` to mention their company too.
-  - `?utm_source=linkedin|x|github|resume|email` or job boards change the sticker and Dobby's greeting.
-  - Where query strings get stripped, use `#for-acme`, `#hi-ansh-bhatt` or `#via-linkedin`.
+- **Personalised arrivals:** tagged links change the sticker, Dobby's greeting and the page title, and tell you in analytics who opened the site. See [Tagged links](#tagged-links).
 - **Board:** pan by dragging or scrolling, zoom with Ctrl/⌘ + scroll or pinch, fling with inertia. A minimap, a frames panel and keyboard shortcuts get you around.
 - **Dobby, the host:** "Dobby is here on behalf of the headmaster!" His cursor joins the board, gives a guided tour that flies the camera between frames, and answers questions typed into the dock.
 - **Illustrated agents:** SVG portraits for Tara, Ananya, Majnu Bhai, Dobby, Chanakya and Bablu (the `#av-*` symbols at the top of `index.html`).
@@ -21,7 +17,7 @@ Portfolio site for Rushabh Parikh, AI Product Manager. Live at https://rushabhpa
   - Roadmap, with clickable bars
   - OLA crash-model scatter plot (hover the points)
   - Chakr lab notebook, with a live voltage slider: drag it and the H₂ bubbles (wasted aluminium) visibly thin out
-  - Year-one dashboard, with a before/after toggle
+  - Year-one dashboard: growth bars that fill from where each number started to where it got
   - Principles, four stickies
   - Contact, a sticky note you write and send as an email
 - **Visitor stickies:** press S (or pick the sticky tool) and click anywhere to leave a note. Notes are saved in your browser and included in the email.
@@ -53,12 +49,84 @@ python3 -m http.server 8000
 
 All copy lives in `index.html`. Each frame's position on the board is set by its `data-x`, `data-y` and `data-w` attributes. The tour script, Dobby's answers and the WhatsApp story are `TOUR`, `INTENTS` and `story` in `script.js`. Colours are tokens at the top of `styles.css`.
 
+## Tagged links
+
+Add a tag to the end of `rushabhparikh.in` and the site greets that visitor, then logs their arrival in analytics.
+
+| Who it's for | Link | Sticker | Dobby says | Analytics event |
+|---|---|---|---|---|
+| A company or recruiting team | `rushabhparikh.in/?for=Acme` | made for Acme | "Dobby welcomes the Acme team! The headmaster made this board for you." | `arrived/for/Acme` |
+| One person you send it to | `rushabhparikh.in/?hi=Ansh+Bhatt` | hi, Ansh! | "Hi Ansh! The headmaster sent this to you himself. Dobby will show you around." | `arrived/hi/Ansh Bhatt` |
+| A person at a company | `rushabhparikh.in/?hi=Ansh&for=Acme` | hi, Ansh! | "Hi Ansh! The headmaster sent this to you himself, for you and the Acme team…" | `arrived/hi/Ansh @ Acme` |
+| Where the link was posted | `rushabhparikh.in/?utm_source=linkedin` | depends on source (below) | depends on source | `arrived/via/<sticker>` |
+
+**Sources `?utm_source=` understands** (`?ref=` and `?source=` work the same way):
+
+| Value | Also accepts | Sticker |
+|---|---|---|
+| `linkedin` | | hi, LinkedIn |
+| `x` | `twitter`, `t.co` | hi, X |
+| `github` | | hi, GitHub |
+| `resume` | `cv` | the director's cut |
+| `email` | `mail`, `newsletter` | you clicked. bold. |
+| `hiring` | `wellfound`, `angellist`, `naukri`, `indeed`, `instahyre`, `yc`, `workatastartup`, `jobs`, `recruiter` | hiring? hi. |
+
+Any other value shows no sticker, but GoatCounter still lists it under referrers.
+
+**Links that lose their `?…` part.** Some apps strip query strings. Use a `#` tag instead; dashes become spaces:
+
+- `rushabhparikh.in/#for-acme`
+- `rushabhparikh.in/#hi-ansh-bhatt`
+- `rushabhparikh.in/#via-linkedin`
+
+**Rules**
+
+- Spaces in a name: write `+` or `%20` (`?hi=Ansh+Bhatt`), or use the `#` form with dashes.
+- Names are capitalised for you (`?for=razorpay` shows "Razorpay"), cut at 40 characters, and keep only letters, numbers, spaces and `& . ' -`.
+- When tags are combined, `hi` wins over `for`, and both win over `utm_source`. GoatCounter still records every tag, so `?for=Razorpay&utm_source=email` greets Razorpay and shows the visit came from email.
+
+**Ready to use**
+
+| Where | Link |
+|---|---|
+| LinkedIn profile, Featured section | `rushabhparikh.in/?utm_source=linkedin` |
+| Résumé PDF | `rushabhparikh.in/?utm_source=resume` |
+| Job application (Wellfound, Naukri…) | `rushabhparikh.in/?utm_source=wellfound` |
+| Cold email to a company's recruiter | `rushabhparikh.in/?for=Razorpay&utm_source=email` |
+| DM to a specific person | `rushabhparikh.in/?hi=Ansh+Bhatt` |
+| DM to a person at a company | `rushabhparikh.in/?hi=Ansh&for=Razorpay` |
+
 ## Analytics (GoatCounter)
 
-1. Sign up free at goatcounter.com and pick a code, e.g. `rushabh` (your dashboard becomes rushabh.goatcounter.com).
-2. In `index.html`, set `window.GOATCOUNTER_CODE = "rushabh";` and push. (Live: `rushabhparikh`, dashboard at rushabhparikh.goatcounter.com.)
+Live at **rushabhparikh.goatcounter.com**, and switched on by `window.GOATCOUNTER_CODE = "rushabhparikh";` in `index.html`. Set it to `""` to turn analytics off. No cookies, so no cookie banner, and nothing a visitor types is ever sent.
 
-Page views arrive with their `utm_source`. The site also logs events: `tour/start`, `tour/finish`, `receipt/<topic>`, `ask/<topic>` (matched topic only, never the typed text), `demo/play-home-sale`, `demo/negotiate`, `out/whatsapp-tara`, `out/whatsapp-ananya`, `out/linkedin`, `out/github`, `contact/send-email`, `contact/copy-email`, `mode/board|page`, and `arrived/for/<Company>`, `arrived/hi/<Name>` (or `arrived/hi/<Name> @ <Company>`) and `arrived/via/<source>` for personalised links. No cookies.
+**What you'll see**
+
+- Page views, with referrer (and any `utm_source`/`ref`), country, browser, device and screen size.
+- Events. Type a prefix like `arrived/` into the dashboard's filter box to see just those.
+
+| Event | Means |
+|---|---|
+| `arrived/for/<Company>` | Someone opened a `?for=` link |
+| `arrived/hi/<Name>` · `arrived/hi/<Name> @ <Company>` | That person opened their `?hi=` link |
+| `arrived/via/<sticker>` | Someone arrived from a known source, e.g. `arrived/via/hi, LinkedIn` |
+| `tour/start` · `tour/finish` | Started and finished Dobby's tour |
+| `receipt/<topic>` | Tapped a receipt on the Hello card (`tara`, `ananya`, `metrics`, `dobby`) |
+| `ask/<topic>` · `ask/no-match` | Asked Dobby a question; only the matched topic is logged, never the text |
+| `demo/play-home-sale` · `demo/negotiate` | Played the WhatsApp demos |
+| `out/whatsapp-tara` · `out/whatsapp-ananya` | Opened a chat with Tara or Ananya on WhatsApp |
+| `out/linkedin` · `out/github` | Clicked through to your profiles |
+| `contact/send-email` · `contact/copy-email` | Sent the contact note or copied your email |
+| `mode/board` · `mode/page` | Switched between the board and the page view |
+
+Topics for `ask/` are the sections Dobby answered with: `hello`, `whatsapp`, `crew`, `metrics`, `ola`, `chakr`, `roadmap`, `principles`, `contact`.
+
+**Don't count your own visits**
+
+- Open **`rushabhparikh.in/#notrack`** once on every browser and device you use: phone, laptop, and each browser on them. A note confirms "Analytics off for this browser". It uses GoatCounter's own `skipgc` flag, so it keeps working when your IP changes.
+- `rushabhparikh.in/#track` turns counting back on.
+- Private or incognito windows forget the setting when closed, so visits from them are counted.
+- Alternative: GoatCounter → Settings → *Ignore IPs* → "add your current IP". That only lasts until your IP changes (mobile data, office Wi-Fi…).
 
 ## Images
 
