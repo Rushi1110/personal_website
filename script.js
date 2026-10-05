@@ -701,32 +701,45 @@
   /* =========================================================
      Ask Ananya
      ========================================================= */
+  // Dobby's answers. A question scores one point per key it contains (keys over 4 letters also match
+  // inside longer words); the highest score wins and ties go to the entry listed first. `topic` names
+  // the answer in analytics (ask/<topic>) when it differs from the frame id.
   const INTENTS = [
-    { id: "contact", at: "#note", keys: ["contact", "hire", "hiring", "email", "mail", "reach", "linkedin", "talk", "connect", "job", "role", "available", "call", "meet", "coffee"],
+    { id: "contact", at: "#note", keys: ["contact", "email", "mail", "gmail", "reach", "linkedin", "github", "talk", "connect", "call", "meet", "coffee", "message", "dm", "ping", "phone", "number", "social", "socials", "touch"],
       text: "Email is fastest: rushabhparikh10@gmail.com. Or write on this sticky and send it. He replies faster than most agents he has built. Dobby disputes this." },
-    { id: "crew", at: ".badge.c-yellow", keys: ["dobby", "elf", "socks", "sock"],
+    { id: "hello", topic: "location", at: ".ui-tag", keys: ["location", "located", "based", "live", "lives", "living", "city", "bangalore", "bengaluru", "india", "remote", "relocate", "relocation", "relocating", "onsite", "hybrid", "abroad", "country", "move", "wfh", "office"],
+      text: "The headmaster is based in Bengaluru. Location isn't a fixed filter, though: he's open to relocating for the right role." },
+    { id: "contact", topic: "roles", at: "#note", keys: ["hire", "hiring", "job", "jobs", "role", "roles", "open", "looking", "opportunity", "opportunities", "available", "availability", "notice", "switch", "switching", "recruit", "recruiter", "recruiting", "offer", "interview", "position", "opening", "openings", "join", "joining", "candidate", "ctc", "salary"],
+      text: "The headmaster isn't actively looking, but the right AI product role always gets a reply. Leave a note on this sticky, or email rushabhparikh10@gmail.com." },
+    { id: "crew", at: ".badge.c-yellow", keys: ["dobby", "elf", "socks", "sock", "you", "harry", "potter"],
       text: "That is Dobby! Dobby finds socks: 104 ops mistakes in 30 days. Dobby also scouts ~672 leads a week. Dobby is a free agent. Mostly." },
-    { id: "crew", at: ".badge.c-pink", keys: ["majnu", "chanakya", "bablu", "crew", "internal", "n8n", "make", "automation", "automations", "stack", "tools", "python", "vibe", "code", "coded", "builds"],
+    { id: "crew", at: ".badge.c-pink", keys: ["majnu", "chanakya", "bablu", "crew", "internal", "n8n", "make", "automation", "automations", "automate", "workflow", "workflows", "vibe", "photo", "photos", "images", "patterns", "team"],
       text: "The crew: Majnu Bhai fixes listing photos, Chanakya finds patterns, Bablu finds sellers, and Dobby finds socks. The headmaster built most of us himself." },
-    { id: "whatsapp", at: "#phone-tara", keys: ["tara", "seller", "sellers", "sell", "selling", "sold", "whatsapp", "listing", "listings", "gtm", "onboarding", "khata", "documents", "latency", "subagent", "subagents"],
+    { id: "whatsapp", at: "#phone-tara", keys: ["tara", "seller", "sellers", "sell", "selling", "sold", "whatsapp", "listing", "listings", "gtm", "onboarding", "onboard", "khata", "documents", "latency", "subagent", "subagents", "home", "homes", "house", "property", "properties", "real", "estate", "realestate", "proptech"],
       text: "Tara sells homes on WhatsApp, end to end: onboarding, photos, marketing, buyers, feedback, paperwork. Onboarding got 28× faster: ~3 hours instead of 3.5 days. Press play!" },
-    { id: "whatsapp", at: "#phone-ananya", keys: ["ananya", "agent", "agents", "agentic", "ship", "shipped", "built", "prd", "chatbot", "llm", "ai", "genai", "bot", "assistant", "buyer", "buyers", "visit", "visits", "evals", "judge"],
+    { id: "whatsapp", at: "#phone-ananya", keys: ["ananya", "agent", "agents", "agentic", "ship", "shipped", "built", "prd", "chatbot", "llm", "ai", "genai", "bot", "assistant", "buyer", "buyers", "visit", "visits", "judge", "conversion", "convert", "negotiate", "negotiation", "discount", "recommendation", "recommendations"],
       text: "Ananya talks to buyers and books visits. The headmaster found the leaks (rigid scheduling, irrelevant recommendations, weak visuals) and doubled conversion from enquiry to meeting: 4.5% to ~10%." },
-    { id: "metrics", at: ".growth", keys: ["metric", "metrics", "arr", "revenue", "growth", "numbers", "impact", "result", "results", "kpi", "kpis", "scale", "grew", "money"],
+    { id: "metrics", at: ".growth", keys: ["metric", "metrics", "arr", "revenue", "growth", "numbers", "impact", "result", "results", "kpi", "kpis", "scale", "grew", "money", "deals", "inventory", "supply", "markets", "cm3", "margin", "profit", "profitable", "unit", "economics", "business", "traction", "outcome", "outcomes", "achievement", "achievements", "accomplishment", "proud", "dashboard"],
       text: "One year at Jumbo: ARR up 5× (₹1.15 Cr to ₹6 Cr), deals closed per month up 5×, supply up 8× in one quarter." },
-    { id: "principles", at: ".sticky.c-orange", keys: ["why", "principle", "principles", "approach", "think", "thinks", "philosophy", "how", "pm", "style", "values", "believe", "fail", "failed", "failure", "failures", "mistake", "mistakes", "wrong"],
+    { id: "principles", at: ".sticky.c-orange", keys: ["why", "principle", "principles", "approach", "think", "thinks", "philosophy", "how", "pm", "style", "values", "believe", "believes", "fail", "failed", "failure", "failures", "mistake", "mistakes", "wrong", "lesson", "lessons", "learned", "learnings", "rule", "rules", "mindset", "framework", "funnel"],
       text: "The headmaster's rules: distribution beats features, find the leak before touching the model, evals are the spec. And he has broken plenty. Ask him!" },
-    { id: "chakr", at: "#ocp", keys: ["battery", "batteries", "chakr", "aluminium", "aluminum", "r&d", "lab", "research", "deeptech", "deep", "hardware", "chemistry", "moonshot", "anode"],
+    { id: "chakr", at: "#ocp", keys: ["battery", "batteries", "chakr", "aluminium", "aluminum", "r&d", "lab", "research", "deeptech", "deep", "hardware", "chemistry", "moonshot", "anode", "air", "metal", "scrap", "china", "pilot", "amazon", "swiggy", "energy", "cell", "hydrogen"],
       text: "At Chakr he led a six-person R&D team on aluminium-air batteries, and got 83% of pure-aluminium performance out of scrap. Try the slider!" },
-    { id: "ola", at: "#scatter", keys: ["ola", "crash", "ev", "evs", "electric", "vehicle", "vehicles", "ml", "machine", "model", "simulation", "hpc", "safety"],
+    { id: "ola", at: "#scatter", keys: ["ola", "crash", "ev", "evs", "electric", "vehicle", "vehicles", "machine", "simulation", "hpc", "safety", "car", "cars", "pedestrian", "injury", "automotive", "cae", "regression", "predict", "prediction", "supercomputer", "compute"],
       text: "At OLA Electric he built an ML model that predicts pedestrian crash-injury scores (R² 0.83), saving 500 compute hours per iteration." },
-    { id: "roadmap", at: ".rm-bar[data-rm='iitg']", keys: ["career", "journey", "experience", "background", "timeline", "resume", "cv", "history", "roadmap", "years", "worked", "companies", "iit", "guwahati", "college", "education", "degree", "study", "studied", "racing", "sports", "cpi", "university", "gpa"],
-      text: "IIT Guwahati mechanical, then EVs at OLA, batteries at Chakr, and agents at Jumbo. Click the bars for more." },
-    { id: "projects", at: ".proj-next", keys: ["feynmann", "feynman", "learn", "learning", "learns", "side", "project", "projects", "hobby", "hobbies", "weekend", "weekends", "curious", "curiosity", "tutor", "notebook", "notebooks", "youtube", "articles", "course", "courses", "outside", "personal", "fun"],
+    { id: "roadmap", topic: "sports", at: ".rm-bar[data-rm='iitg']", keys: ["sport", "sports", "cricket", "cricketer", "bat", "batting", "bowl", "bowling", "play", "plays", "played", "playing", "hobby", "hobbies", "weekend", "weekends", "fun", "free", "outside", "personal", "life", "interests", "passion", "game", "games", "fitness", "athlete", "u14"],
+      text: "Sports are a big part of the headmaster's life: he played U14 cricket at state level, and ran campus sports for 8,000+ students at IIT Guwahati. The rest of the time, he's learning something new." },
+    { id: "crew", topic: "skills", at: ".stack", keys: ["skill", "skills", "sql", "analytics", "analysis", "data", "python", "ml", "model", "models", "figma", "wireframe", "wireframes", "design", "mock", "mocks", "mockup", "prototype", "prototyping", "prompt", "prompts", "prompting", "evals", "eval", "technical", "tech", "code", "coding", "programming", "stack", "tools", "claude", "gpt", "openai", "gemini", "know", "knows"],
+      text: "Yes to most of it: SQL and analytics, Python and ML (see OLA and Chakr), prompts, evals and agents (see Tara and the crew), and Figma for flows and wireframes. He builds, then he ships." },
+    { id: "projects", at: ".proj-next", keys: ["feynmann", "feynman", "feyman", "new", "learn", "learning", "learns", "side", "project", "projects", "curious", "curiosity", "tutor", "notebook", "notebooks", "youtube", "articles", "course", "courses", "teach", "teaches"],
       text: "After hours, the headmaster is always learning something new. He got tired of hopping between articles and YouTube tabs, so he built Feynmann: any topic becomes a ten-chapter notebook, and you only move on once you can explain it back. It's free. Try it!" },
-    { id: "hello", at: ".hello-name", keys: ["who", "rushabh", "headmaster", "about", "hi", "hello", "hey", "intro", "summary"],
+    { id: "roadmap", at: ".rm-bar[data-rm='iitg']", keys: ["career", "journey", "experience", "background", "timeline", "resume", "cv", "history", "roadmap", "years", "worked", "companies", "iit", "iitg", "guwahati", "college", "education", "degree", "study", "studied", "racing", "cpi", "university", "gpa", "mechanical", "engineering", "btech", "graduate", "graduated"],
+      text: "IIT Guwahati mechanical, then EVs at OLA, batteries at Chakr, and agents at Jumbo. Click the bars for more." },
+    { id: "hello", at: ".hello-name", keys: ["who", "rushabh", "parikh", "headmaster", "about", "hi", "hello", "hey", "intro", "summary", "tldr", "overview", "bio", "yourself", "introduce", "jumbo", "current", "currently", "now"],
       text: "The headmaster is an AI product manager in Bengaluru. By day, his WhatsApp agents sell real homes. After hours, he builds tools to learn faster, like Feynmann." },
   ];
+  // "Write me a Python script", "solve my homework"…: asked of Dobby, not about the headmaster.
+  const CODE_ASK = /^\s*(hey\s+dobby[\s,!]*)?(please\s+|pls\s+|can\s+you\s+|could\s+you\s+|dobby[\s,]+)?(write|generate|create|give\s+me|make\s+me|build\s+me|code|debug|fix|solve|implement)\b.*\b(code|script|program|function|snippet|python|javascript|java|c\+\+|query|regex|html|css|algorithm|essay|homework|assignment|leetcode)\b/i;
   function matchIntent(q) {
     const s = q.toLowerCase();
     const words = new Set(s.split(/[^a-z0-9&]+/).filter(Boolean));
@@ -740,8 +753,17 @@
   }
   async function answer(q, via = "ask") {
     if (state.touring) tour.end();
+    if (via === "ask" && CODE_ASK.test(q)) {
+      track("ask/code-request");
+      ananya.say("The headmaster warned Dobby this day would come. Dobby must not write code for visitors! Dobby only talks about the headmaster's work. No offence. Dobby likes you very much.", [
+        { label: "What he builds", run: () => answer("feynmann") },
+        { label: "His agents", run: () => answer("tara") },
+        { label: "Close", run: () => ananya.hush() },
+      ]);
+      return;
+    }
     const it = matchIntent(q);
-    track(`${via}/${via === "receipt" ? q : it ? it.id : "no-match"}`);
+    track(`${via}/${via === "receipt" ? q : it ? it.topic || it.id : "no-match"}`);
     if (!it) {
       if (isBoard() && !curA.visible) await ananya.pointAt($(".hello-actions"), 0.1, 0.5);
       ananya.say("Dobby only knows about the headmaster's work. Dobby is an ops agent, not a search engine! Try one of these:", [

@@ -69,7 +69,15 @@ Every folder in this repo is served at the matching path, so a project in `xyz/`
 5. **Allow the domain wherever the app signs in or calls an API.** Google sign-in authorises `https://rushabhparikh.in` (the domain, not the path); a Cloudflare Worker or API needs it in its CORS allow-list.
 6. **Pick a folder name that won't clash.** Avoid `assets`, `tools` and any root file name.
 
+**Analytics for a side project:** paste the GoatCounter block from the `<head>` of `feynmann/index.html` into the project's own `index.html`, change `/feynmann` to the new path, and add a line about visit counts to its privacy page. Put the block in the project's *source* `index.html` too, so the next build keeps it: replacing the folder on deploy would otherwise wipe it.
+
 **Put it on the portfolio:** in `index.html`, copy the `<article class="proj">` block in the After hours frame (`#projects`) and change the logo, name, the "why", the three steps, the stack and the link. Then teach Dobby: add its name and topic words to the `projects` entry in `INTENTS` in `script.js` and mention it in that entry's `text`, and add a line to the analytics click handler (`if (h.includes("/xyz")) track("out/xyz")`).
+
+## Dobby's answers
+
+Dobby has no AI model: `INTENTS` in `script.js` is a list of answers, each with trigger words. A question scores a point per trigger word it contains (words over four letters also match inside longer words), the best score wins, and ties go to the entry listed first. Questions that ask Dobby to write code or do homework (`CODE_ASK`) get a polite refusal instead.
+
+To teach him something new, add words to an entry's `keys`, or add an entry with an `id` (the frame he flies to), `at` (what he points at), `keys`, `text` and, if it isn't the frame's main topic, a `topic` name for analytics.
 
 ## Tagged links
 
@@ -137,6 +145,7 @@ Live at **rushabhparikh.goatcounter.com**, and switched on by `window.GOATCOUNTE
 | `tour/start` · `tour/finish` | Started and finished Dobby's tour |
 | `receipt/<topic>` | Tapped a receipt on the Hello card (`tara`, `ananya`, `metrics`, `dobby`) |
 | `ask/<topic>` · `ask/no-match` | Asked Dobby a question; only the matched topic is logged, never the text |
+| `ask/code-request` | Asked Dobby to write code or do homework (he politely refuses) |
 | `demo/play-home-sale` · `demo/negotiate` | Played the WhatsApp demos |
 | `out/whatsapp-tara` · `out/whatsapp-ananya` | Opened a chat with Tara or Ananya on WhatsApp |
 | `out/feynmann` | Opened Feynmann from the After hours card |
@@ -144,7 +153,9 @@ Live at **rushabhparikh.goatcounter.com**, and switched on by `window.GOATCOUNTE
 | `contact/send-email` · `contact/copy-email` | Sent the contact note or copied your email |
 | `mode/board` · `mode/page` | Switched between the board and the page view |
 
-Topics for `ask/` are the sections Dobby answered with: `hello`, `whatsapp`, `crew`, `metrics`, `ola`, `chakr`, `roadmap`, `projects`, `principles`, `contact`.
+Topics for `ask/` are the sections Dobby answered with (`hello`, `whatsapp`, `crew`, `metrics`, `ola`, `chakr`, `roadmap`, `projects`, `principles`, `contact`) plus the standalone answers `roles`, `location`, `skills` and `sports`. A high `ask/no-match` count is the cue to add keywords.
+
+**Feynmann** reports to the same dashboard. Its pages show as `/feynmann/`, `/feynmann/settings`, `/feynmann/topic/:id`, `/feynmann/topic/:id/unit/:id` and so on (ids are replaced by `:id` so pages group together).
 
 **Don't count your own visits**
 
