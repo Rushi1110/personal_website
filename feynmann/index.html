@@ -36,12 +36,13 @@
         if (!window.goatcounter.count) return;
         var route = "/" + location.hash.replace(/^#\/?/, "").split("?")[0];
         route = route.replace(/\/(topic|unit)\/[^/]+/g, "/$1/:id");
+        try { if (route === "/" && !localStorage.getItem("feynmann.account.v1")) route = "/landing"; } catch (e) {}
         window.goatcounter.count({ path: "/feynmann" + (route === "/" ? "/" : route) });
       };
       window.addEventListener("hashchange", window.fmCount);
     </script>
     <script data-goatcounter="https://rushabhparikh.goatcounter.com/count" async src="https://gc.zgo.at/count.js" onload="fmCount()"></script>
-    <script type="module" crossorigin src="./assets/index-BnNLuAEi.js"></script>
+    <script type="module" crossorigin src="./assets/index-b3OF1mo0.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CgmIDH05.css">
   </head>
   <body>
