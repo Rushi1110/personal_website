@@ -1,5 +1,5 @@
-"""Stamp cache-busting versions into index.html, then bundle the site into
-one self-contained HTML file: dist/index.html.
+"""Stamp cache-busting versions into index.html. With --bundle, also write
+one self-contained HTML file to dist/index.html (git-ignored, never deployed).
 
 index.html links styles.css and script.js with ?v=<content hash>, so
 browsers fetch fresh files after every change instead of a cached copy.
@@ -13,6 +13,7 @@ import base64
 import hashlib
 import pathlib
 import re
+import sys
 
 root = pathlib.Path(__file__).resolve().parent.parent
 css = (root / "styles.css").read_text()
@@ -25,11 +26,14 @@ for name, body in (("styles.css", css), ("script.js", js)):
     v = hashlib.sha1(body.encode()).hexdigest()[:8]
     html = re.sub(rf'"{re.escape(name)}(\?v=[0-9a-f]+)?"', f'"{name}?v={v}"', html)
 page.write_text(html)
-icon = base64.b64encode((root / "assets" / "favicon.svg").read_bytes()).decode()
+if "--bundle" not in sys.argv:
+    print("stamped asset versions in index.html")
+    sys.exit()
+icon = base64.b64encode((root / "assets" / "favicon-32.png").read_bytes()).decode()
 
 html = re.sub(r'<link rel="stylesheet" href="styles\.css[^"]*">', lambda m: f"<style>\n{css}\n</style>", html)
 html = re.sub(r'<script src="script\.js[^"]*" defer></script>', lambda m: f"<script>\n{js}\n</script>", html)
-html = html.replace('href="assets/favicon.svg"', f'href="data:image/svg+xml;base64,{icon}"')
+html = html.replace('href="/assets/favicon-32.png"', f'href="data:image/png;base64,{icon}"')
 # Inline the photo if present; otherwise drop the polaroid.
 photo = root / "assets" / "me.png"
 if photo.exists():

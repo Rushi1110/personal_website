@@ -77,7 +77,7 @@
   const world = $("#world");
   const frames = $$("[data-frame]");
   const byId = (id) => document.getElementById(id);
-  const PANEL_ORDER = ["hello", "whatsapp", "crew", "metrics", "ola", "chakr", "roadmap", "principles", "contact"];
+  const PANEL_ORDER = ["hello", "whatsapp", "crew", "metrics", "ola", "chakr", "roadmap", "projects", "principles", "contact"];
 
   const state = {
     board: false,
@@ -515,6 +515,7 @@
       { a: side("whatsapp", "b", 0.3), b: side("metrics", "t", 0.3), label: "what it moved", lx: 18, ly: 6 },
       { a: side("ola", "b", 0.5), b: side("chakr", "t", 0.45), label: "ML meets hardware", lx: 18, ly: 6 },
       { a: side("chakr", "r", 0.3), b: side("principles", "l", 0.35), label: "lessons", lx: -30, ly: -16 },
+      { a: side("metrics", "b", 0.3), b: side("projects", "t", 0.3), label: "after hours", lx: 18, ly: 6 },
       { a: side("roadmap", "b", 0.5), b: side("hello", "t", 0.5), label: "", lx: 0, ly: 0 },
     ];
     links.forEach(({ a, b, label, lx, ly }) => {
@@ -660,6 +661,7 @@
     { id: "metrics", at: ".gr-foot", fx: 0.15, fy: 0, text: "What one year of this did to the business: ARR up about 5×, live inventory up 8×. Grey is where it started. Colour is where it got to." },
     { id: "ola", at: "#scatter", fx: 0.55, fy: 0.45, text: "Before agents, the headmaster taught a model to crash cars so the supercomputer did not have to. 500 compute hours saved per iteration!" },
     { id: "chakr", at: "#ocp", fx: 0.1, text: "Then he tried to power EVs with aluminium and thin air. Drag the slider. Dobby likes the bubbles." },
+    { id: "projects", at: ".proj-next", fx: 0.06, fy: 0.12, text: "After hours, the headmaster is always learning something. Tired of juggling articles and YouTube tabs, he built Feynmann: one notebook, one tutor, no tab soup. Dobby approves." },
     { id: "principles", at: ".sticky.c-pink", fx: 0.3, fy: 0.3, text: "What the headmaster learned, some of it the hard way. The stickies move." },
     { id: "contact", at: "#note", fx: 0.3, fy: 0.3, text: "That is the tour! Leave the headmaster a note. He replies faster than most of his agents. Dobby is working on it." },
   ];
@@ -720,8 +722,10 @@
       text: "At OLA Electric he built an ML model that predicts pedestrian crash-injury scores (R² 0.83), saving 500 compute hours per iteration." },
     { id: "roadmap", at: ".rm-bar[data-rm='iitg']", keys: ["career", "journey", "experience", "background", "timeline", "resume", "cv", "history", "roadmap", "years", "worked", "companies", "iit", "guwahati", "college", "education", "degree", "study", "studied", "racing", "sports", "cpi", "university", "gpa"],
       text: "IIT Guwahati mechanical, then EVs at OLA, batteries at Chakr, and agents at Jumbo. Click the bars for more." },
-    { id: "hello", at: ".hello-name", keys: ["who", "rushabh", "headmaster", "about", "hi", "hello", "hey", "intro", "summary", "lowercase"],
-      text: "The headmaster is an AI product manager in Bengaluru. He builds the agent, writes the evals, and fixes the lowercase t. His agents have sold real homes." },
+    { id: "projects", at: ".proj-next", keys: ["feynmann", "feynman", "learn", "learning", "learns", "side", "project", "projects", "hobby", "hobbies", "weekend", "weekends", "curious", "curiosity", "tutor", "notebook", "notebooks", "youtube", "articles", "course", "courses", "outside", "personal", "fun"],
+      text: "After hours, the headmaster is always learning something new. He got tired of hopping between articles and YouTube tabs, so he built Feynmann: any topic becomes a ten-chapter notebook, and you only move on once you can explain it back. It's free. Try it!" },
+    { id: "hello", at: ".hello-name", keys: ["who", "rushabh", "headmaster", "about", "hi", "hello", "hey", "intro", "summary"],
+      text: "The headmaster is an AI product manager in Bengaluru. By day, his WhatsApp agents sell real homes. After hours, he builds tools to learn faster, like Feynmann." },
   ];
   function matchIntent(q) {
     const s = q.toLowerCase();
@@ -744,6 +748,7 @@
         { label: "Tara", run: () => answer("tara") },
         { label: "The crew", run: () => answer("majnu") },
         { label: "Results", run: () => answer("metrics") },
+        { label: "Side projects", run: () => answer("feynmann") },
         { label: "Contact", run: () => answer("contact") },
       ]);
       return;
@@ -1338,6 +1343,7 @@
     const h = a.getAttribute("href");
     if (h.includes("wa.me/919187921049")) track("out/whatsapp-tara");
     else if (h.includes("wa.me/917349744479")) track("out/whatsapp-ananya");
+    else if (h.includes("/feynmann")) track("out/feynmann");
     else if (h.includes("linkedin.com")) track("out/linkedin");
     else if (h.includes("github.com")) track("out/github");
     else if (h.startsWith("mailto:")) track("contact/send-email");

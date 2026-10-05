@@ -18,25 +18,34 @@ Portfolio site for Rushabh Parikh, AI Product Manager. Live at https://rushabhpa
   - OLA crash-model scatter plot (hover the points)
   - Chakr lab notebook, with a live voltage slider: drag it and the H₂ bubbles (wasted aluminium) visibly thin out
   - Year-one dashboard: growth bars that fill from where each number started to where it got
+  - After hours: side projects hosted on this domain, starting with Feynmann
   - Principles, four stickies
   - Contact, a sticky note you write and send as an email
 - **Visitor stickies:** press S (or pick the sticky tool) and click anywhere to leave a note. Notes are saved in your browser and included in the email.
 - **Read as a page:** a normal scrolling layout. It's the default on phones and what you get without JavaScript.
 
-Shortcuts: `T` tour · `1`–`9` jump to the first nine frames · `0` fit the board · `V` / `H` / `S` tools · `/` ask Dobby · `Esc` close.
+Shortcuts: `T` tour · `1`–`9` jump to the first nine frames (in Frames-panel order) · `0` fit the board · `V` / `H` / `S` tools · `/` ask Dobby · `Esc` close.
 
 Fonts (three, on purpose): Gloock (display), IBM Plex Sans (everything else), Shantell Sans (handwriting). Colours: "Whiteboard" (grey board, bright stickies, orange accent, teal for Dobby).
 
 ## Structure
 
 ```
-index.html     page content (edit this to fill in your details)
-styles.css     styles, including light/dark theme tokens at the top
-script.js      canvas camera, gestures, tour, Ask Ananya, agent phone, charts, stickies
-404.html       "page not found" page
-assets/        favicon, photo, résumé PDF, images
-.nojekyll      tells GitHub Pages to serve files as-is
+index.html            the portfolio: all copy and frames
+styles.css            styles, including light/dark theme tokens at the top
+script.js             board camera, gestures, tour, Dobby, phones, charts, analytics
+404.html              "page not found" page for every path on the domain
+favicon.ico           site icon (16/32/48 px); browsers ask for it at the root
+apple-touch-icon.png  iPhone home-screen icon (180 px); iOS asks for it at the root
+site.webmanifest      app name and icons for Android / "add to home screen"
+assets/               photo, link-preview image, 32/192/512 px icons
+feynmann/             side project, live at rushabhparikh.in/feynmann/
+tools/                build_standalone.py: stamps cache-busting versions (run before committing)
+CNAME                 the custom domain
+.nojekyll             tells GitHub Pages to serve files as-is
 ```
+
+Only `main` is deployed. `dist/` is git-ignored: `python3 tools/build_standalone.py --bundle` writes a single-file copy there for offline previews.
 
 ## Run locally
 
@@ -48,6 +57,19 @@ python3 -m http.server 8000
 ## Editing
 
 All copy lives in `index.html`. Each frame's position on the board is set by its `data-x`, `data-y` and `data-w` attributes. The tour script, Dobby's answers and the WhatsApp story are `TOUR`, `INTENTS` and `story` in `script.js`. Colours are tokens at the top of `styles.css`.
+
+## Side projects (rushabhparikh.in/<name>/)
+
+Every folder in this repo is served at the matching path, so a project in `xyz/` is live at `rushabhparikh.in/xyz/`. To host one:
+
+1. **Build it for a sub-folder.** Asset paths must be relative (`./assets/…`), not root-absolute (`/assets/…`). In Vite: `base: "./"`. In Create React App: `"homepage": "."`. Next.js: `output: "export"` with `basePath: "/xyz"`.
+2. **Use hash routing for single-page apps.** GitHub Pages can't rewrite URLs, so a refreshed `/xyz/settings` would 404. With a hash router (`/xyz/#/settings`) every page refresh works. React Router: `createHashRouter`. Feynmann already does this.
+3. **Replace the whole folder on every deploy.** Delete `xyz/` and copy the new build in. Adding files on top leaves old hashed bundles behind: each one stays public and bloats the repo.
+4. **Give it its own identity.** In its `index.html`: a `<title>`, a description, a favicon set, and `og:` tags with absolute URLs (`https://rushabhparikh.in/xyz/og-image.png`) for link previews.
+5. **Allow the domain wherever the app signs in or calls an API.** Google sign-in authorises `https://rushabhparikh.in` (the domain, not the path); a Cloudflare Worker or API needs it in its CORS allow-list.
+6. **Pick a folder name that won't clash.** Avoid `assets`, `tools` and any root file name.
+
+**Put it on the portfolio:** in `index.html`, copy the `<article class="proj">` block in the After hours frame (`#projects`) and change the logo, name, the "why", the three steps, the stack and the link. Then teach Dobby: add its name and topic words to the `projects` entry in `INTENTS` in `script.js` and mention it in that entry's `text`, and add a line to the analytics click handler (`if (h.includes("/xyz")) track("out/xyz")`).
 
 ## Tagged links
 
@@ -117,11 +139,12 @@ Live at **rushabhparikh.goatcounter.com**, and switched on by `window.GOATCOUNTE
 | `ask/<topic>` · `ask/no-match` | Asked Dobby a question; only the matched topic is logged, never the text |
 | `demo/play-home-sale` · `demo/negotiate` | Played the WhatsApp demos |
 | `out/whatsapp-tara` · `out/whatsapp-ananya` | Opened a chat with Tara or Ananya on WhatsApp |
+| `out/feynmann` | Opened Feynmann from the After hours card |
 | `out/linkedin` · `out/github` | Clicked through to your profiles |
 | `contact/send-email` · `contact/copy-email` | Sent the contact note or copied your email |
 | `mode/board` · `mode/page` | Switched between the board and the page view |
 
-Topics for `ask/` are the sections Dobby answered with: `hello`, `whatsapp`, `crew`, `metrics`, `ola`, `chakr`, `roadmap`, `principles`, `contact`.
+Topics for `ask/` are the sections Dobby answered with: `hello`, `whatsapp`, `crew`, `metrics`, `ola`, `chakr`, `roadmap`, `projects`, `principles`, `contact`.
 
 **Don't count your own visits**
 
@@ -133,6 +156,7 @@ Topics for `ask/` are the sections Dobby answered with: `hello`, `whatsapp`, `cr
 ## Images
 
 - **Your photo:** `assets/me.png` (a cut-out portrait) shows as the taped polaroid on the Hello card. Replace the file to change it.
+- **Site icon:** `favicon.ico`, `apple-touch-icon.png` and `assets/icon-*.png` / `favicon-32.png`: "RP" in Gloock on near-black, with the orange dot from "Parikh.".
 - **Link preview:** `assets/og.png` (1200×630) is the card LinkedIn, WhatsApp and X show when the link is shared.
 - **Anything else:** put files in `assets/` and reference them as `assets/name.jpg`.
 - Upload on GitHub via the repo page → Add file → Upload files, into the `assets` folder.
