@@ -50,7 +50,6 @@ Eraser: hold the pen's side button, or press E. Work is also kept in localStorag
   #nav .done { background: #2f6b4f; color: #fff; }
   #nav .cur { outline: 2px solid #222; }
   #q { padding: 8px 16px 4px; font-size: 22px; line-height: 1.35; display: flex; gap: 16px; align-items: flex-start; }
-  #q img { max-height: 190px; max-width: 34%; flex: none; background: #fff; }
   #ans { padding: 4px 16px 8px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   #ans .pick { background: #222; color: #fff; }
   #ans .mrow { display: flex; gap: 4px; align-items: center; width: 100%; }
@@ -65,9 +64,9 @@ Eraser: hold the pen's side button, or press E. Work is also kept in localStorag
              align-items: center; justify-content: center; gap: 14px; padding: 16px; text-align: center; }
   .overlay h1 { margin: 0; font-size: 28px; }
 </style>
-  <script type="module" crossorigin src="./assets/test-DAWTj-pm.js"></script>
+  <script type="module" crossorigin src="./assets/test-CUuklpez.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/api-D58nCSqn.js">
-  <link rel="modulepreload" crossorigin href="./assets/qview-DPg2RFIT.js">
+  <link rel="modulepreload" crossorigin href="./assets/qview-9baAkJ1G.js">
 </head>
 <body>
 <header>
@@ -89,6 +88,7 @@ Eraser: hold the pen's side button, or press E. Work is also kept in localStorag
   <div id="info"></div>
   <div>Write your working on the pad. Put your final answer in the box under each question.</div>
   <input id="name" placeholder="Your name">
+  <label>Timer <select id="limit"><option value="">No timer</option><option>5</option><option>10</option><option>15</option><option>20</option><option>30</option><option>45</option><option>60</option><option>90</option><option>180</option></select> <span id="limitNote"></span></label>
   <button id="go">Start</button>
   <button id="recover" hidden>Download unfinished attempt</button>
 </div>

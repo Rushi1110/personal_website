@@ -87,10 +87,11 @@
   .mixer > summary { cursor: pointer; } .mixer label { display: inline; color: var(--ink); margin: 0 14px 0 0; font-size: 14px; }
   .mixer input[type=checkbox] { width: auto; margin-right: 4px; } .mixer select { width: auto; }
   .mixch { margin-top: 10px; } .mixtopics { margin: 4px 0 0 22px; display: flex; flex-wrap: wrap; gap: 2px 0; }
+  .mixer input.num { width: 4em; padding: 4px 6px; }
   .linkish { background: none; border: 0; color: var(--soft); cursor: pointer; font: inherit; font-size: 14px; padding: 4px 0; text-decoration: underline; }
   .bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: #ece7db; margin-top: 8px; max-width: 260px; }
 </style>
-  <script type="module" crossorigin src="./assets/index-XOlnO_fz.js"></script>
+  <script type="module" crossorigin src="./assets/index-Bva_F3Rx.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/api-D58nCSqn.js">
 </head>
 <body>
@@ -144,10 +145,15 @@
     <details class="card mixer" id="mixer">
       <summary><b>Mixed practice</b> <span class="meta">questions from across a chapter, or several. Pick topics, or let Feynmann pick.</span></summary>
       <div id="mixTopics" class="meta">Loading…</div>
-      <div class="row" style="margin-top:12px; justify-content:flex-start">
-        <label style="margin:0">Questions <select id="mixN"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></label>
-        <button class="btn" id="mixGo">Make my paper</button><span class="meta" id="mixMsg"></span>
+      <div class="row" style="margin-top:12px; justify-content:flex-start; gap:8px 4px">
+        <label>Difficulty <select id="mixLv"><option value="">Any</option><option value="easy">Easy</option><option value="medium">Medium</option>
+          <option value="hard">Hard</option><option value="split">My own split…</option></select></label>
+        <label id="mixNWrap">Questions <select id="mixN"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></label>
+        <span id="mixSplit" hidden><label>Easy <input id="mixE" type="number" min="0" max="20" value="4" class="num"></label><label>Medium <input id="mixM" type="number" min="0" max="20" value="4" class="num"></label><label>Hard <input id="mixH" type="number" min="0" max="20" value="2" class="num"></label></span>
+        <label>Timer <select id="mixT"><option value="">None</option><option>10</option><option>15</option><option selected value="auto">Suggested</option><option>20</option><option>30</option><option>45</option><option>60</option></select></label>
       </div>
+      <div class="meta" style="margin-top:6px">Easy: Exercise 1. Medium: Exercise 2's single-answer and integer questions, JEE Main papers. Hard: one-or-more correct, comprehension, JEE Advanced papers, the high-level problems. Topics narrow the easy ones only, for now.</div>
+      <p style="margin:12px 0 0"><button class="btn" id="mixGo">Make my paper</button> <span class="meta" id="mixMsg"></span></p>
     </details>
     <div id="mineWrap" hidden><h2>Your papers</h2><div id="mine"></div><button class="linkish" id="allMine" hidden></button></div>
     <h2>Chapters</h2>
