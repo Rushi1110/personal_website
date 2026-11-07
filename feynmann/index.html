@@ -48,6 +48,9 @@
   .landing .small { color: #7a7264; font-size: 14px; margin-top: 10px; }
   .landing .links { display: flex; gap: 20px; margin-top: 48px; font-size: 13px; } .landing .links a { color: #7a7264; }
   #gbtn { margin-top: 32px; min-height: 44px; }
+  .gets { list-style: none; padding: 0; margin: 36px 0 0; display: grid; gap: 12px; max-width: 520px; }
+  .gets li { padding-left: 14px; border-left: 3px solid var(--line); color: #3b4354; font-size: 15px; }
+  .gets b { color: var(--ink); font-weight: 600; }
   .show { min-width: 0; }
   .track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; gap: 16px; scrollbar-width: none; padding: 4px 2px 18px; }
   .track::-webkit-scrollbar { display: none; }
@@ -60,9 +63,10 @@
   .slide .q small { font: 13px Inter, sans-serif; color: #7a7264; }
   .ink { margin: 10px 14px 0; background: #fff; border: 1px solid #efe8da; border-radius: 12px; padding: 6px; }
   .ink svg { display: block; width: 100%; height: auto; max-height: 230px; }
-  .ink path { fill: none; stroke: #1d2433; stroke-width: 4.2; stroke-linecap: round; stroke-linejoin: round; }
+  .ink path { fill: none; stroke: #1d2433; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
   .ink .mk { fill: none; stroke: #b2372b; stroke-width: 5; }
-  .ink figcaption { font: 600 13px Inter, sans-serif; color: #b2372b; padding: 2px 6px 4px; }
+  .ink figcaption { font: 600 13px Inter, sans-serif; color: #b2372b; padding: 4px 6px 4px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; }
+  .ink .wrote { color: #3b4354; font-weight: 500; } .ink code { font: 500 13.5px var(--serif); background: #f3efe6; border-radius: 6px; padding: 1px 6px; }
   .say { margin: 12px 14px 0; background: #f3efe6; border-radius: 14px; padding: 11px 14px; font-size: 14.5px; }
   .say b { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; font-weight: 600; }
   .beyond { padding: 12px 18px 16px; display: grid; gap: 6px; }
@@ -75,7 +79,7 @@
   .caption { font-size: 13px; color: #7a7264; margin-top: 10px; }
   .bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: #ece7db; margin-top: 8px; max-width: 260px; }
 </style>
-  <script type="module" crossorigin src="./assets/index-C1MRaEWg.js"></script>
+  <script type="module" crossorigin src="./assets/index-DbJh7fzF.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/api-D58nCSqn.js">
 </head>
 <body>
@@ -87,8 +91,13 @@
       <h1>Beyond the score.</h1>
       <p class="lede"><em>A score tells you what you got.</em> Feynmann shows you why: the idea behind every mark lost, the mistakes that keep coming back, and which of them are habits, not slips. Then it talks you through each one until it holds.</p>
       <div id="gbtn"></div>
-      <p class="small">Invite-only pilot for JEE and CAT / XAT students and their teachers</p>
-      <p class="links"><a href="privacy.html">Your work, and who sees it</a></p>
+      <p class="small">Invite-only pilot for JEE and CAT / XAT students and their teachers. Not on the list yet? Sign in and join the waitlist.</p>
+      <ul class="gets">
+        <li><b>Every mark lost</b> traced to the idea behind it, marked on your own working.</li>
+        <li><b>Across papers,</b> the mistakes that keep coming back, and which are habits rather than slips.</li>
+        <li><b>For teachers,</b> who in the class holds which misconception, question by question.</li>
+      </ul>
+      <p class="links" style="margin-top:28px"><a href="privacy.html">Your work, and who sees it</a></p>
     </div>
     <div class="show" aria-roledescription="carousel" aria-label="Real working, read by Feynmann">
       <div class="track" id="track"></div>
