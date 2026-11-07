@@ -44,24 +44,38 @@
   /* signed out: the pitch on the left, a real review on the right (the old front page's layout) */
   main.wide { max-width: 1120px; }
   .landing { display: grid; gap: 40px; align-items: start; }
-  @media (min-width: 960px) { .landing { grid-template-columns: 1fr 470px; gap: 64px; } .landing .pitch { position: sticky; top: 40px; } }
+  @media (min-width: 960px) { .landing { grid-template-columns: 1fr 540px; gap: 56px; } .landing .pitch { position: sticky; top: 40px; } }
   .landing .small { color: #7a7264; font-size: 14px; margin-top: 10px; }
   .landing .links { display: flex; gap: 20px; margin-top: 48px; font-size: 13px; } .landing .links a { color: #7a7264; }
   #gbtn { margin-top: 32px; min-height: 44px; }
-  .sheet { background: var(--card); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 1px 0 #e5ddcc, 0 18px 40px -24px rgba(60, 45, 20, .35); overflow: hidden; }
-  .sheet .q { padding: 18px 22px 0; font: 19px/1.4 var(--serif); }
-  .sheet .q small { display: block; font: 500 12px Inter, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: #7a7264; margin-bottom: 6px; }
-  .sheet svg { display: block; width: 100%; height: auto; }
-  .hand { font: 500 30px Caveat, cursive; fill: #1d2433; }
-  .say { margin: 0 16px 16px; background: #f3efe6; border-radius: 14px; padding: 12px 14px; font-size: 15px; }
-  .say b { display: block; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; font-weight: 600; }
-  .finds { display: grid; gap: 8px; margin-top: 12px; }
-  .find { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--c, var(--blue)); border-radius: 12px; padding: 10px 14px; font-size: 14px; color: #3b4354; }
-  .find b { color: var(--ink); font-weight: 600; }
+  .show { min-width: 0; }
+  .track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; gap: 16px; scrollbar-width: none; padding: 4px 2px 18px; }
+  .track::-webkit-scrollbar { display: none; }
+  .slide { flex: 0 0 100%; scroll-snap-align: start; background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+    box-shadow: 0 1px 0 #e5ddcc, 0 18px 40px -24px rgba(60, 45, 20, .35); overflow: hidden; display: flex; flex-direction: column; }
+  .slide .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 14px 18px 0; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: #7a7264; font-weight: 500; }
+  .score { font: 600 12px Inter, sans-serif; letter-spacing: 0; text-transform: none; border-radius: 999px; padding: 3px 10px; }
+  .score.right { background: #e5f0e7; color: #2d6a45; } .score.wrong { background: #f8e4e0; color: #b2372b; }
+  .slide .q { padding: 8px 18px 0; font: 17px/1.4 var(--serif); }
+  .slide .q small { font: 13px Inter, sans-serif; color: #7a7264; }
+  .ink { margin: 10px 14px 0; background: #fff; border: 1px solid #efe8da; border-radius: 12px; padding: 6px; }
+  .ink svg { display: block; width: 100%; height: auto; max-height: 230px; }
+  .ink path { fill: none; stroke: #1d2433; stroke-width: 4.2; stroke-linecap: round; stroke-linejoin: round; }
+  .ink .mk { fill: none; stroke: #b2372b; stroke-width: 5; }
+  .ink figcaption { font: 600 13px Inter, sans-serif; color: #b2372b; padding: 2px 6px 4px; }
+  .say { margin: 12px 14px 0; background: #f3efe6; border-radius: 14px; padding: 11px 14px; font-size: 14.5px; }
+  .say b { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; font-weight: 600; }
+  .beyond { padding: 12px 18px 16px; display: grid; gap: 6px; }
+  .beyond h3 { margin: 0; font: italic 500 16px var(--serif); color: var(--blue); }
+  .beyond p { margin: 0; font-size: 14px; color: #3b4354; padding-left: 12px; border-left: 3px solid var(--line); }
+  .beyond p b { color: var(--ink); font-weight: 600; }
+  .ctrl { display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .ctrl button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; font-size: 16px; }
+  #dots { display: flex; gap: 6px; } #dots i { width: 8px; height: 8px; border-radius: 50%; background: #d8cfbd; cursor: pointer; } #dots i.on { background: var(--ink); width: 22px; border-radius: 4px; }
   .caption { font-size: 13px; color: #7a7264; margin-top: 10px; }
   .bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: #ece7db; margin-top: 8px; max-width: 260px; }
 </style>
-  <script type="module" crossorigin src="./assets/index-BUJfxSW6.js"></script>
+  <script type="module" crossorigin src="./assets/index-C1MRaEWg.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/api-D58nCSqn.js">
 </head>
 <body>
@@ -70,32 +84,16 @@
 
   <section id="signin" class="landing" hidden>
     <div class="pitch">
-      <h1>The score says what you got. Your pen shows why.</h1>
-      <p class="lede">Write your JEE paper with a stylus. Feynmann reads how you got each answer, finds the mistakes that are habits, and talks you through them, one line of your working at a time.</p>
+      <h1>Beyond the score.</h1>
+      <p class="lede"><em>The score says what you got. Your pen shows why.</em> Write your paper with a stylus; Feynmann reads every line of the working, finds the idea behind each mark lost, and talks you through it.</p>
       <div id="gbtn"></div>
       <p class="small">Invite-only pilot · tablet with a stylus, or a pen tablet</p>
       <p class="links"><a href="privacy.html">Your work, and who sees it</a></p>
     </div>
-    <div>
-      <div class="sheet" aria-label="An example review">
-        <div class="q"><small>Q2 · your answer: 1.5R</small>The molar heat capacity at constant volume of a diatomic gas at room temperature is…</div>
-        <svg viewBox="0 0 470 170" role="img" aria-label="Handwritten working: Cv equals f R over 2, f equals 3, so Cv equals 3 over 2 R">
-          <text class="hand" x="28" y="52">C<tspan font-size="20" dy="6">v</tspan><tspan dy="-6"> = f R / 2</tspan></text>
-          <text class="hand" x="28" y="102">f = 3</text>
-          <text class="hand" x="28" y="150">C<tspan font-size="20" dy="6">v</tspan><tspan dy="-6"> = 3/2 R</tspan></text>
-          <ellipse cx="62" cy="92" rx="52" ry="24" fill="none" stroke="#b2372b" stroke-width="2.5" transform="rotate(-4 62 92)"/>
-          <path d="M120 86 C 170 70, 200 70, 236 78" fill="none" stroke="#b2372b" stroke-width="2"/>
-          <text x="244" y="84" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#b2372b">only the 3 ways to move</text>
-          <text x="28" y="22" font-family="Inter, sans-serif" font-size="11" fill="#9a917f">your working, as you wrote it · 13s</text>
-        </svg>
-        <div class="say"><b>Feynmann</b>Your formula is right. In step 2 you counted f = 3: that's a single atom moving in three directions. A two-atom molecule can also spin. How many ways can it spin?</div>
-      </div>
-      <div class="finds">
-        <div class="find" style="--c:#b2372b"><b>An idea you hold, not a slip.</b> Wrong, with no pause and no erasing.</div>
-        <div class="find" style="--c:#c98a1b"><b>A habit:</b> °C where kelvin is needed, on Q2 and Q13. Twice is a habit, not a slip.</div>
-        <div class="find" style="--c:#2a4d9b"><b>Where the time went:</b> 71s setting up the physics, 37s on algebra, 36s pausing.</div>
-      </div>
-      <p class="caption">What a student sees after a paper: the score, then why.</p>
+    <div class="show" aria-roledescription="carousel" aria-label="Real working, read by Feynmann">
+      <div class="track" id="track"></div>
+      <div class="ctrl"><button id="prev" aria-label="Previous example">←</button><span id="dots"></span><button id="nextS" aria-label="Next example">→</button></div>
+      <p class="caption">Real working, written with a pen in the pilot. The score is the first line; the rest is what it can't show.</p>
     </div>
   </section>
 
