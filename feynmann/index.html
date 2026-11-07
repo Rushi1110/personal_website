@@ -77,9 +77,20 @@
   .ctrl button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; font-size: 16px; }
   #dots { display: flex; gap: 6px; } #dots i { width: 8px; height: 8px; border-radius: 50%; background: #d8cfbd; cursor: pointer; } #dots i.on { background: var(--ink); width: 22px; border-radius: 4px; }
   .caption { font-size: 13px; color: #7a7264; margin-top: 10px; }
+  .chap { background: var(--card); border: 1px solid var(--line); border-radius: 16px; margin-bottom: 10px; }
+  .chap > summary { list-style: none; cursor: pointer; padding: 14px 18px; display: grid; gap: 4px; }
+  .chap > summary::-webkit-details-marker { display: none; }
+  .chap > summary b { font-weight: 600; } .chap > summary b::after { content: ' ▸'; color: var(--soft); } .chap[open] > summary b::after { content: ' ▾'; }
+  .sets { border-top: 1px solid var(--line); padding: 4px 8px 8px; }
+  .setrow { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 8px 10px; border-radius: 10px; color: inherit; text-decoration: none; }
+  .setrow:hover { background: #f3efe6; } .setrow .meta { white-space: nowrap; }
+  .mixer > summary { cursor: pointer; } .mixer label { display: inline; color: var(--ink); margin: 0 14px 0 0; font-size: 14px; }
+  .mixer input[type=checkbox] { width: auto; margin-right: 4px; } .mixer select { width: auto; }
+  .mixch { margin-top: 10px; } .mixtopics { margin: 4px 0 0 22px; display: flex; flex-wrap: wrap; gap: 2px 0; }
+  .linkish { background: none; border: 0; color: var(--soft); cursor: pointer; font: inherit; font-size: 14px; padding: 4px 0; text-decoration: underline; }
   .bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: #ece7db; margin-top: 8px; max-width: 260px; }
 </style>
-  <script type="module" crossorigin src="./assets/index-6JJ7ckI8.js"></script>
+  <script type="module" crossorigin src="./assets/index-XOlnO_fz.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/api-D58nCSqn.js">
 </head>
 <body>
@@ -123,13 +134,23 @@
     <div id="staff" class="staff"></div>
     <h2 id="hi">Next for you</h2>
     <div id="next"></div>
-    <ol class="steps">
+    <ol class="steps" id="steps" hidden>
       <li><b>Take a paper with the pen.</b> Write your working as you would on paper; answer in the box.</li>
       <li><b>Read your quiz report.</b> Where the marks went, which mistakes are habits, the fixes worth the most.</li>
       <li><b>Talk through each mistake.</b> Feynmann points at the line in your working and asks why, until you get there.</li>
       <li><b>Watch your profile grow.</b> Every paper adds to <a href="profile.html">what Feynmann knows about you</a>.</li>
     </ol>
-    <div id="mineWrap" hidden><h2>Your papers</h2><div id="mine"></div></div>
+    <h2>Practice</h2>
+    <details class="card mixer" id="mixer">
+      <summary><b>Mixed practice</b> <span class="meta">questions from across a chapter, or several. Pick topics, or let Feynmann pick.</span></summary>
+      <div id="mixTopics" class="meta">Loading…</div>
+      <div class="row" style="margin-top:12px; justify-content:flex-start">
+        <label style="margin:0">Questions <select id="mixN"><option>5</option><option selected>10</option><option>15</option><option>20</option></select></label>
+        <button class="btn" id="mixGo">Make my paper</button><span class="meta" id="mixMsg"></span>
+      </div>
+    </details>
+    <div id="mineWrap" hidden><h2>Your papers</h2><div id="mine"></div><button class="linkish" id="allMine" hidden></button></div>
+    <h2>Chapters</h2>
     <div id="tests"><div class="meta">Loading…</div></div>
     <p class="note">Write on a tablet with a stylus, or a pen tablet on a laptop (XP-Pen and Wacom: turn on Windows Ink in the pen's settings, so the pressure comes through).</p>
     <p class="note"><a href="privacy.html">Your work, and who sees it</a></p>
