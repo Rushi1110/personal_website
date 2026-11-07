@@ -1,0 +1,47 @@
+<!doctype html>
+<!-- Who's in the pilot (admins only): add or remove people by email with a role, and let in people from the waitlist.
+     Backed by the Worker's /pilot/admin/* (backend/pilot.js), list in D1 `access`, waitlist in D1 `waitlist`. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feynmann · Who's in</title>
+<style>
+  :root { --bg: #f6f4ef; --card: #fffdf8; --ink: #17202e; --soft: #6b6559; --line: #e4dfd3; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 Inter, system-ui, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 24px; margin: 8px 0 4px; } h2 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); margin: 28px 0 8px; }
+  a { color: var(--ink); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+  form { display: grid; grid-template-columns: 2fr 1.4fr 1fr auto; gap: 8px; }
+  @media (max-width: 640px) { form { grid-template-columns: 1fr; } }
+  input, select { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; background: #fff; width: 100%; }
+  button { font: inherit; border: 0; border-radius: 999px; padding: 8px 14px; background: var(--ink); color: #fff; cursor: pointer; }
+  button.light { background: none; color: var(--ink); border: 1px solid var(--line); }
+  .wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  td, th { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: top; }
+  th { color: var(--soft); font-weight: 500; }
+  .soft { color: var(--soft); }
+</style>
+  <script type="module" crossorigin src="./assets/admin-Bq82KTzP.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/api-TrynBJnF.js">
+</head>
+<body>
+<main>
+  <a href="index.html">← Home</a>
+  <h1>Who's in the pilot</h1>
+  <p class="soft">Only people on this list get in. Everyone else who signs in sees the waitlist.</p>
+  <h2>Add someone</h2>
+  <form id="add" class="card">
+    <input id="email" type="email" placeholder="email@gmail.com" required>
+    <input id="name" placeholder="Name (shown to teachers)">
+    <select id="role"><option>student</option><option>teacher</option><option>admin</option></select>
+    <button>Add</button>
+  </form>
+  <h2>On the list</h2><div class="wrap" id="list"></div>
+  <h2>Waitlist</h2><div class="wrap" id="wait"></div>
+</main>
+</body>
+</html>

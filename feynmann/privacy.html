@@ -1,83 +1,51 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Privacy — Feynmann</title>
-    <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
-    <style>
-      body { margin: 0; background: #f6f1e7; color: #1d2433; font-family: "Newsreader", Georgia, serif; font-size: 19px; line-height: 1.65; }
-      main { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
-      h1 { font-size: 40px; font-weight: 500; line-height: 1.1; margin: 0 0 8px; }
-      h2 { font-size: 23px; font-weight: 500; margin: 36px 0 6px; }
-      .muted { color: #7a7264; font-style: italic; }
-      .lead { font-size: 21px; }
-      a { color: #2a4d9b; }
-      ul { padding-left: 1.2em; }
-      li { margin: 4px 0; }
-    </style>
-  </head>
-  <body>
-    <main>
-      <h1>We're with you</h1>
-      <p class="muted">How Feynmann looks after what you share with it. By Rushabh Parikh. Last updated 5 October 2026.</p>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feynmann · Privacy</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #f6f4ef; --ink: #17202e; --soft: #6b6559; --line: #e4dfd3; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Inter, system-ui, sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font: 600 clamp(28px, 5vw, 38px)/1.15 Fraunces, Georgia, serif; margin: 28px 0 8px; }
+  h2 { font: 600 20px Fraunces, Georgia, serif; margin: 30px 0 6px; }
+  p, li { color: #2b3240; } .soft { color: var(--soft); }
+  a { color: var(--ink); }
+</style>
+</head>
+<body>
+<main>
+  <a href="index.html">← Home</a>
+  <h1>Your work, and who sees it</h1>
+  <p class="soft">The Feynmann pen-test pilot. Last updated 7 November 2026.</p>
 
-      <p class="lead">Learning means getting things wrong out loud. You should be able to do that here without worrying
-        about who's watching. So here, in plain words, is what we keep, why we keep it, and how you stay in charge of it.</p>
+  <h2>What we keep</h2>
+  <ul>
+    <li><b>Your Google name and email</b>, to know it's you. Nothing else from your Google account.</li>
+    <li><b>Your pen strokes</b> on each test: where and when you wrote, how hard you pressed, and what you erased. This is how Feynmann sees where the time went and where you hesitated.</li>
+    <li><b>Your answers</b>, and how long each question took.</li>
+    <li><b>Your review with Feynmann</b>: what you wrote and said, and what Feynmann replied, question by question.</li>
+    <li><b>What the AI models answered</b> about your working, so we can check them and make them better.</li>
+  </ul>
 
-      <h2>When you sign in with Google</h2>
-      <p>We receive your name, email address and profile picture. We use them to know it's you, so your topics are
-        yours and nobody else's, on every device you use.</p>
+  <h2>Where it's kept</h2>
+  <p>On Cloudflare, in an account run by Rushabh Parikh, who builds Feynmann. Not in any other company's database, not sold, not used for advertising.</p>
 
-      <h2>What we keep, and why</h2>
-      <p>We save your learning to your account, so you can pick up exactly where you left off and so Feynmann gets
-        better at teaching:</p>
-      <ul>
-        <li><strong>Your topics and progress:</strong> the steps mapped out for you, the ideas, which steps you've
-          finished, your final-check scores, and what's coming back for review.</li>
-        <li><strong>Your conversations with your Feynmann:</strong> how you explained each idea back, the questions you
-          asked, your "what if…" questions, and Feynmann's replies. These are the heart of how you learn here, and they
-          show us where Feynmann explains things well and where it should do better.</li>
-        <li><strong>What you search for and how far you get</strong> (the topics you look up, the steps Feynmann maps out,
-          warm-up results, steps finished), so we understand what people want to learn.</li>
-        <li><strong>Feedback you send us</strong>, and whether you join the waitlist.</li>
-        <li><strong>How many free credits you've used</strong>, to keep things fair for everyone.</li>
-      </ul>
-      <p>All of this is stored privately on Feynmann's servers (Cloudflare). Only the app's owner can see it. We read it to make Feynmann a better teacher, never to judge you. Getting
-        something wrong is how learning starts.</p>
+  <h2>Who sees it</h2>
+  <ul>
+    <li><b>You.</b> Your papers and reviews, from any device you sign in on.</li>
+    <li><b>Teachers in the pilot</b> see each student's papers, mistakes and reviews, so they can plan the next class. During the pilot there is one class: every teacher on the list sees every student on it.</li>
+    <li><b>Rushabh</b>, to run the pilot and improve Feynmann.</li>
+  </ul>
 
-      <h2>What we'll never do</h2>
-      <ul>
-        <li>Sell your data, or share it with advertisers. There are none.</li>
-        <li>Show your name, your answers or your conversations to other learners.</li>
-        <li>Keep your OpenAI or YouTube API keys. If you add your own, they stay in the browser you typed them into and are
-          passed straight to OpenAI or YouTube when you use them, without being stored.</li>
-      </ul>
+  <h2>The AI models</h2>
+  <p>To read your working and talk it through, a picture of your page and the review go to AI models (OpenAI's GPT models) through OpenRouter. We send them only to providers that don't keep it or train on it. They see the work, not your email.</p>
+  <p>Videos are played from YouTube in its privacy-enhanced mode, and only when you open one.</p>
 
-      <h2>Topics others are exploring</h2>
-      <p>When Feynmann maps out a topic, its steps, ideas, checks and suggested videos are shared under <em>topics others are
-        exploring</em>, so the next person curious about it can start straight away, for free. They're shared <strong>without</strong> your
-        name, and without anything you answered, wrote or said. We privately note who started each topic, only so we
-        can take one down if it's ever inappropriate. Ideas written around your particular mistakes, and the quick tangents
-        you ask for, stay yours alone.</p>
-
-      <h2>On your device</h2>
-      <p>Your browser keeps a copy of your topics so the app opens instantly. The copy on our servers is the one that
-        counts: sign in anywhere and it's all there.</p>
-
-      <h2>Visit counts</h2>
-      <p>We count visits with GoatCounter, a privacy-friendly analytics tool: which pages are opened, the site you came
-        from, and your browser, screen size and country. It uses no cookies, isn't linked to your account, and never sees
-        what you type or say.</p>
-
-      <h2>You're in charge</h2>
-      <p>Want to see what we have, or have all of it deleted? Email
-        <a href="mailto:rushabhparikh10@gmail.com">rushabhparikh10@gmail.com</a> and we'll take care of it: your topics,
-        your conversations, and every record tied to your email. No forms, no questions asked.</p>
-      <p>Requests to OpenAI and YouTube are handled by those companies under their own privacy policies.</p>
-    </main>
-  </body>
+  <h2>Taking it back</h2>
+  <p>Write to <a href="mailto:rushabhparikh10@gmail.com">rushabhparikh10@gmail.com</a> and we'll delete your papers, strokes and reviews, or send you a copy of them.</p>
+</main>
+</body>
 </html>

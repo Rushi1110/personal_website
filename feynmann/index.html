@@ -1,51 +1,89 @@
 <!doctype html>
+<!-- Home: sign in with Google; people on the pilot list see their papers (and, by role, the teacher and admin pages);
+     everyone else can join the waitlist. On this computer (port 4175) there's no sign-in: every paper is listed. -->
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Feynmann · Go from curious to “I can explain this”</title>
-    <meta name="description" content="Pick anything you're curious about. Your own Feynmann takes you there in small steps of about 20 minutes, starting from what you already know, until you can explain it yourself. Free." />
-    <link rel="icon" href="favicon.ico" sizes="48x48" />
-    <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <link rel="manifest" href="manifest.webmanifest" />
-    <meta name="theme-color" content="#f6f1e7" />
-    <!-- Link previews (LinkedIn, WhatsApp, X): need absolute URLs -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Feynmann" />
-    <meta property="og:title" content="Go from curious to “I can explain this.”" />
-    <meta property="og:description" content="Pick anything you're curious about. Your own Feynmann takes you there, one small step at a time. Free." />
-    <meta property="og:url" content="https://rushabhparikh.in/feynmann/" />
-    <meta property="og:image" content="https://rushabhparikh.in/feynmann/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="627" />
-    <meta property="og:image:alt" content="Feynmann: go from curious to “I can explain this.”" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Analytics: GoatCounter, shared with rushabhparikh.in. No cookies. Hash-router pages are counted as
-         /feynmann/<route> with ids replaced by :id; rushabhparikh.in/#notrack switches it off in a browser. -->
-    <script>
-      window.goatcounter = { no_onload: true };
-      window.fmCount = function () {
-        try { if (localStorage.getItem("skipgc") === "t") return; } catch (e) {}
-        if (!window.goatcounter.count) return;
-        var route = "/" + location.hash.replace(/^#\/?/, "").split("?")[0];
-        route = route.replace(/\/(topic|unit)\/[^/]+/g, "/$1/:id");
-        try { if (route === "/" && !localStorage.getItem("feynmann.account.v1")) route = "/landing"; } catch (e) {}
-        window.goatcounter.count({ path: "/feynmann" + (route === "/" ? "/" : route) });
-      };
-      window.addEventListener("hashchange", window.fmCount);
-    </script>
-    <script data-goatcounter="https://rushabhparikh.goatcounter.com/count" async src="https://gc.zgo.at/count.js" onload="fmCount()"></script>
-    <script type="module" crossorigin src="./assets/index-CavPC946.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-S-qK9TSY.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feynmann · Pen tests</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #f6f4ef; --card: #fffdf8; --ink: #17202e; --soft: #6b6559; --line: #e4dfd3; --accent: #c2410c; --blue: #2563a8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 Inter, system-ui, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; }
+  .brand { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .brand b { font: 600 22px Fraunces, Georgia, serif; }
+  .brand button { background: none; border: 0; color: var(--soft); cursor: pointer; font: inherit; font-size: 14px; }
+  h1 { font: 600 clamp(30px, 6vw, 44px)/1.1 Fraunces, Georgia, serif; margin: 40px 0 12px; }
+  .lede { color: var(--soft); font-size: 18px; max-width: 560px; }
+  h2 { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); margin: 36px 0 10px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; margin-bottom: 10px; }
+  .row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .meta { color: var(--soft); font-size: 14px; }
+  a.btn, button.btn { display: inline-block; background: var(--ink); color: #fff; border: 0; border-radius: 999px; padding: 9px 18px;
+    font: 500 15px Inter, system-ui, sans-serif; text-decoration: none; cursor: pointer; }
+  a.btn.light { background: none; color: var(--ink); border: 1px solid var(--line); }
+  label { display: block; font-size: 14px; color: var(--soft); margin: 12px 0 4px; }
+  input, select, textarea { width: 100%; font: inherit; padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); }
+  .note { font-size: 14px; color: var(--soft); margin-top: 28px; }
+  .ok { color: #0f7a5c; font-weight: 500; }
+  [hidden] { display: none !important; }
+  .staff { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+  .next { background: var(--ink); color: #fff; border: 0; }
+  .next .meta { color: #cfd5df; }
+  .next a.btn { background: #fff; color: var(--ink); }
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 18px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .steps li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; font-size: 14px; color: var(--soft); }
+  .steps li::before { content: counter(s); display: block; font: 600 20px Fraunces, Georgia, serif; color: var(--accent); }
+  .steps b { color: var(--ink); font-weight: 500; display: block; }
+  .tag { display: inline-block; font-size: 12px; border-radius: 999px; padding: 1px 8px; background: #efe9dc; color: var(--soft); margin-left: 6px; vertical-align: 2px; }
+  .tag.go { background: #fde7d9; color: var(--accent); }
+  .bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: #ece7db; margin-top: 8px; max-width: 260px; }
+</style>
+  <script type="module" crossorigin src="./assets/index-1MLBW2EV.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/api-TrynBJnF.js">
+</head>
+<body>
+<main>
+  <div class="brand"><b>Feynmann</b><button id="out" hidden>Sign out</button></div>
+  <h1>Beyond the score.</h1>
+  <p class="lede">Write your test with a pen. Feynmann reads how you got there: what you believe, where the time went, and the habit worth fixing before the next test.</p>
+
+  <section id="signin" hidden>
+    <p>The pilot is open to invited students and teachers.</p>
+    <div id="gbtn"></div>
+  </section>
+
+  <section id="wait" hidden>
+    <h2>Not in the pilot yet</h2>
+    <div class="card" id="waitForm">
+      <p style="margin-top:0">You're signed in as <b id="email"></b>, which isn't on the pilot list. Join the waitlist and we'll write to you there.</p>
+      <label for="wname">Your name</label><input id="wname" autocomplete="name">
+      <label for="wrole">I am</label>
+      <select id="wrole"><option value="student">a student</option><option value="teacher">a teacher</option><option value="academy">from an academy</option></select>
+      <label for="wnote">Anything we should know (exam, city, class size)</label><textarea id="wnote" rows="2"></textarea>
+      <p><button class="btn" id="join">Join the waitlist</button></p>
+    </div>
+    <p class="ok" id="joined" hidden>You're on the waitlist. We'll write to you.</p>
+  </section>
+
+  <section id="in" hidden>
+    <div id="staff" class="staff"></div>
+    <h2 id="hi">Next for you</h2>
+    <div id="next"></div>
+    <ol class="steps">
+      <li><b>Take a paper with the pen.</b> Write your working as you would on paper; answer in the box.</li>
+      <li><b>Read your quiz report.</b> Where the marks went, which mistakes are habits, the fixes worth the most.</li>
+      <li><b>Talk through each mistake.</b> Feynmann points at the line in your working and asks why, until you get there.</li>
+      <li><b>Watch your profile grow.</b> Every paper adds to <a href="profile.html">what Feynmann knows about you</a>.</li>
+    </ol>
+    <div id="mineWrap" hidden><h2>Your papers</h2><div id="mine"></div></div>
+    <div id="tests"><div class="meta">Loading…</div></div>
+    <p class="note">Write on a tablet with a stylus, or a pen tablet on a laptop (XP-Pen and Wacom: turn on Windows Ink in the pen's settings, so the pressure comes through).</p>
+  </section>
+  <p class="note"><a href="privacy.html">Your work, and who sees it</a></p>
+</main>
+</body>
 </html>

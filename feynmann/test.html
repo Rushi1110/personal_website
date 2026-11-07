@@ -1,0 +1,99 @@
+<!doctype html>
+<!--
+Ink capture: questions on screen, working written on the pen tablet (like paper in an exam).
+  test.html                    one question, no time limit
+  test.html?test=cat10         loads tests/cat10.json (10 questions, 10 minutes); also cat30, rotation5
+  test.html?test=jee2020-rotation               all 27 JEE Main 2020 rotation questions (figures in tests/jee2020-rotation/)
+  test.html?test=jee2020-rotation&set=diagnostic  the 10-question, 20-minute diagnostic listed under "sets"
+A test file: { id, title, minutes, questions: [{ id, topic, type: "mcq" | "integer", text, options?, answer, mistakes, combos?, hard?, figure? }],
+sets?: { name: { title, minutes, ids } } }. Text and options may hold $LaTeX$. mistakes = the catalogue of what can go
+wrong: [{ id, idea, kind: concept|recall|arithmetic|reading, answers: [letters or values it produces] }]; combos = two
+mistakes together: [{ of: [ids], answer }] (may cancel to the right answer). Same answer ≠ same mistake.
+
+Records raw data only. Lines, LaTeX, pauses, rewrites and mistake tags are worked out later from this file.
+
+Schema v2:
+{
+  v: 2, test, student, ua, started_at (epoch ms), submitted_at, limit_ms,
+  questions: [{ id, topic, type, text, options, answer, mistakes, combos, hard, figure }],  // answer = key, never shown to the student
+  answers:   { [questionIndex]: "B" | "19" },              // final answers only
+  events:    [{ t, type: "open" | "answer" | "skip" | "finish" | "timeout", q, value }],  // every question visit, in order
+  strokes:   [{
+    id, q,              // q = question index this working belongs to
+    t0,                 // ms since start
+    pts: [[x, y, t, p]] // x,y divided by canvas width; t = ms since t0; p = pressure 0..1
+    erased_at           // ms since start, or null. Erased strokes are kept: that's where the mistakes are.
+  }]
+}
+All times (t, t0, erased_at) are ms since the student pressed Start.
+Eraser: hold the pen's side button, or press E. Work is also kept in localStorage until the file downloads.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ink Capture</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+  [hidden] { display: none !important; }
+  body { margin: 0; height: 100vh; display: flex; flex-direction: column; overflow: hidden;
+         font: 16px system-ui, sans-serif; background: #f6f4ef; color: #222; }
+  header { padding: 10px 16px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  #who { font-weight: 600; }
+  #timer { font: 600 20px ui-monospace, monospace; margin-left: auto; }
+  #timer.low { color: #b3261e; }
+  #nav { display: flex; flex-wrap: wrap; gap: 4px; padding: 0 16px; }
+  #nav button { width: 34px; padding: 4px 0; font-size: 13px; }
+  #nav .seen { background: #e8e2d4; }
+  #nav .done { background: #2f6b4f; color: #fff; }
+  #nav .cur { outline: 2px solid #222; }
+  #q { padding: 8px 16px 4px; font-size: 22px; line-height: 1.35; display: flex; gap: 16px; align-items: flex-start; }
+  #q img { max-height: 190px; max-width: 34%; flex: none; background: #fff; }
+  #ans { padding: 4px 16px 8px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  #ans .pick { background: #222; color: #fff; }
+  input, button { font: inherit; padding: 6px 12px; }
+  button.on { background: #222; color: #fff; }
+  canvas { display: block; flex: 1 1 0; min-height: 0; margin: 0 16px; width: calc(100% - 32px);
+           background: #fff; border: 1px solid #ccc; touch-action: none; cursor: crosshair; }
+  #stat { padding: 6px 16px; font-size: 13px; color: #666; }
+  .overlay { position: fixed; inset: 0; background: #f6f4ef; display: flex; flex-direction: column;
+             align-items: center; justify-content: center; gap: 14px; padding: 16px; text-align: center; }
+  .overlay h1 { margin: 0; font-size: 28px; }
+</style>
+  <script type="module" crossorigin src="./assets/test-DH_H_4MJ.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/api-TrynBJnF.js">
+</head>
+<body>
+<header>
+  <span id="who"></span>
+  <button id="prev">← Prev</button>
+  <button id="next">Next →</button>
+  <button id="eraser">Eraser (E)</button>
+  <button id="finish">Finish</button>
+  <span id="timer"></span>
+</header>
+<div id="nav"></div>
+<div id="q"></div>
+<div id="ans"></div>
+<canvas id="c"></canvas>
+<div id="stat"></div>
+
+<div id="start" class="overlay">
+  <h1 id="title">Ink Capture</h1>
+  <div id="info"></div>
+  <div>Write your working on the pad. Put your final answer in the box under each question.</div>
+  <input id="name" placeholder="Your name">
+  <button id="go">Start</button>
+  <button id="recover" hidden>Download unfinished attempt</button>
+</div>
+<div id="done" class="overlay" hidden>
+  <h1 id="doneTitle">Test over</h1>
+  <div id="doneMsg">Your work has been downloaded as a JSON file.</div>
+  <button id="again">Download a copy</button>
+  <button id="review">Review with Feynmann →</button>
+</div>
+
+</body>
+</html>
