@@ -1,0 +1,12 @@
+import{L as b,a as w}from"./api-D58nCSqn.js";const f=new Map;function d(e,t,a,o=""){const n=Object.assign(document.createElement("img"),{alt:"Figure",className:o,onload:a});return b||t.includes("/")?n.src=t.includes("/")?t:`tests/${/^res-[a-z0-9]+-/.test(t)?t.split("-").slice(0,2).join("-"):e}/${t}`:(f.has(t)||f.set(t,w(`fig?key=${encodeURIComponent(t)}`).then(i=>i.ok?i.blob():null).then(i=>i&&URL.createObjectURL(i))),f.get(t).then(i=>{i&&(n.src=i)})),n}const s=(e,t,a)=>Object.assign(document.createElement(e),{className:t||"",...a!=null?{textContent:a}:{}});function v(e){const t=s("table","qtable");for(const a of e.trim().split(`
+`).filter(o=>!/^\|[-| ]+\|$/.test(o))){const o=t.insertRow();for(const n of a.replace(/^\||\|$/g,"").split("|"))o.insertCell().textContent=n.trim()}return t}function C(e,t,a,o){const n=s("div","qview"),i=s("div","qwords");if(e.passage&&i.append(s("div","qpassage",e.passage)),i.append(s("div","qstem",(a?a+" ":"")+e.text)),e.table&&i.append(v(e.table)),e.match){const p=s("div","qmatch"),r=(g,m,u)=>{const c=s("div","",null);return c.append(s("b","",g)),m.forEach((x,h)=>c.append(s("div","",`(${u[h]}) ${x}`))),c};p.append(r("Column I",e.match.left,"ABCDE"),r("Column II",e.match.right,"pqrst")),i.append(p)}n.append(i);const l=e.figures||(e.figure?[e.figure]:[]);if(l.length){const p=s("div","qfigs");l.forEach(r=>p.append(d(t,r,o))),n.append(p)}return n}function $(e,t,a,o){const n=e.options[t];return n==="[figure]"&&e.option_figures?.[t]?d(a,e.option_figures[t],o,"optfig"):document.createTextNode(n)}const E=`
+  .qview { display: flex; gap: 16px; align-items: flex-start; width: 100%; }
+  .qwords { flex: 1; min-width: 0; }
+  .qstem, .qpassage { white-space: pre-wrap; }
+  .qpassage { font-size: 0.85em; background: #efe9dc; border-radius: 8px; padding: 6px 10px; margin-bottom: 6px; }
+  .qtable { border-collapse: collapse; font-size: 0.8em; margin: 6px 0; } .qtable td { border: 1px solid #cbbfa6; padding: 2px 8px; }
+  .qmatch { display: flex; gap: 24px; font-size: 0.85em; margin-top: 6px; } .qmatch > div { flex: 1; }
+  .qsource { font-size: 12px; color: #7a7264; margin-top: 4px; }
+  .qfigs { display: flex; flex-wrap: wrap; gap: 6px; width: 34%; flex: none; align-items: flex-start; }
+  .qfigs img { max-height: 220px; max-width: 100%; background: #fff; border-radius: 4px; }
+  img.optfig { max-height: 110px; vertical-align: middle; background: #fff; }`;export{E as Q,$ as o,C as q};
