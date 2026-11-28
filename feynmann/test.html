@@ -5,6 +5,8 @@ Ink capture: questions on screen, working written on the pen tablet (like paper 
   test.html?test=cat10         loads tests/cat10.json (10 questions, 10 minutes); also cat30, rotation5
   test.html?test=jee2020-rotation               all 27 JEE Main 2020 rotation questions (figures in tests/jee2020-rotation/)
   test.html?test=jee2020-rotation&set=diagnostic  the 10-question, 20-minute diagnostic listed under "sets"
+  test.html?sit=<stop>         a sitting on the road (road.html): a fixed number of questions from the coach
+                               (server/coach.mjs), one at a time, each checked as it's answered, then the next
   test.html?cam=1&test=…       working on paper, filmed by a phone on a stand (camera.html; dev server with --mode cam).
                                Strokes come from the phone, each filed under the question open when it appeared.
 A test file: { id, title, minutes, questions: [{ id, topic, type: "mcq" | "integer", text, options?, answer, mistakes, combos?, hard?, figure? }],
@@ -93,11 +95,15 @@ Eraser: hold the pen's side button, or press E. Work is also kept in localStorag
   body.penpad, body.penpad * { cursor: none !important; }
   body.penpad, body.penpad * { touch-action: none; user-select: none; }   /* the pen writes, it doesn't scroll or select */
   #stat { padding: 6px 16px; font-size: 13px; color: #666; }
+  #fb { margin: 0 16px 8px; padding: 12px 14px; border-radius: 6px; font-size: 16px; max-height: 55vh; overflow: auto; }
+  #fb.ok { background: #e6f4ea; border: 1px solid #2e7d32; } #fb.no { background: #fdf3e7; border: 1px solid #ef6c00; }
+  #fb .vid { margin-top: 10px; width: min(560px, 100%); aspect-ratio: 16 / 9; border: 0; display: block; }
+  #fb button { margin-top: 10px; background: #1f3864; color: #fff; border: 0; border-radius: 4px; font-weight: 600; }
   .overlay { position: fixed; inset: 0; background: #f6f4ef; display: flex; flex-direction: column;
              align-items: center; justify-content: center; gap: 14px; padding: 16px; text-align: center; }
   .overlay h1 { margin: 0; font-size: 28px; }
 </style>
-  <script type="module" crossorigin src="./assets/test-DGmuXc3M.js"></script>
+  <script type="module" crossorigin src="./assets/test-DewKbl76.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/api-IPfG4NkI.js">
   <link rel="modulepreload" crossorigin href="./assets/heart-D7wB-zO4.js">
 </head>
@@ -112,6 +118,7 @@ Eraser: hold the pen's side button, or press E. Work is also kept in localStorag
     <div id="qhead"></div>
     <div id="q"></div>
     <div id="ans"></div>
+    <div id="fb" hidden role="status"></div>
     <canvas id="c"></canvas>
     <div id="stat"></div>
   </div>
@@ -151,7 +158,8 @@ Eraser: hold the pen's side button, or press E. Work is also kept in localStorag
   <button id="again">Download a copy</button>
   <button id="review">Review with Feynmann →</button>
   <button id="nextStudent" hidden onclick="location.reload()">Next student →</button>
+  <button id="toRoad" hidden onclick="location.href='road.html'">Back to your road →</button>
 </div>
-
+
 </body>
 </html>

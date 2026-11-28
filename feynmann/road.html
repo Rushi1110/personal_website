@@ -1,7 +1,8 @@
 <!doctype html>
-<!-- A XAT student's Home (27 Nov): the road from their topic ratings to the exam. Stops unlock in order; a mock test is a
-     checkpoint that opens only once every stop before it is done. Built by rule from the profile (start.html), nothing
-     from a model: weakest topics first; a topic rated "never" or "easy ones" gets a basics stop before its XAT-level stop. -->
+<!-- A XAT student's Home (27 Nov): the road from their topic ratings to the exam. Topic stops go in order, weakest first
+     (lib/road.mjs); each sitting is 5 questions the coach picks from that topic only (server/coach.mjs), and a stop is done
+     when the coach rates the student high enough on it. The milestone papers (real XAT 2020-2026) open on fixed dates.
+     Mixed review opens once a stop is done. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -23,10 +24,15 @@
   .btn { font: inherit; font-size: 15px; font-weight: 700; background: var(--teal); color: #fff; border: 0; border-radius: 999px; padding: 13px 28px; cursor: pointer; }
   svg { width: 100%; height: auto; display: block; }
   svg a { cursor: pointer; } svg a:focus-visible circle, svg a:focus-visible rect { stroke: var(--ink); stroke-width: 3; }
+  [hidden] { display: none !important; }
   .msg { min-height: 24px; font-size: 14px; }
+  .btn.ghost { background: transparent; color: var(--teal); border: 2px solid var(--teal); }
+  .today.mixed { border: 1px solid var(--line); padding: 14px 24px; margin-top: 0; }
+  .today.mixed b { font-size: 19px; }
 </style>
-  <script type="module" crossorigin src="./assets/road-CUqiEKEw.js"></script>
+  <script type="module" crossorigin src="./assets/road-DUkLRFOY.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/api-IPfG4NkI.js">
+  <link rel="modulepreload" crossorigin href="./assets/road-BoXJcxPx.js">
 </head>
 <body>
 <header><div class="brand">Feynmann</div><nav><a href="start.html?step=4">My ratings</a><a href="index.html?all=1">All tests</a></nav></header>
@@ -34,8 +40,10 @@
   <h1 id="title">Your road</h1>
   <div class="soft" id="sub"></div>
   <div class="today" id="today" hidden></div>
+  <div class="today mixed" id="mixed" hidden></div>
   <div class="msg soft" id="msg" role="status"></div>
+  <dialog id="lesson" style="border: 0; border-radius: 18px; padding: 0; width: min(820px, 94vw); background: var(--card)"></dialog>
   <div id="road"></div>
-</main>
+</main>
 </body>
 </html>
