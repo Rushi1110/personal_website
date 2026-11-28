@@ -95,6 +95,17 @@ Eraser: hold the pen's side button, or press E. Work is also kept in localStorag
   body.penpad, body.penpad * { cursor: none !important; }
   body.penpad, body.penpad * { touch-action: none; user-select: none; }   /* the pen writes, it doesn't scroll or select */
   #stat { padding: 6px 16px; font-size: 13px; color: #666; }
+  body.sit header { background: #1d2433; }
+  body.sit #start { gap: 18px; }
+  body.sit #start h1 { font: 600 34px Georgia, 'Times New Roman', serif; color: #1d2433; }
+  body.sit #info { font-size: 17px; color: #555; }
+  body.sit #howTo ul { text-align: left; margin: 0; padding: 18px 24px 18px 40px; background: #fff; border: 1px solid #e5ddcc; border-radius: 14px; line-height: 2; font-size: 16px; }
+  body.sit #go { background: #1f6f6b; color: #fff; border: 0; border-radius: 999px; padding: 12px 40px; font-weight: 700; font-size: 17px; cursor: pointer; }
+  body.sit #name, body.sit #hrRow, body.sit #tabletNote, body.sit #recover, body.sit label:has(#studied), body.sit label:has(#limit) { display: none !important; }
+  body.sit #fb { max-height: 38vh; }
+  #bar #idk { border-color: #1f6f6b; color: #1f6f6b; }
+  #fb .why { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  #fb .why button { background: #fff; color: #1d2433; border: 1px solid #c9bda6; font-weight: 500; margin: 0; }
   #fb { margin: 0 16px 8px; padding: 12px 14px; border-radius: 6px; font-size: 16px; max-height: 55vh; overflow: auto; }
   #fb.ok { background: #e6f4ea; border: 1px solid #2e7d32; } #fb.no { background: #fdf3e7; border: 1px solid #ef6c00; }
   #fb .vid { margin-top: 10px; width: min(560px, 100%); aspect-ratio: 16 / 9; border: 0; display: block; }
@@ -103,7 +114,7 @@ Eraser: hold the pen's side button, or press E. Work is also kept in localStorag
              align-items: center; justify-content: center; gap: 14px; padding: 16px; text-align: center; }
   .overlay h1 { margin: 0; font-size: 28px; }
 </style>
-  <script type="module" crossorigin src="./assets/test-BEul7zDi.js"></script>
+  <script type="module" crossorigin src="./assets/test-cRWQxfcU.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/api-IPfG4NkI.js">
   <link rel="modulepreload" crossorigin href="./assets/heart-D7wB-zO4.js">
 </head>
@@ -131,11 +142,13 @@ Eraser: hold the pen's side button, or press E. Work is also kept in localStorag
 </div>
 <div id="bar">
   <button id="saveNext" class="save">Save &amp; Next</button>
+  <button id="idk" hidden>I don't know this one</button>
   <button id="clear">Clear Response</button>
   <button id="saveMark" class="smark">Save &amp; Mark for Review</button>
   <button id="markNext" class="mnext">Mark for Review &amp; Next</button>
   <button id="prev" class="gap">&lt;&lt; Back</button>
   <button id="next">Next &gt;&gt;</button>
+  <button id="endSit" class="gap" hidden>End sitting</button>
 </div>
 
 <div id="start" class="overlay">
